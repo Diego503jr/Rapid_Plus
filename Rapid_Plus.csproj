@@ -19,7 +19,6 @@
     <Folder Include="Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Reports\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>
