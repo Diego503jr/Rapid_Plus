@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\AgregarOrden.png" />
+    <None Remove="Assets\CerrarSesion.png" />
+    <None Remove="Assets\CerrarVentana.png" />
     <None Remove="Assets\logo.png" />
+    <None Remove="Assets\TomarOrden.png" />
+    <None Remove="Assets\VerOrden.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,7 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\AgregarOrden.png" />
+    <Resource Include="Assets\CerrarSesion.png" />
+    <Resource Include="Assets\CerrarVentana.png" />
     <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\TomarOrden.png" />
   </ItemGroup>
 
   <ItemGroup>
