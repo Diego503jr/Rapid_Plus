@@ -16,12 +16,12 @@
         </Button>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="350">
             <StackPanel HorizontalAlignment="Left" >
-                <Image Source="/Assets/logo.png" Width="150" Margin="90,90,0,10"/>
+                <Image Source="/Assets/logo.png" Width="200" Margin="75,90,0,0"/>
             </StackPanel >
 
             <StackPanel Orientation="Horizontal">
                 <Rectangle Width="10" Height="60" Fill="#FFD63C3C" Margin="0,100,0,20" HorizontalAlignment="Left" ></Rectangle>
-                <Button Name="btnTomarOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="339" Height="60" Margin="0,100,0,20" MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave" Click="btnTomarOrden_Click">
+                <Button Name="btnTomarOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="339" Height="60" Margin="0,100,0,20"  MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave" Click="btnTomarOrden_Click">
                     <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
                         <Image  Width="50" Height="50" Margin="0" Source="/Assets/AgregarOrden.png" />
                         <Label Content="Tomar Orden" Foreground="White" ></Label>
@@ -42,7 +42,7 @@
 
         <StackPanel Orientation="Horizontal">
             <Rectangle Width="10" Height="55" Fill="#FFD63C3C" Margin="0,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Rectangle>
-            <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" VerticalAlignment="Bottom" Width="339" Height="55" Margin="0,100,0,0"  MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave" >
+            <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" VerticalAlignment="Bottom" Width="339" Height="55" Margin="0,100,0,0"  MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave" Click="btnCerrarSesion_Click" >
                 <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
                     <Image  Width="50" Height="60" Margin="0" Source="/Assets/CerrarSesion.png" />
                     <Label Content="Cerrar Sesion" Foreground="White" ></Label>

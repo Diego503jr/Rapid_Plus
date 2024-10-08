@@ -36,28 +36,26 @@ namespace Rapid_Plus.Views.Mesero
 
         private void BotonMesero_MouseEnter(object sender, MouseEventArgs e)
         {
-            // Convertir el sender a StackPanel
             Button boton = sender as Button;
 
             if (boton != null)
             {
-                // Cambia el fondo del StackPanel cuando el mouse entra (Hex: #64FF64 - verde claro)
                 boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
             }
         }
 
         private void BotonMesero_MouseLeave(object sender, MouseEventArgs e)
         {
-            // Convertir el sender a StackPanel
             Button boton = sender as Button;
 
             if (boton != null)
             {
-                // Cambia el fondo del StackPanel cuando el mouse sale (Hex: #C8C8C8 - gris claro)
                 boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
             }
         }
 
+
+        //Abrir páginas
         private void btnTomarOrden_Click(object sender, RoutedEventArgs e)
         {
             FrMesero.NavigationService.Navigate(tomarOrden);
@@ -66,6 +64,19 @@ namespace Rapid_Plus.Views.Mesero
         private void btnVerOrden_Click(object sender, RoutedEventArgs e)
         {
             FrMesero.NavigationService.Navigate(verOrden);
+        }
+
+        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if( MessageBox.Show("Desea Cerrar Sesión?", "Cerrar sesión", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                MainWindow login = new MainWindow();
+                login.Show();
+                this.Close();
+            }
+
+            
         }
     }
 }
