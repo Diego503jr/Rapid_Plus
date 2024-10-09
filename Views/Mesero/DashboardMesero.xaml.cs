@@ -23,6 +23,7 @@ namespace Rapid_Plus.Views.Mesero
         //Instancia de las páginas
         TomarOrden tomarOrden = new TomarOrden();
         VerOrden verOrden = new VerOrden();
+
         public DashboardMesero()
         {
             InitializeComponent();

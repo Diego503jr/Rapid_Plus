@@ -23,5 +23,66 @@ namespace Rapid_Plus.Views.Administrador
         {
             InitializeComponent();
         }
+
+        private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            if (
+                MessageBox.Show("Desea Cerrar Sesión?", 
+                "Cerrar sesión", 
+                MessageBoxButton.YesNo, 
+                MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                MainWindow login = new MainWindow();
+                login.Show();
+                this.Close();
+            }
+        }
+
+        #region METODOS ESTILOS
+        private void btnMenu_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnMenu_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+
+        private void btnUsuario_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnUsuario_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+
+        private void btnReportes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnReportes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+
+        private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+        #endregion
     }
 }
