@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Cajero"
         mc:Ignorable="d"
-        Title="DashboardCajero" Height="450" Width="800">
-    <Grid>
-        <Label Content="Label" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        Title="DashboardCajero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+    <Grid OpacityMask="Black">
+        <Rectangle VerticalAlignment="Bottom" Fill="#FFD63C3C" Height="60" HorizontalAlignment="Stretch"/>
+        <Rectangle  Fill="#FF008592"  Width="350" HorizontalAlignment="Left"/>
+        <Rectangle VerticalAlignment="Top" Fill="#FFD63C3C" Height="60" HorizontalAlignment="Stretch"/>
+        <Label VerticalAlignment="Top" Content="Panel Mesero" FontSize="25" Foreground="White" Margin="10"></Label>
+        <Button Name="BtnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnCerrarVentana_Click" >
+            <Image Source="/Assets/CerrarVentana.png" ></Image>
+        </Button>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="350">
+            <StackPanel HorizontalAlignment="Left" >
+                <Image Source="/Assets/logo.png" Width="200" Margin="75,90,0,0"/>
+            </StackPanel >
+
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="10" Height="60" Fill="#FFD63C3C" Margin="0,100,0,20" HorizontalAlignment="Left" ></Rectangle>
+                <Button Name="btnTomarOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="339" Height="60" Margin="0,100,0,20">
+                    <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
+                        <Image  Width="50" Height="50" Margin="0" Source="/Assets/TomarOrden.png" />
+                        <Label Content="Visualizar Ordenes" Foreground="White" ></Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="10" Height="60" Fill="#FFD63C3C" Margin="0,0,0,20" HorizontalAlignment="Left" ></Rectangle>
+                <Button Name ="btnVerOrden" Background="{x:Null}"  BorderBrush="{x:Null}" FontSize="30" Width="339" Height="60" Margin="0,0,0,20">
+                    <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
+                        <Image  Width="50" Height="50" Margin="0" Source="/Assets/Facturar.png" />
+                        <Label Content="Facturar" Foreground="White" ></Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Rectangle Width="10" Height="55" Fill="#FFD63C3C" Margin="0,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Rectangle>
+            <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" VerticalAlignment="Bottom" Width="339" Height="55" Margin="0,100,0,0" >
+                <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
+                    <Image  Width="50" Height="60" Margin="0" Source="/Assets/CerrarSesion.png" />
+                    <Label Content="Cerrar Sesion" Foreground="White" ></Label>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Frame Name="FrMesero" Margin="355,65,0,60" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
