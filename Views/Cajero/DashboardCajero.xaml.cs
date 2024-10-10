@@ -23,5 +23,10 @@ namespace Rapid_Plus.Views.Cajero
         {
             InitializeComponent();
         }
+
+        private void BtnCerrarVentana_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

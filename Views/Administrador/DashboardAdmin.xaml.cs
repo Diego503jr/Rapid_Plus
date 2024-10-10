@@ -24,6 +24,8 @@ namespace Rapid_Plus.Views.Administrador
             InitializeComponent();
         }
 
+        Contactos contacto = new Contactos();
+
         private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -84,5 +86,10 @@ namespace Rapid_Plus.Views.Administrador
             btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
         }
         #endregion
+
+        private void btnUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(contacto);
+        }
     }
 }

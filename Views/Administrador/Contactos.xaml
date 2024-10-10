@@ -1,0 +1,105 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      x:Class="Rapid_Plus.Views.Administrador.Contactos"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Contactos" Background="White">
+
+    <ScrollViewer>
+        <Grid>
+            <GroupBox Header="Usuarios" Margin="50,32,0,214" HorizontalAlignment="Left">
+                <Grid>
+                    <TextBox x:Name="txtUsuario" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    Width="120" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="Usuario"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="48,16,0,0"/>
+                    <PasswordBox x:Name="txtClave" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Width="120" 
+                    Margin="204,16,0,0" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="Clave"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    <TextBox x:Name="txtNombre" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    Width="143" 
+                    Margin="341,16,0,0" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="Nombres"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox x:Name="txtApellido" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    Width="163" 
+                    Margin="507,16,0,0" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="Apellidos"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox x:Name="txtDUI" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top" 
+                    Width="120" 
+                    Margin="204,80,0,0" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="DUI"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <ComboBox x:Name="cmbRol" 
+                    HorizontalAlignment="Left" 
+                    Margin="48,80,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="120" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="Rol"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                    <ComboBox x:Name="cmbSexo" 
+                    HorizontalAlignment="Left" 
+                    Margin="341,80,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="120" 
+                    FontSize="18"
+                    materialDesign:HintAssist.Hint="Sexo"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                    <DatePicker x:Name="dtpFechaNacimiento" 
+                    HorizontalAlignment="Left" 
+                    Margin="650,98,0,0" 
+                    VerticalAlignment="Top" 
+                    FontSize="18"/>
+                    <Label 
+                    Content="Fecha nacimiento: " 
+                    HorizontalAlignment="Left" 
+                    Margin="489,99,0,0" 
+                    VerticalAlignment="Top" 
+                    FontSize="18"/>
+
+                </Grid>
+            </GroupBox>
+            <DataGrid Name="dgUsuarios" ItemsSource="{Binding}" HorizontalAlignment="Center" Margin="35,252,30,0" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgUsuarios_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding UsuarioId}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Usuario" Binding="{Binding Usuario}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Clave" Binding="{Binding Clave}" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombres}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Apellidos" Binding="{Binding Apellidos}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Rol" Binding="{Binding Rol}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DUI" Binding="{Binding DUI}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sexo" Binding="{Binding Sexo}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Fecha de Nacimiento" Binding="{Binding FechaNacimiento}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </ScrollViewer>
+</Page>
