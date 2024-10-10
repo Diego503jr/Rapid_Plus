@@ -14,8 +14,11 @@ namespace Rapid_Plus.Models
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public int RolId { get; set; }
+        public string Rol { get; set; }
         public int DUI { get; set; }
         public int SexoId {get; set;}
+        public string Sexo { get; set; }
+
         public string FechaNacimiento { get; set; }
     }
 }
