@@ -15,7 +15,6 @@
     <None Remove="Assets\logo.png" />
     <None Remove="Assets\menu.png" />
     <None Remove="Assets\reporte.png" />
-    <None Remove="Assets\TomarOrden.png" />
     <None Remove="Assets\usuario.png" />
     <None Remove="Assets\VerOrden.png" />
   </ItemGroup>
@@ -27,8 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Reports\" />
   </ItemGroup>
 
@@ -39,7 +36,7 @@
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\menu.png" />
     <Resource Include="Assets\reporte.png" />
-    <Resource Include="Assets\TomarOrden.png" />
+    <Resource Include="Assets\VerOrden.png" />
     <Resource Include="Assets\usuario.png" />
   </ItemGroup>
 

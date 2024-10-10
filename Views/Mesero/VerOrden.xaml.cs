@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rapid_Plus.Controllers.Mesero;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Rapid_Plus.Views.Mesero
         public VerOrden()
         {
             InitializeComponent();
+            MostrarOrdenes();
+        }
+
+        void MostrarOrdenes()
+        {
+            dgOrdenes.DataContext = MeseroController.ListarOrdenes();
         }
     }
 }

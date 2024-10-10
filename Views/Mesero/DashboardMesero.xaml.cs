@@ -59,12 +59,12 @@ namespace Rapid_Plus.Views.Mesero
         //Abrir páginas
         private void btnTomarOrden_Click(object sender, RoutedEventArgs e)
         {
-            FrMesero.NavigationService.Navigate(tomarOrden);
+            frContent.NavigationService.Navigate(tomarOrden);
         }
 
         private void btnVerOrden_Click(object sender, RoutedEventArgs e)
         {
-            FrMesero.NavigationService.Navigate(verOrden);
+            frContent.NavigationService.Navigate(verOrden);
         }
 
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
