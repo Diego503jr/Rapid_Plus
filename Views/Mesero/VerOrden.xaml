@@ -5,10 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="563" d:DesignWidth="791"
       Title="VerOrden">
 
-    <Grid>
-        <Label Content="ESTA ES LA PAGINA PARA VER ORDENES"></Label>
+    <Grid Background="White">
+        <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" Margin="87,42,87,150" ItemsSource ="{Binding}">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
+                <DataGridTextColumn Header="Orden" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
+                <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
+               <DataGridTextColumn Header="Número de mesa" Width="*" Binding="{Binding Mesa}"/>
+               <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GroupBox Header="Cambiar Estado Ordenes" Margin="95,324,0,26" Height="110" Width="350" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="70" Width="350">
+                <Button Width="130" Content="Lista" Margin="10,0,0,0" FontSize="20" Height="40" Background="#FFD63C3C"></Button>
+                <Button Width="130" Margin="40,0,10,0" Content="Cancelada" Height="40" FontSize="20" Background="#FFD63C3C"></Button>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Filtro Estado Ordenes" Margin="35,324,87,26" Height="110" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <ComboBox>
+                <ComboBoxItem Content="Pendientes"/>
+                <ComboBoxItem Content="Listas"/>
+                <ComboBoxItem Content="Pagadas"/>
+            </ComboBox>
+        </GroupBox>
+
     </Grid>
 </Page>
