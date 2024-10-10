@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="DashboardCajero" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Label" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
