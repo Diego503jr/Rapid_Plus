@@ -16,12 +16,10 @@
             <TextBox Name="txtNombre" Width="300" Margin="0,0,120,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" />
             <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,250" Width="700" Height="35">
-            <Label Content="Número de mesa: " FontSize="20" HorizontalAlignment="Left" Margin="0,0,10,0"></Label>
-            <ComboBox Name="cmbMesa" HorizontalAlignment="Left" Width="100" FontSize="20" Margin="0,0,130,0"/>
-            <Label  Content="Número de orden:" FontSize="20" Height="40" Margin="0,0,10,0" ></Label>
-            <TextBlock Name="txbOrden" Width="50" FontSize="20"  Height="23"  VerticalAlignment="Center" IsEnabled="False"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,250" Width="300" Height="35">
+            <Label Content="Número de mesa: " FontSize="20" HorizontalAlignment="Center" ></Label>
+            <ComboBox Name="cmbMesa" HorizontalAlignment="Center" Width="100" FontSize="20" />
         </StackPanel>
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Content="Crear Orden" FontSize="25" Height="50" Margin="0,0,0,100" Background="#FF008592"></Button>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Content="Crear Orden" FontSize="25" Height="50" Margin="0,0,0,100" Background="#FF008592" Name="btnCrearOrden" Click="btnCrearOrden_Click"></Button>
     </Grid>
 </Page>
