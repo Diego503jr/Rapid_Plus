@@ -7,7 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       x:Class="Rapid_Plus.Views.Administrador.Contactos"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="850"
+      d:DesignHeight="675" d:DesignWidth="1033"
       Title="Contactos" Background="White" Loaded="Page_Loaded">
 
     <Grid>

@@ -6,17 +6,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
         mc:Ignorable="d"
-        Title="DashboardAdmin" Height="600" Width="900" WindowStyle="None" WindowState="Maximized" FontSize="30" Loaded="Window_Loaded">
+        Title="DashboardAdmin" Height="751" Width="1033" WindowStyle="None" WindowState="Maximized" FontSize="30" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
-            
+
             <Grid DockPanel.Dock="Top" Background="#FFD63C3C" Height="60">
                 <Label Content="Panel Admin" Foreground="White" Margin="5"/>
                 <Button x:Name="btnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrarVentana_Click">
                     <Image Source="/Assets/CerrarVentana.png" ></Image>
                 </Button>
             </Grid>
-            
+
             <Grid DockPanel.Dock="Left" Background="#FF008592" MinWidth="350">
                 <StackPanel Grid.Row="0">
                     <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
@@ -62,7 +62,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            
+
             <Rectangle DockPanel.Dock="Bottom" Fill="#FFD63C3C" Height="60" MinWidth="450"/>
 
             <Frame Name="frContent" NavigationUIVisibility="Hidden"/>
