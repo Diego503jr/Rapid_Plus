@@ -28,7 +28,9 @@ namespace Rapid_Plus.Views.Administrador
         public Contactos()
         {
             InitializeComponent();
-            LimpiarFormulario();
+            CargarSexos();
+            CargarRoles();
+            CargarEstados();
         }
 
         #region VARIABLES LOCALES
@@ -42,6 +44,7 @@ namespace Rapid_Plus.Views.Administrador
         private int idUsuario = 0;
         //Variable para almaccenar el idEstado
         private int idEstado = 0;
+
         #endregion
 
         #region METODOS PERSONALIZADOS
@@ -249,9 +252,6 @@ namespace Rapid_Plus.Views.Administrador
         {
             LimpiarFormulario();
             MostrarUsuarios();
-            CargarSexos();
-            CargarRoles();
-            CargarEstados();
             HabilitarFormulario(false);
             ControlFormulario();
         }

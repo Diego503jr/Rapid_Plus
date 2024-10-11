@@ -10,7 +10,7 @@
         <DockPanel>
 
             <Grid DockPanel.Dock="Top" Background="#FFD63C3C" Height="60">
-                <Label Content="Panel Mesero" Foreground="White" Margin="5"/>
+                <Label Content="Panel Mesero" Foreground="White" FontSize="36"/>
                 <Button x:Name="btnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnCerrarVentana_Click">
                     <Image Source="/Assets/CerrarVentana.png" ></Image>
                 </Button>
