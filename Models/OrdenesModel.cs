@@ -14,13 +14,23 @@ namespace Rapid_Plus.Models.Mesero
         public int IdOrden { get; set; }
         public int Cantidad { get; set; }
         public string Orden { get; set; }
-        public string Mesa { get; set; }
+        public int Mesa { get; set; }
+        public int IdEstadoOrden { get; set; }
         public string EstadoOrden { get; set; }
 
         public int IdPlatillo { get; set; }
         public string NombrePlatillo { get; set; }
         public string DescripcionPlatillo { get; set;}
         public decimal PrecioPlatillo { get; set; }
+
+
+        public DateTime FechaOrden{ get; set; }
+        public decimal Total { get; set; }
+        public int UsuarioId { get; set; }
+        
+
+        public string NombreCliente { get; set; }
+        public string ApellidoCliente { get; set; }
 
     }
 }

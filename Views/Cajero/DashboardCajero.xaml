@@ -6,49 +6,57 @@
         xmlns:local="clr-namespace:Rapid_Plus.Views.Cajero"
         mc:Ignorable="d"
         Title="DashboardCajero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
-    <Grid OpacityMask="Black">
-        <Rectangle VerticalAlignment="Bottom" Fill="#FFD63C3C" Height="60" HorizontalAlignment="Stretch"/>
-        <Rectangle  Fill="#FF008592"  Width="350" HorizontalAlignment="Left"/>
-        <Rectangle VerticalAlignment="Top" Fill="#FFD63C3C" Height="60" HorizontalAlignment="Stretch"/>
-        <Label VerticalAlignment="Top" Content="Panel Mesero" FontSize="25" Foreground="White" Margin="10"></Label>
-        <Button Name="BtnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnCerrarVentana_Click" >
-            <Image Source="/Assets/CerrarVentana.png" ></Image>
-        </Button>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="350">
-            <StackPanel HorizontalAlignment="Left" >
-                <Image Source="/Assets/logo.png" Width="200" Margin="75,90,0,0"/>
-            </StackPanel >
+    <Grid>
+        <DockPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <Rectangle Width="10" Height="60" Fill="#FFD63C3C" Margin="0,100,0,20" HorizontalAlignment="Left" ></Rectangle>
-                <Button Name="btnTomarOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="339" Height="60" Margin="0,100,0,20">
-                    <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
-                        <Image  Width="50" Height="50" Margin="0" Source="/Assets/TomarOrden.png" />
-                        <Label Content="Visualizar Ordenes" Foreground="White" ></Label>
-                    </StackPanel>
+            <Grid DockPanel.Dock="Top" Background="#FFD63C3C" Height="60">
+                <Label Content="Panel Cajero" Foreground="White" Margin="5"/>
+                <Button x:Name="btnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrarVentana_Click">
+                    <Image Source="/Assets/CerrarVentana.png" ></Image>
                 </Button>
-            </StackPanel>
+            </Grid>
 
-            <StackPanel Orientation="Horizontal">
-                <Rectangle Width="10" Height="60" Fill="#FFD63C3C" Margin="0,0,0,20" HorizontalAlignment="Left" ></Rectangle>
-                <Button Name ="btnVerOrden" Background="{x:Null}"  BorderBrush="{x:Null}" FontSize="30" Width="339" Height="60" Margin="0,0,0,20">
-                    <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
-                        <Image  Width="50" Height="50" Margin="0" Source="/Assets/Facturar.png" />
-                        <Label Content="Facturar" Foreground="White" ></Label>
+            <Grid DockPanel.Dock="Left" Background="#FF008592" MinWidth="350">
+                <StackPanel Grid.Row="0">
+                    <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
+                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Button Name="btnOrdenes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="348" Height="60" MouseEnter="btnOrdenes_MouseEnter" MouseLeave="btnOrdenes_MouseLeave">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Visualizar Ordenes" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
-                </Button>
-            </StackPanel>
-        </StackPanel>
 
-        <StackPanel Orientation="Horizontal">
-            <Rectangle Width="10" Height="55" Fill="#FFD63C3C" Margin="0,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Rectangle>
-            <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" VerticalAlignment="Bottom" Width="339" Height="55" Margin="0,100,0,0" >
-                <StackPanel Orientation="Horizontal"  Width="349" HorizontalAlignment="Left">
-                    <Image  Width="50" Height="60" Margin="0" Source="/Assets/CerrarSesion.png" />
-                    <Label Content="Cerrar Sesion" Foreground="White" ></Label>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Button Name="btnFacturar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnFacturar_MouseEnter" MouseLeave="btnFacturar_MouseLeave">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/Facturar.png" />
+                                <Label Content="Facturar" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    
                 </StackPanel>
-            </Button>
-        </StackPanel>
-        <Frame Name="FrMesero" Margin="355,65,0,60" NavigationUIVisibility="Hidden"/>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">
+                    <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                    <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click_1" MouseEnter="btnCerrarSesion_MouseEnter" MouseLeave="btnCerrarSesion_MouseLeave">
+                        <StackPanel Orientation="Horizontal"  Width="320">
+                            <Image  Width="60" Height="50" Margin="0" Source="/Assets/CerrarSesion.png" Cursor="" />
+                            <Label Content="Cerrar Sesion" Foreground="White"></Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Rectangle DockPanel.Dock="Bottom" Fill="#FFD63C3C" Height="60" MinWidth="450"/>
+
+            <Frame Name="frContent" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>
