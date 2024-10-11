@@ -1,0 +1,27 @@
+﻿<Page x:Class="Rapid_Plus.Views.Mesero.CrearOrden"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="950"
+      Title="CrearOrden" Loaded="Page_Loaded">
+
+    <Grid Background="White" >
+        <Rectangle Margin="70,200" Stroke="#FFD63C3C" Width="900"  HorizontalAlignment="Center"/>
+        <Label Background="#FFD63C3C" Margin="70,200" Width="900" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Crear Orden" Foreground="White" FontSize="30"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Width="700" Height="35" HorizontalAlignment="Center" Margin="0,300,0,0">
+            <TextBox Name="txtNombre" Width="300" Margin="0,0,120,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" />
+            <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,250" Width="700" Height="35">
+            <Label Content="Número de mesa: " FontSize="20" HorizontalAlignment="Left" Margin="0,0,10,0"></Label>
+            <ComboBox Name="cmbMesa" HorizontalAlignment="Left" Width="100" FontSize="20" Margin="0,0,130,0"/>
+            <Label  Content="Número de orden:" FontSize="20" Height="40" Margin="0,0,10,0" ></Label>
+            <TextBlock Name="txbOrden" Width="50" FontSize="20"  Height="23"  VerticalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Content="Crear Orden" FontSize="25" Height="50" Margin="0,0,0,100" Background="#FF008592"></Button>
+    </Grid>
+</Page>

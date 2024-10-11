@@ -28,8 +28,8 @@
                      Style="{StaticResource MaterialDesignPasswordBox}" SelectionTextBrush="{x:Null}" SelectionBrush="{x:Null}" CaretBrush="{x:Null}"/>
             </StackPanel>
         </Grid>
-        <Image Height="204" Margin="326,0,22,0" VerticalAlignment="Center" Source="/Assets/logo.png"/>
         <Button Content="Ingresar" Width="100" Height="35" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,68" Background="#FF060606" BorderBrush="{x:Null}"/>
+        <Image Height="204" Margin="326,0,22,0" VerticalAlignment="Center" Source="/Assets/LogoN.png"/>
 
     </Grid>
 </Window>

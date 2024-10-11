@@ -20,20 +20,56 @@ namespace Rapid_Plus.Views.Mesero
     public partial class DashboardMesero : Window
     {
 
-        //Instancia de las páginas
+        #region Instancia de las páginas
         TomarOrden tomarOrden = new TomarOrden();
         VerOrden verOrden = new VerOrden();
-
+        CrearOrden crearOrden = new CrearOrden();
+        #endregion
         public DashboardMesero()
         {
             InitializeComponent();
         }
 
+        #region NAVEGACIÓN HACIA LAS PÁGINAS
+        //Abrir páginas
+        private void btnTomarOrden_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(crearOrden);
+        }
+
+        private void btnVerOrden_Click(object sender, RoutedEventArgs e)
+        {
+
+            frContent.NavigationService.Navigate(verOrden);
+        }
+
+        private void btnGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(tomarOrden);
+        }
+        #endregion
+
+        #region EVENTOS
+        //Cerrar Sesión
+        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (MessageBox.Show("Desea Cerrar Sesión?", "Cerrar sesión", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                MainWindow login = new MainWindow();
+                login.Show();
+                this.Close();
+            }
+
+        }
+
+        //Cerrar Ventana
         private void BtnCerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        //MOUSE LEAVE / MOUSE ENTER
 
         private void BotonMesero_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -54,30 +90,8 @@ namespace Rapid_Plus.Views.Mesero
                 boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
             }
         }
+        #endregion
 
 
-        //Abrir páginas
-        private void btnTomarOrden_Click(object sender, RoutedEventArgs e)
-        {
-            frContent.NavigationService.Navigate(tomarOrden);
-        }
-
-        private void btnVerOrden_Click(object sender, RoutedEventArgs e)
-        {
-            frContent.NavigationService.Navigate(verOrden);
-        }
-
-        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
-        {
-            
-            if( MessageBox.Show("Desea Cerrar Sesión?", "Cerrar sesión", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-            {
-                MainWindow login = new MainWindow();
-                login.Show();
-                this.Close();
-            }
-
-            
-        }
     }
 }
