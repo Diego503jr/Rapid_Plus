@@ -18,7 +18,8 @@ namespace Rapid_Plus.Models
         public int DUI { get; set; }
         public int SexoId {get; set;}
         public string Sexo { get; set; }
-
-        public string FechaNacimiento { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public int EstadoId { get; set; }
+        public string Estado { get; set; }
     }
 }
