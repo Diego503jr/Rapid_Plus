@@ -29,7 +29,10 @@
             </StackPanel>
         </Grid>
         <Image Height="204" Margin="326,0,22,0" VerticalAlignment="Center" Source="/Assets/logo.png"/>
-        <Button Content="Ingresar" Width="100" Height="35" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,68" Background="#FF060606" BorderBrush="{x:Null}"/>
+        <Button x:Name="btnIngresar" Content="Ingresar" Width="100" Height="35" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,68" Background="#FFD63C3C" Click="btnIngresar_Click" MouseEnter ="BotonIngresar_MouseEnter" MouseLeave="BotonIngresar_MouseLeave"/>
+        <Button x:Name="btnCerrarLogin" VerticalAlignment="Top" HorizontalAlignment="Right" Height="45" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnCerrarLogin_Click" Foreground="{x:Null}" Margin="0,-1,-13,0">
+            <Image Source="/Assets/CerrarLogin.png" ></Image>
+        </Button>
 
     </Grid>
 </Window>
