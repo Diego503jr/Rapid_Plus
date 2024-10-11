@@ -13,7 +13,9 @@
     <None Remove="Assets\CerrarSesion.png" />
     <None Remove="Assets\CerrarVentana.png" />
     <None Remove="Assets\Facturar.png" />
+    <None Remove="Assets\GestionarOrden.png" />
     <None Remove="Assets\logo.png" />
+    <None Remove="Assets\LogoN.png" />
     <None Remove="Assets\menu.png" />
     <None Remove="Assets\reporte.png" />
     <None Remove="Assets\usuario.png" />
@@ -35,7 +37,9 @@
     <Resource Include="Assets\CerrarSesion.png" />
     <Resource Include="Assets\CerrarVentana.png" />
     <Resource Include="Assets\Facturar.png" />
+    <Resource Include="Assets\GestionarOrden.png" />
     <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\LogoN.png" />
     <Resource Include="Assets\menu.png" />
     <Resource Include="Assets\reporte.png" />
     <Resource Include="Assets\VerOrden.png" />

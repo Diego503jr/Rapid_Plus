@@ -17,5 +17,10 @@ namespace Rapid_Plus.Models.Mesero
         public string Mesa { get; set; }
         public string EstadoOrden { get; set; }
 
+        public int IdPlatillo { get; set; }
+        public string NombrePlatillo { get; set; }
+        public string DescripcionPlatillo { get; set;}
+        public decimal PrecioPlatillo { get; set; }
+
     }
 }
