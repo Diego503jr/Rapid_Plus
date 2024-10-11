@@ -10,8 +10,8 @@
       Title="CrearOrden" Loaded="Page_Loaded">
 
     <Grid Background="White" >
-        <Rectangle Margin="70,200" Stroke="#FFD63C3C" Width="900"  HorizontalAlignment="Center"/>
-        <Label Background="#FFD63C3C" Margin="70,200" Width="900" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Crear Orden" Foreground="White" FontSize="30"/>
+        <Rectangle MinHeight="300" Margin="70,200" Stroke="#FFD63C3C" Width="900"  HorizontalAlignment="Center"/>
+        <Label MinHeight="50" Background="#FFD63C3C" Margin="70,200" MinWidth="900" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Crear Orden" Foreground="White" FontSize="30"/>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Width="700" Height="35" HorizontalAlignment="Center" Margin="0,300,0,0">
             <TextBox Name="txtNombre" Width="300" Margin="0,0,120,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" />
             <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" />

@@ -35,6 +35,7 @@ namespace Rapid_Plus.Views.Mesero
         #endregion
 
 
+        #region MÉTODOS DEL FORMULARIO
         //Llenar combobox de numero de mesa
         private void CargarNumeroMesa()
         {
@@ -87,6 +88,7 @@ namespace Rapid_Plus.Views.Mesero
             return estado;
         }
 
+        //Limpiar cajas
         private void LimpiarObjetos()
         {
             cmbMesa.SelectedIndex = -1;
@@ -94,6 +96,10 @@ namespace Rapid_Plus.Views.Mesero
             txtNombre.Clear();
         }
 
+        #endregion
+
+
+        #region EVENTOS
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LimpiarObjetos();
@@ -116,15 +122,17 @@ namespace Rapid_Plus.Views.Mesero
                 idOrden = MeseroController.CrearOrden(orden);
                 mensaje = "Orden creada con éxito";
 
-                if(idOrden > 0)
+                if (idOrden > 0)
                 {
                     LimpiarObjetos();
                     MessageBox.Show(mensaje, "Validación de formulario", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
             }
-            
+
         }
+        #endregion
+
 
     }
 }
