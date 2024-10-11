@@ -28,6 +28,7 @@ namespace Rapid_Plus.Views.Administrador
         public Contactos()
         {
             InitializeComponent();
+            LimpiarFormulario();
         }
 
         #region VARIABLES LOCALES
@@ -169,11 +170,11 @@ namespace Rapid_Plus.Views.Administrador
             txtClave.Clear();
             txtNombre.Clear();
             txtApellido.Clear();
-            cmbRol.SelectedItem = null;
+            cmbRol.SelectedIndex = -1;
             txtDUI.Clear();
-            cmbSexo.SelectedItem = null;
+            cmbSexo.SelectedIndex = -1;
             dtpFechaNacimiento.SelectedDate = null;
-            cmbEstado.SelectedItem = null;
+            cmbEstado.SelectedIndex = -1;
         }
 
         //Mostrar Usuarios
@@ -246,6 +247,7 @@ namespace Rapid_Plus.Views.Administrador
         //Metodo para cargar la pagina
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            LimpiarFormulario();
             MostrarUsuarios();
             CargarSexos();
             CargarRoles();
