@@ -19,6 +19,7 @@ namespace Rapid_Plus.Controllers.Mesero
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
 
+        //MOSTRAR
         public static List<OrdenesModel> ListarOrdenes()
         {
             List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
@@ -99,6 +100,50 @@ namespace Rapid_Plus.Controllers.Mesero
 
         }
 
+        public static List<OrdenesModel> ListarOrdenesPorMesa(int numeroMesa)
+        {
+            List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
+
+            try
+            {
+                using (var con = new SqlConnection(conexion))
+                {
+                    con.Open();
+                    using (var command = con.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SPMOSTRARORDENESPORMESA";
+                        command.Parameters.AddWithValue("@MESA", numeroMesa);
+                        using (DbDataReader dr = command.ExecuteReader())
+                        {
+                            //Recorrer el dataReader
+                            while (dr.Read())
+                            {
+                                OrdenesModel ordenes = new OrdenesModel();
+                                ordenes.IdOrden = int.Parse(dr["ORDEN"].ToString());
+                                ordenes.Orden = dr["PLATILLO"].ToString();
+                                ordenes.DescripcionPlatillo = dr["DESCRIPCION"].ToString();
+                                ordenes.Cantidad = int.Parse(dr["CANTIDAD"].ToString());
+                                ordenes.EstadoOrden = dr["ESTADO"].ToString();
+
+                                //Agregar a la lista inicial
+                                lstOrdenes.Add(ordenes);
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar mostrar los registros:" + ex.Message, "Validaccion", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return lstOrdenes;
+
+        }
+
+        //CREAR
+
         public static int CrearOrden(OrdenesModel orden)
         {
             int res = -1;
@@ -133,6 +178,8 @@ namespace Rapid_Plus.Controllers.Mesero
 
             return res;
         }
+
+        //ACTUALIZAR / AGREGAR ORDEN
 
     }
 

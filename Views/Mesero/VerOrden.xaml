@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d"
-      Title="VerOrden" Height="997" Width="874">
+      Title="VerOrden" Height="997" Width="874" Loaded="Page_Loaded">
 
     <Grid Background="White">
 

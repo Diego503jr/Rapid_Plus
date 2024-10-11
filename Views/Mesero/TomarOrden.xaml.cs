@@ -1,4 +1,6 @@
 ﻿using Rapid_Plus.Controllers.Mesero;
+using Rapid_Plus.Models;
+using Rapid_Plus.Models.Mesero;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -25,21 +27,52 @@ namespace Rapid_Plus.Views.Mesero
         public TomarOrden()
         {
             InitializeComponent();
-            MostrarOrdenes();
-            MostrarPlatillos();
+            CargarNumeroMesa();
+
         }
-        void MostrarOrdenes()
+        private void CargarNumeroMesa()
         {
-            dgOrdenes.DataContext = MeseroController.ListarOrdenes();
+            using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
+            {
+                conDb.Open();
+                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 1", conDb)) //Muestra unicamente las disponibles
+                {
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        cmbMesa.Items.Add(new { Id = dr.GetInt32(0), Nombre = dr.GetInt32(1) });
+                    }
+                }
+            }
+
+            // Define qué campo mostrar
+            cmbMesa.DisplayMemberPath = "Nombre";
+            cmbMesa.SelectedValuePath = "Id";
         }
-        void MostrarPlatillos()
+        private void LimpiarObjetos()
         {
-            dgPlatillos.DataContext = MeseroController.ListaPlatillos();
+            cmbMesa.SelectedIndex = -1;
         }
 
+        private int NumeroMesa()
+        {
+            int numeroMesa = -1;
+            if (cmbMesa.SelectedIndex != -1)
+            {
+                // Asume que el valor seleccionado es un entero
+                 numeroMesa = (int)cmbMesa.SelectedItem;
+
+            }
+            return numeroMesa;
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-           //txtCantidad.Clear();
+            LimpiarObjetos();
+        }
+
+        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
