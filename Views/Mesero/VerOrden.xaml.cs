@@ -1,6 +1,7 @@
 ﻿using Rapid_Plus.Controllers.Mesero;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,5 +32,7 @@ namespace Rapid_Plus.Views.Mesero
         {
             dgOrdenes.DataContext = MeseroController.ListarOrdenes();
         }
+
+       
     }
 }

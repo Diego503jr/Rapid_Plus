@@ -6,32 +6,26 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d"
-      Title="TomarOrden" Height="805" Width="1200" >
+      Title="TomarOrden" Height="805" Width="1200" Loaded="Page_Loaded" >
     <Grid Background="White">
-        <!--CLIENTE, PLATILLO, DESCRIPCION, MESA Y CANTIDAD-->
-        <ComboBox Height="44"  Margin="88,578,0,0" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left">
-            <ComboBoxItem Content="Elemento 1"></ComboBoxItem>
-            <ComboBoxItem Content="Elemento 2"></ComboBoxItem>
-            <ComboBoxItem Content="Elemento 3"></ComboBoxItem>
-            <ComboBoxItem Content="Elemento 4"></ComboBoxItem>
-        </ComboBox>
-        <Rectangle HorizontalAlignment="Left" Height="101" Margin="81,549,0,0" Stroke="#FFD63C3C" VerticalAlignment="Top" Width="274"/>
-        <Label Content="Clientes" HorizontalAlignment="Left" Margin="81,523,0,0" VerticalAlignment="Top" BorderBrush="Black" Background="#FFD63C3C" Foreground="#DDFFFFFF" Height="42" Width="274" FontSize="20"/>
-
-
-        <Rectangle HorizontalAlignment="Left" Height="102" Margin="453,548,0,0" Stroke="#FFD63C3C" VerticalAlignment="Top" Width="274"/>
-        <Label Content="Clientes" HorizontalAlignment="Left" Margin="453,522,0,0" VerticalAlignment="Top" BorderBrush="Black" Background="#FFD63C3C" Foreground="#DDFFFFFF" Height="42" Width="274" FontSize="20"/>
-        <ComboBox Height="44"  Margin="460,578,0,0" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left">
-            <ComboBoxItem Content="Elemento 1"/>
-            <ComboBoxItem Content="Elemento 2"/>
-            <ComboBoxItem Content="Elemento 3"/>
-            <ComboBoxItem Content="Elemento 4"/>
-        </ComboBox>
-
-        <Rectangle HorizontalAlignment="Left" Height="102" Margin="829,548,0,0" Stroke="#FFD63C3C" VerticalAlignment="Top" Width="274"/>
-        <Label Content="Clientes" HorizontalAlignment="Left" Margin="829,522,0,0" VerticalAlignment="Top" BorderBrush="Black" Background="#FFD63C3C" Foreground="#DDFFFFFF" Height="42" Width="274" FontSize="20"/>
-        <TextBox FontSize="20" Height="44"  Margin="836,578,0,0" VerticalAlignment="Top" Width="260" HorizontalAlignment="Left"/>
-        <Button Content="Agregar Orden" HorizontalAlignment="Left" Margin="490,684,0,0" VerticalAlignment="Top" FontSize="20" BorderBrush="#FF008592" Background="#FF008592" Height="44" Width="200"/>
+        
+        <DataGrid Name="dgPlatillos" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="60,172,60,417" Width="700">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="N.Platillo" Binding="{Binding IdPlatillo}"/>
+                <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
+                <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding DescripcionPlatillo}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="60,435,60,154" Width="500">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="N.Orden" Binding="{Binding IdOrden}"/>
+                <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
+                <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
+                <DataGridTextColumn Header="Mesa" Binding="{Binding Mesa}"/>
+                <DataGridTextColumn Header="Estado" Binding="{Binding EstadoOrden}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

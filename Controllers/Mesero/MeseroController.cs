@@ -57,6 +57,45 @@ namespace Rapid_Plus.Controllers.Mesero
 
         }
 
+        public static List<OrdenesModel> ListaPlatillos()
+        {
+            List<OrdenesModel> lstPlatillos = new List<OrdenesModel>();
+
+            try
+            {
+                using (var con = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
+                {
+                    con.Open();
+                    using (var command = con.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "MOSTRARPLATILLOS";
+                        using (DbDataReader dr = command.ExecuteReader())
+                        {
+                            //Recorrer el dataReader
+                            while (dr.Read())
+                            {
+                                OrdenesModel ordenes = new OrdenesModel();
+                                ordenes.IdPlatillo = int.Parse(dr["ID"].ToString());
+                                ordenes.NombrePlatillo = dr["PLATILLO"].ToString();
+                                ordenes.DescripcionPlatillo = dr["DESCRIPCION"].ToString();
+
+                                //Agregar a la lista inicial
+                                lstPlatillos.Add(ordenes);
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar mostrar los registros:" + ex.Message, "Validaccion", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return lstPlatillos;
+
+        }
+
     }
 
 

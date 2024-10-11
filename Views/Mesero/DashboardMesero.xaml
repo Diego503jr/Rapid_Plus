@@ -22,25 +22,34 @@
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
                         <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
-                        <Button Name="btnMenu" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnTomarOrden_Click" MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
+                        <Button Name="btnCrear" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnTomarOrden_Click" MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/AgregarOrden.png" />
-                                <Label Content="Tomar Orden" Foreground="White"/>
+                                <Label Content="Crear Orden" Foreground="White"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
-                        <Button Name="btnUsuario" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnVerOrden_Click" MouseEnter ="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
+                        <Button Name="btnVerOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnVerOrden_Click" MouseEnter ="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
                                 <Label Content="Ver Ordenes" Foreground="White"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Button Name="btnGestionar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter ="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave" Click="btnGestionar_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/GestionarOrden.png" />
+                                <Label Content="Gestionar Orden" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
 
-                    
+
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">

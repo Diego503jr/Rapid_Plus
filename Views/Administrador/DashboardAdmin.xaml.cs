@@ -91,5 +91,10 @@ namespace Rapid_Plus.Views.Administrador
         {
             frContent.NavigationService.Navigate(contacto);
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(contacto);
+        }
     }
 }
