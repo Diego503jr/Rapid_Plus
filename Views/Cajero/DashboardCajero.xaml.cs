@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rapid_Plus.Views.Mesero;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,63 @@ namespace Rapid_Plus.Views.Cajero
         {
             InitializeComponent();
         }
+        #region Instancias de las paginas
+     
+        #endregion
 
-        private void BtnCerrarVentana_Click(object sender, RoutedEventArgs e)
+
+        #region Estilos de Metodos
+        private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        private void btnOrdenes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnOrdenes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnOrdenes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnOrdenes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+
+        private void btnFacturar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnFacturar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+
+        private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+        #endregion
+
+        private void btnCerrarSesion_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (
+              MessageBox.Show("Desea Cerrar Sesión?",
+              "Cerrar sesión",
+              MessageBoxButton.YesNo,
+              MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                MainWindow login = new MainWindow();
+                login.Show();
+                this.Close();
+            }
+
+        }
+
+       
     }
 }
