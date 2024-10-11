@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
         mc:Ignorable="d"
-        Title="DashboardAdmin" Height="600" Width="900" WindowStyle="None" WindowState="Maximized" FontSize="30">
+        Title="DashboardAdmin" Height="600" Width="900" WindowStyle="None" WindowState="Maximized" FontSize="30" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
             

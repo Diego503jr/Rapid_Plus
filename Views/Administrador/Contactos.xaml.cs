@@ -132,7 +132,7 @@ namespace Rapid_Plus.Views.Administrador
         //Metodo para manejar botones del CRUD
         void ControlFormulario() 
         {
-            if (dgUsuarios.Items.Count == 0)
+            if (dgUsuarios.Items.Count < 0)
             {
                 btnNuevo.IsEnabled = true;
                 btnEditar.IsEnabled = false;
