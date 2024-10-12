@@ -25,14 +25,23 @@ namespace Rapid_Plus.Views.Mesero
         public VerOrden()
         {
             InitializeComponent();
-            MostrarOrdenes();
+           
         }
 
+        #region MÉTODOS PERSONALIZADOS
         void MostrarOrdenes()
         {
             dgOrdenes.DataContext = MeseroController.ListarOrdenes();
         }
+        #endregion
 
-       
+
+        #region EVENTOS DEL FORMULARIO
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            MostrarOrdenes();
+        }
+        #endregion
+
     }
 }
