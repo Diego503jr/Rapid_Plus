@@ -19,7 +19,7 @@ namespace Rapid_Plus.Controllers.Mesero
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
 
-        //MOSTRAR
+        //MOSTRAR DATOS
         public static List<OrdenesModel> ListarOrdenes()
         {
             List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
@@ -122,7 +122,7 @@ namespace Rapid_Plus.Controllers.Mesero
                                 OrdenesModel ordenes = new OrdenesModel();
                                 ordenes.IdOrden = int.Parse(dr["ORDEN"].ToString());
                                 ordenes.Orden = dr["PLATILLO"].ToString();
-                                ordenes.DescripcionPlatillo = dr["DESCRIPCION"].ToString();
+                                ordenes.Mesa = int.Parse(dr["MESA"].ToString());
                                 ordenes.Cantidad = int.Parse(dr["CANTIDAD"].ToString());
                                 ordenes.EstadoOrden = dr["ESTADO"].ToString();
 
@@ -142,7 +142,7 @@ namespace Rapid_Plus.Controllers.Mesero
 
         }
 
-        //CREAR
+        //CREAR ORDEN
 
         public static int CrearOrden(OrdenesModel orden)
         {
@@ -165,7 +165,6 @@ namespace Rapid_Plus.Controllers.Mesero
                         command.Parameters.AddWithValue("@Id_Mesa", orden.Mesa);
                         command.Parameters.AddWithValue("@Id_Usuario", orden.UsuarioId);
                         command.Parameters.AddWithValue("@Id_Estado_Orden",orden.IdEstadoOrden);
-                        MessageBox.Show("ID ESTADOORDEN" + orden.IdEstadoOrden);
                         res = command.ExecuteNonQuery();
                     }
                 }
@@ -179,7 +178,36 @@ namespace Rapid_Plus.Controllers.Mesero
             return res;
         }
 
-        //ACTUALIZAR / AGREGAR ORDEN
+        // AGREGAR ORDEN
+        public static int InsertarOrden(OrdenesModel orden)
+        {
+            int res = -1;
+            try
+            {
+                using (var conDb = new SqlConnection(conexion))
+                {
+                    conDb.Open();
+
+                    using (var command = conDb.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SPINSERTARORDEN";
+
+                        command.Parameters.AddWithValue("@ID_ORDEN", orden.IdOrden);
+                        command.Parameters.AddWithValue("@CANTIDAD", orden.Cantidad);
+                        command.Parameters.AddWithValue("@ID_PLATILLO", orden.IdPlatillo);
+                        res = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar crear los registros" + ex.Message, "Validacion",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return res;
+        }
 
     }
 
