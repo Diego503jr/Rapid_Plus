@@ -109,11 +109,17 @@ namespace Rapid_Plus.Views.Administrador
                 msj = "Estado Usuario\n";
             }
 
+            if (string.IsNullOrEmpty(txtTelefono1.Text))
+            {
+                estado = false;
+                msj = "Telefono Usuario\n";
+            }
+
             if (!estado)
             {
                 MessageBox.Show("Debe cumplir estos campos:\n" + msj,
                "Validacion de formulario", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }        
 
             return estado;
         }
@@ -131,6 +137,8 @@ namespace Rapid_Plus.Views.Administrador
             dtpFechaNacimiento.IsEnabled = accion;
             lbFecha.IsEnabled = accion;
             cmbEstado.IsEnabled = accion;
+            txtTelefono1.IsEnabled = accion;
+            txtTelefono2.IsEnabled = accion;
         }
 
         //Metodo para manejar botones del CRUD
@@ -178,6 +186,8 @@ namespace Rapid_Plus.Views.Administrador
             cmbSexo.SelectedIndex = -1;
             dtpFechaNacimiento.SelectedDate = null;
             cmbEstado.SelectedIndex = -1;
+            txtTelefono1.Clear();
+            txtTelefono2.Clear();
         }
 
         //Mostrar Usuarios
@@ -281,6 +291,8 @@ namespace Rapid_Plus.Views.Administrador
             cmbSexo.Text = usuario.Sexo;
             dtpFechaNacimiento.Text = Convert.ToString(usuario.FechaNacimiento);
             cmbEstado.Text = usuario.Estado;
+            txtTelefono1.Text = usuario.Telefono1;
+            txtTelefono2.Text = usuario.Telefono2;
         }
 
         //Boton para manejar el CRUD
@@ -365,6 +377,8 @@ namespace Rapid_Plus.Views.Administrador
                 usuario.SexoId = (int)cmbSexo.SelectedValue;
                 usuario.FechaNacimiento = DateTime.Parse(dtpFechaNacimiento.Text);
                 usuario.EstadoId = (int)cmbEstado.SelectedValue;
+                usuario.Telefono1 = txtTelefono1.Text;
+                usuario.Telefono2 = txtTelefono2.Text;
 
                 //Evaluar si se esta agregando o editando
                 if (agregar)

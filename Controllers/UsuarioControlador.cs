@@ -49,6 +49,27 @@ namespace Rapid_Plus.Controllers
                                 //Agregar a la lista
                                 lstUsuarios.Add(usuario);
                             }
+
+                            // Mover al siguiente conjunto de resultados (teléfonos)
+                            if (dr.NextResult())
+                            {
+                                // Segunda consulta: obtener los teléfonos de los usuarios
+                                while (dr.Read())
+                                {
+                                    int usuarioId = int.Parse(dr["Id_Usuario"].ToString());
+                                    string telefono1 = dr["Telefono1"].ToString();
+                                    string telefono2 = dr["Telefono2"].ToString();
+
+                                    // Encontrar el usuario y asignarle el teléfono
+                                    var usuario = lstUsuarios.FirstOrDefault(u => u.UsuarioId == usuarioId);
+
+                                    if (usuario != null)
+                                    {
+                                        usuario.Telefono1 = telefono1;
+                                        usuario.Telefono2 = telefono2;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -84,6 +105,8 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Id_Sexo", user.SexoId);
                         command.Parameters.AddWithValue("@Fecha_Nacimiento", user.FechaNacimiento);
                         command.Parameters.AddWithValue("@Id_Estado", user.EstadoId);
+                        command.Parameters.AddWithValue("@Telefono1", user.Telefono1);
+                        command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
                         res = command.ExecuteNonQuery();
                     }
@@ -123,6 +146,8 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Id_Sexo", user.SexoId);
                         command.Parameters.AddWithValue("@Fecha_Nacimiento", user.FechaNacimiento);
                         command.Parameters.AddWithValue("@Id_Estado", user.EstadoId);
+                        command.Parameters.AddWithValue("@Telefono1", user.Telefono1);
+                        command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
                         res = command.ExecuteNonQuery();
                     }
