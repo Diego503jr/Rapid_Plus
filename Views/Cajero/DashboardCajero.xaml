@@ -20,22 +20,14 @@
                 <StackPanel Grid.Row="0">
                     <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
 
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
-                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
-                        <Button Name="btnOrdenes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="348" Height="60" MouseEnter="btnOrdenes_MouseEnter" MouseLeave="btnOrdenes_MouseLeave">
-                            <StackPanel Orientation="Horizontal"  Width="325">
-                                <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
-                                <Label Content="Visualizar Ordenes" Foreground="White"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
+                    
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
-                        <Button Name="btnFacturar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnFacturar_MouseEnter" MouseLeave="btnFacturar_MouseLeave">
+                        <Button Name="btnFacturar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnFacturar_MouseEnter" MouseLeave="btnFacturar_MouseLeave" Click="btnFacturar_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/Facturar.png" />
-                                <Label Content="Facturar" Foreground="White"/>
+                                <Label Content="Facturar Ordenes" Foreground="White"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>

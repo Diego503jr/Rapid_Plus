@@ -25,6 +25,7 @@ namespace Rapid_Plus.Views.Cajero
             InitializeComponent();
         }
         #region Instancias de las paginas
+        FacturarOrden factura = new FacturarOrden();
      
         #endregion
 
@@ -35,15 +36,7 @@ namespace Rapid_Plus.Views.Cajero
             Close();
         }
 
-        private void btnOrdenes_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnOrdenes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
-        }
-
-        private void btnOrdenes_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnOrdenes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
-        }
+       
 
         private void btnFacturar_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -81,6 +74,9 @@ namespace Rapid_Plus.Views.Cajero
 
         }
 
-       
+        private void btnFacturar_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(factura);
+        }
     }
 }
