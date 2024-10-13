@@ -27,6 +27,9 @@ namespace Rapid_Plus.Models.Mesero
         public DateTime FechaOrden{ get; set; }
         public decimal Total { get; set; }
         public int UsuarioId { get; set; }
+
+        public string NombreUsuario { get; set; }
+        public decimal Subtotal { get; set; }
         
 
         public string NombreCliente { get; set; }

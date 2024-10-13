@@ -10,55 +10,27 @@
 
     <Grid Background="White" Margin="0,-139,-34,0">
 
-        <GroupBox   
-         HorizontalAlignment="Left" MinWidth="900" 
-         Height="218" Margin="132,23,0,0" VerticalAlignment="Top" UseLayoutRounding="False" >
-            <Grid>
-                <StackPanel Height="50" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,50,0"/>
-                <TextBox x:Name="txtMesa" 
-        HorizontalAlignment="Left" 
-        TextWrapping="Wrap" 
-        VerticalAlignment="Top" 
-        Width="160" 
-        FontSize="18"
-        materialDesign:HintAssist.Hint="Numero de Mesa"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,10,0,0"/>
+        <Rectangle VerticalAlignment="Top" Height="150" Stroke="#FFD63C3C" Margin="62,100,62,0" />
+        <Label Content="Facturar Orden" Background="#FFD63C3C" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
+        <StackPanel Orientation="Horizontal"  Width="900" Height="40" Margin="0,118,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"></Label>
+            <TextBox Name="txtMesa" Width="80" FontSize="20"   Margin="0,0,70,0"/>
+            <Button x:Name="btnBuscar" BorderBrush="{x:Null}" Background="#ff008592" Content="Buscar" FontSize="18" Click="btnBuscar_Click"></Button>
+        </StackPanel>
 
-                <TextBox x:Name="txtCliente" 
-        HorizontalAlignment="Left" 
-        TextWrapping="Wrap" 
-        VerticalAlignment="Top" 
-        Width="160" 
-        Margin="10,89,0,0" 
-        FontSize="18"
-        materialDesign:HintAssist.Hint="Cliente"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="txtUsuario" 
-        HorizontalAlignment="Left" 
-        TextWrapping="Wrap"
-        VerticalAlignment="Top" 
-        Width="160" 
-        Margin="232,91,0,0" 
-        FontSize="18"
-        materialDesign:HintAssist.Hint="Usuario"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Label x:Name="lbFecha" 
-        Content="Fecha nacimiento: " 
-        HorizontalAlignment="Left" 
-        Margin="463,112,0,0" 
-        VerticalAlignment="Top" 
-        FontSize="18"/>
-                <DatePicker x:Name="dtpFechaNacimiento" 
-        HorizontalAlignment="Left" 
-        Margin="623,112,0,0" 
-        VerticalAlignment="Top" 
-        FontSize="18"/>
-                <Button x:Name="btnBuscar" 
-            BorderBrush="{x:Null}" Background="#FF008592" 
-            Content="Buscar" FontSize="18" 
-            Margin="366,29,418,121"/>
-            </Grid>
-        </GroupBox>
+        <StackPanel Orientation="Horizontal"  Width="900" Height="40" Margin="0,175,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Label Content="Cliente:" FontSize="20" Width="100" FontWeight="Bold"></Label>
+            <TextBox Name="txtCliente" IsReadOnly="True" Width="80" FontSize="20"   Margin="0,0,70,0"/>
+
+            <Label Content="Usuario:" FontSize="20" Width="100" FontWeight="Bold"></Label>
+            <TextBox Name="txtUsuario" IsReadOnly="True" Width="80" FontSize="20"   Margin="0,0,70,0"/>
+
+            <Label x:Name="lbFecha" Content="Fecha nacimiento: " VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+            <DatePicker x:Name="dtpFechaNacimiento" IsEnabled="True" FontSize="20"></DatePicker>
+
+        </StackPanel>
+
+
 
         <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="58,266,26,196" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
@@ -73,17 +45,18 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
                 <DataGridTextColumn Header="Platillo" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
+                <DataGridTextColumn Header="Precio" CanUserResize="False" Width="*" Binding="{Binding PrecioPlatillo}"/>
                 <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
-                <DataGridTextColumn Header="Subtotal" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
+                <DataGridTextColumn Header="Subtotal" CanUserResize="False" Width="*" Binding="{Binding Subtotal}"/>
 
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="TOTAL" HorizontalAlignment="Left" Margin="50,555,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="50,604,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="50,644,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
-        <TextBox HorizontalAlignment="Left" Margin="186,595,0,0" TextWrapping="Wrap" Text="RECIBIDO" VerticalAlignment="Top" Width="120" FontSize="20" Height="35"/>
-        <TextBlock HorizontalAlignment="Left" Margin="186,555,0,0" TextWrapping="Wrap" Text="TOTAL" VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock HorizontalAlignment="Left" Margin="191,648,0,0" TextWrapping="Wrap" Text="TOTAL" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,595,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="35" TextChanged="txtRecibido_TextChanged"/>
+        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="186,555,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="191,648,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnRealizar" 
                     BorderBrush="{x:Null}" Background="#FF008592" 
                     Content="Realizar" FontSize="18" 
