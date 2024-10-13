@@ -50,10 +50,7 @@ namespace Rapid_Plus.Views.Cajero
                 // Verifica si hay órdenes y, si es así, muestra el primer registro
                 if (ordenes.Count > 0)
                 {
-                    
-                    txtCliente.Text = ordenes[0].NombreCliente; 
-                    txtUsuario.Text = ordenes[0].NombreUsuario; 
-                    dtpFechaNacimiento.SelectedDate = ordenes[0].FechaOrden;
+    
                     dgOrdenes.ItemsSource = ordenes;
 
                     // Calcular el total
@@ -63,10 +60,8 @@ namespace Rapid_Plus.Views.Cajero
                 else
                 {
                     MessageBox.Show("No se encontraron órdenes para esta mesa.", "Validación", MessageBoxButton.OK, MessageBoxImage.Information);
-                    txtCliente.Text = "";
-                    txtUsuario.Text = "";
-                    dtpFechaNacimiento.SelectedDate = null; // Limpia el DatePicker
-                    dgOrdenes.ItemsSource = null; // Limpia el DataGrid
+                    LimpiarFormulario();
+
                 }
             }
             else
@@ -115,9 +110,25 @@ namespace Rapid_Plus.Views.Cajero
             }
         }
 
+        //Metodo para limpiar el formulario
+        void LimpiarFormulario()
+        {
+            txtMesa.Clear();
+            txbTotal.Text = string.Empty; // Limpia el contenido del TextBlock
+            dgOrdenes.ItemsSource = null; // Limpia el DataGrid
+        }
+
+
 
         #endregion
 
-
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            //Validamos si quiere confirmar la cancelacion
+            if (MessageBox.Show("Desear cancelar la operacion","Accion",MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                LimpiarFormulario();
+            }
+        }
     }
 }

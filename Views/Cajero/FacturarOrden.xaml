@@ -12,27 +12,19 @@
 
         <Rectangle VerticalAlignment="Top" Height="150" Stroke="#FFD63C3C" Margin="62,100,62,0" />
         <Label Content="Facturar Orden" Background="#FFD63C3C" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
-        <StackPanel Orientation="Horizontal"  Width="900" Height="40" Margin="0,118,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"></Label>
-            <TextBox Name="txtMesa" Width="80" FontSize="20"   Margin="0,0,70,0"/>
-            <Button x:Name="btnBuscar" BorderBrush="{x:Null}" Background="#ff008592" Content="Buscar" FontSize="18" Click="btnBuscar_Click"></Button>
-        </StackPanel>
 
-        <StackPanel Orientation="Horizontal"  Width="900" Height="40" Margin="0,175,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Label Content="Cliente:" FontSize="20" Width="100" FontWeight="Bold"></Label>
-            <TextBox Name="txtCliente" IsReadOnly="True" Width="80" FontSize="20"   Margin="0,0,70,0"/>
-
-            <Label Content="Usuario:" FontSize="20" Width="100" FontWeight="Bold"></Label>
-            <TextBox Name="txtUsuario" IsReadOnly="True" Width="80" FontSize="20"   Margin="0,0,70,0"/>
-
-            <Label x:Name="lbFecha" Content="Fecha nacimiento: " VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-            <DatePicker x:Name="dtpFechaNacimiento" IsEnabled="True" FontSize="20"></DatePicker>
-
+        <StackPanel Orientation="Horizontal"  Width="425" Height="40" Margin="0,118,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"/>
+            <TextBox x:Name="txtMesa" Width="80" FontSize="20" Margin="0,0,20,0"/>
+            <Button x:Name="btnBuscar" BorderBrush="{x:Null}" Background="#ff008592" Content="Buscar" FontSize="18" Click="btnBuscar_Click" Width="91"/>
         </StackPanel>
 
 
 
-        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="58,266,26,196" RenderTransformOrigin="0.5,0.5">
+
+
+
+        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="17,266,7,196" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -44,6 +36,9 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
+                <DataGridTextColumn Header="Cliente" Width="*" Binding="{Binding NombreCliente}"/>
+                <DataGridTextColumn Header="Usuario" Width="*" Binding="{Binding NombreUsuario}"/>
+                <DataGridTextColumn Header="Fecha de orden" Width="*" Binding="{Binding FechaOrden}"/>
                 <DataGridTextColumn Header="Platillo" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
                 <DataGridTextColumn Header="Precio" CanUserResize="False" Width="*" Binding="{Binding PrecioPlatillo}"/>
                 <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
@@ -64,7 +59,7 @@
         <Button x:Name="btnCancelar" 
             BorderBrush="{x:Null}" Background="#FF008592" 
             Content="Cancelar" FontSize="18" 
-            Margin="698,590,304,100"/>
+            Margin="698,590,304,100" Click="btnCancelar_Click"/>
 
 
     </Grid>
