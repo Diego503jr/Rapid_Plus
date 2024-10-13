@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rapid_Plus.Models
 {
-    class UsuarioModelo
+    class UsuarioModel
     {
         public int UsuarioId { get; set; }
         public string Usuario { get; set; }

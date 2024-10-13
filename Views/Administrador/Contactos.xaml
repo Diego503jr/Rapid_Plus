@@ -115,24 +115,24 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             </Grid>
         </GroupBox>
-        <Grid VerticalAlignment="Top" Width="750" Height="50" HorizontalAlignment="Center" Margin="0,375,0,0">
+        <Grid VerticalAlignment="Top" Width="750" Height="50" HorizontalAlignment="Center" Margin="0,380,0,0">
             <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="49,0,0,0">
                 <Button x:Name="btnNuevo" 
-                        BorderBrush="{x:Null}" Background="#FFD63C3C" 
+                        BorderBrush="{x:Null}" Background="#FF008592" 
                         Content="Crear" FontSize="18" 
                         Click="btnNuevo_Click"/>
                 <Button x:Name="btnEditar"
-                        BorderBrush="{x:Null}" Background="#FFD63C3C" 
+                        BorderBrush="{x:Null}" Background="#FF008592" 
                         Content="Editar" FontSize="18" Margin="20,0,0,0" 
                         Click="btnEditar_Click"/>
                 <Button x:Name="btnEliminar" 
-                        BorderBrush="{x:Null}" Background="#FFD63C3C" 
+                        BorderBrush="{x:Null}" Background="#FF008592" 
                         Content="Eliminar" FontSize="18" Margin="20,0,0,0" 
                         Click="btnEliminar_Click"/>
             </StackPanel>
             <StackPanel Height="50" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,50,0">
                 <Button x:Name="btnGuardar" 
-                        BorderBrush="{x:Null}" Background="#FFD63C3C" 
+                        BorderBrush="{x:Null}"
                         Content="Guardar" FontSize="18" Margin="0,0,23,0" 
                         Click="btnGuardar_Click"/>
                 <Button x:Name="btnCancelar" BorderBrush="{x:Null}" 
@@ -146,7 +146,7 @@
                   AutoGenerateColumns="False" 
                   IsReadOnly="True" 
                   SelectionChanged="dgUsuarios_SelectionChanged" 
-                  MinWidth="950" Height="200" 
+                  MinWidth="950" Height="300" 
                   VerticalAlignment="Top" Margin="0,450,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding UsuarioId}"></DataGridTextColumn>

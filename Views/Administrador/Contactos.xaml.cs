@@ -193,7 +193,7 @@ namespace Rapid_Plus.Views.Administrador
         //Mostrar Usuarios
         void MostrarUsuarios() 
         {
-            dgUsuarios.DataContext = UsuarioControlador.MostrarUsuarios();
+            dgUsuarios.DataContext = UsuarioController.MostrarUsuarios();
         }
 
         //Metodos para cargar en los comboboxes
@@ -260,10 +260,10 @@ namespace Rapid_Plus.Views.Administrador
         //Metodo para cargar la pagina
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            LimpiarFormulario();
             MostrarUsuarios();
             HabilitarFormulario(false);
             ControlFormulario();
+            LimpiarFormulario();
         }
 
         #endregion
@@ -273,7 +273,7 @@ namespace Rapid_Plus.Views.Administrador
         //Para llenar el formulario
         private void dgUsuarios_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UsuarioModelo usuario = (UsuarioModelo)dgUsuarios.SelectedItem;
+            UsuarioModel usuario = (UsuarioModel)dgUsuarios.SelectedItem;
 
             if (usuario == null)
             {
@@ -335,7 +335,7 @@ namespace Rapid_Plus.Views.Administrador
                 MessageBoxImage.Question) == MessageBoxResult.Yes
                 )
                 {
-                    if (UsuarioControlador.EliminarUsuario(idUsuario, idEstado) > -1)
+                    if (UsuarioController.EliminarUsuario(idUsuario, idEstado) > -1)
                     {
                         MessageBox.Show("Registro eliminado correctamente", "Validacion",
                            MessageBoxButton.OK, MessageBoxImage.Information);
@@ -367,7 +367,7 @@ namespace Rapid_Plus.Views.Administrador
             if (ValidarFormulario())
             {
                 //Recuperamos los datos del formulario
-                UsuarioModelo usuario = new UsuarioModelo();
+                UsuarioModel usuario = new UsuarioModel();
                 usuario.Usuario = txtUsuario.Text;
                 usuario.Clave = txtClave.Password;
                 usuario.Nombres = txtNombre.Text;
@@ -383,12 +383,12 @@ namespace Rapid_Plus.Views.Administrador
                 //Evaluar si se esta agregando o editando
                 if (agregar)
                 {
-                    idUsuario = UsuarioControlador.CrearUsuario(usuario);
+                    idUsuario = UsuarioController.CrearUsuario(usuario);
                     msj = "Insercion correctamente";
                 }
                 else
                 {
-                    idUsuario = UsuarioControlador.EditarUsuario(usuario, idUsuario);
+                    idUsuario = UsuarioController.EditarUsuario(usuario, idUsuario);
                     msj = "Actualizacion correctamente";
                 }
 

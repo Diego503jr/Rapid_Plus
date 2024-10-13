@@ -12,13 +12,14 @@ using System.Data.Common;
 
 namespace Rapid_Plus.Controllers
 {
-    class UsuarioControlador
+    class UsuarioController
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
 
-        public static List<UsuarioModelo> MostrarUsuarios() 
+        //Leer Usuario
+        public static List<UsuarioModel> MostrarUsuarios() 
         {
-            List<UsuarioModelo> lstUsuarios = new List<UsuarioModelo>();
+            List<UsuarioModel> lstUsuarios = new List<UsuarioModel>();
 
             try
             {
@@ -34,7 +35,7 @@ namespace Rapid_Plus.Controllers
                         {
                             while (dr.Read()) 
                             {
-                                UsuarioModelo usuario = new UsuarioModelo();
+                                UsuarioModel usuario = new UsuarioModel();
                                 usuario.UsuarioId = int.Parse(dr["Id"].ToString());
                                 usuario.Usuario = dr["Usuario"].ToString();
                                 usuario.Clave = dr["Clave"].ToString();
@@ -82,7 +83,8 @@ namespace Rapid_Plus.Controllers
             return lstUsuarios;
         }
 
-        public static int CrearUsuario(UsuarioModelo user) 
+        //Crear Usuario
+        public static int CrearUsuario(UsuarioModel user) 
         {
             int res = -1;
             try
@@ -121,7 +123,8 @@ namespace Rapid_Plus.Controllers
             return res;
         }
 
-        public static int EditarUsuario(UsuarioModelo user, int idUsuario) 
+        //Editar Usuario
+        public static int EditarUsuario(UsuarioModel user, int idUsuario) 
         {
             int res = -1;
 
@@ -162,6 +165,7 @@ namespace Rapid_Plus.Controllers
             return res;
         }
 
+        //Eliminar Usuario
         public static int EliminarUsuario(int idUsuario, int idEstado) 
         { 
             int res = -1;
