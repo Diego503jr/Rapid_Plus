@@ -19,19 +19,19 @@ using System.Windows.Shapes;
 namespace Rapid_Plus.Views.Administrador
 {
     /// <summary>
-    /// Lógica de interacción para Menu.xaml
+    /// Lógica de interacción para Configuraciones.xaml
     /// </summary>
-    public partial class Menu : Page
+    public partial class Configuraciones : Page
     {
-        public Menu()
+        public Configuraciones()
         {
             InitializeComponent();
             CargarEstados();
-            CargarCategorias();
         }
 
         #region VARIABLES LOCALES
-        private static string conexion = Properties.Settings.Default.DbRapidPlus; 
+
+        private static string conexion = Properties.Settings.Default.DbRapidPlus;
         //Conexion a la DB
         SqlConnection conDB = new SqlConnection(conexion);
 
@@ -39,7 +39,7 @@ namespace Rapid_Plus.Views.Administrador
         private bool agregar = false, editar = false;
 
         //Variable para almacenar el id
-        private int idPlatillo = 0;
+        private int idMesa = 0;
         //Variable para almaccenar el idEstado
         private int idEstado = 0;
 
@@ -48,47 +48,26 @@ namespace Rapid_Plus.Views.Administrador
         #region METODOS PERSONALIZADOS
 
         //Validar formulario 
-        bool ValidarFormulario() 
+        bool ValidarFormulario()
         {
             bool estado = true;
             string msj = null;
 
-            if (string.IsNullOrEmpty(txtNombrePlatillo.Text)) 
+            if (string.IsNullOrEmpty(txtMesa.Text))
             {
                 estado = false;
-                msj = "Nombre Platillo\n";
-
-            }
-
-            if (string.IsNullOrEmpty(txtDescripicion.Text))
-            {
-                estado = false;
-                msj = "Descripcion Platillo\n";
-
-            }
-
-            if (string.IsNullOrEmpty(cmbCategoria.Text))
-            {
-                estado = false;
-                msj = "Categoria Platillo\n";
-
-            }
-
-            if (string.IsNullOrEmpty(txtPrecio.Text))
-            {
-                estado = false;
-                msj = "Precio Platillo\n";
+                msj = "Numero Mesa\n";
 
             }
 
             if (string.IsNullOrEmpty(cmbEstado.Text))
             {
                 estado = false;
-                msj = "Estado Platillo\n";
+                msj = "Estado Mesa\n";
 
             }
 
-            if (!estado) 
+            if (!estado)
             {
                 MessageBox.Show("Debe cumplir estos campos:\n" + msj,
                "Validacion de formulario", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -98,20 +77,16 @@ namespace Rapid_Plus.Views.Administrador
         }
 
         //Habilitar formulario
-        void HabilitarFormulario(bool accion) 
-        { 
-            txtNombrePlatillo.IsEnabled = accion;
-            txtDescripicion.IsEnabled = accion;
-            cmbCategoria.IsEnabled = accion;
-            lbDolar.IsEnabled = accion;
-            txtPrecio.IsEnabled = accion;
+        void HabilitarFormulario(bool accion)
+        {
+            txtMesa.IsEnabled = accion;
             cmbEstado.IsEnabled = accion;
         }
 
         //Controlar el formulario
-        void ControlFormulario() 
+        void ControlFormulario()
         {
-            if (dgPlatillo.Items.Count < 0)
+            if (dgMesas.Items.Count < 0)
             {
                 btnNuevo.IsEnabled = true;
                 btnEditar.IsEnabled = false;
@@ -120,7 +95,7 @@ namespace Rapid_Plus.Views.Administrador
                 btnGuardar.IsEnabled = false;
                 btnCancelar.IsEnabled = false;
             }
-            else 
+            else
             {
                 btnNuevo.IsEnabled = true;
                 btnEditar.IsEnabled = true;
@@ -130,7 +105,7 @@ namespace Rapid_Plus.Views.Administrador
                 btnCancelar.IsEnabled = false;
             }
 
-            if (agregar || editar) 
+            if (agregar || editar)
             {
                 btnNuevo.IsEnabled = false;
                 btnEditar.IsEnabled = false;
@@ -144,38 +119,13 @@ namespace Rapid_Plus.Views.Administrador
         //Limpiar el formulario
         void LimpiarFormulario()
         {
-            txtNombrePlatillo.Clear();
-            txtDescripicion.Clear();
-            cmbCategoria.SelectedIndex = -1;
-            txtPrecio.Clear();
+            txtMesa.Clear();
             cmbEstado.SelectedIndex = -1;
         }
 
-        //Mostrar menu
-        void MostrarMenu()
+        void MostrarMesas() 
         {
-            dgPlatillo.DataContext = PlatilloController.MostrarMenu();
-        }
-
-        //Metodos para cargar en los comboboxes
-        private void CargarCategorias()
-        {
-            using (var conDb = new SqlConnection(conexion))
-            {
-                conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Categoria FROM Categorias", conDb))
-                {
-                    SqlDataReader dr = command.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        cmbCategoria.Items.Add(new { Id = dr.GetInt32(0), Nombre = dr.GetString(1) });
-                    }
-                }
-            }
-
-            // Define qué campo mostrar
-            cmbCategoria.DisplayMemberPath = "Nombre";
-            cmbCategoria.SelectedValuePath = "Id";
+            dgMesas.DataContext = MesaController.MostrarMesa();
         }
 
         private void CargarEstados()
@@ -200,7 +150,7 @@ namespace Rapid_Plus.Views.Administrador
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MostrarMenu();
+            MostrarMesas();
             HabilitarFormulario(false);
             ControlFormulario();
             LimpiarFormulario();
@@ -209,23 +159,19 @@ namespace Rapid_Plus.Views.Administrador
         #endregion
 
         #region METODOS FORMULARIO
-        //Llenar formulario
-        private void dgPlatillo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PlatilloModel platillo = (PlatilloModel)dgPlatillo.SelectedItem;
 
-            if (platillo == null) 
+        private void dgMesas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MesasModel mesa = (MesasModel)dgMesas.SelectedItem;
+
+            if (mesa == null)
             {
                 return;
             }
 
-            idPlatillo = platillo.PlatilloId;
-            txtNombrePlatillo.Text = platillo.Platillo;
-            txtDescripicion.Text = platillo.Descripcion;
-            cmbCategoria.Text = platillo.Categoria;
-            txtPrecio.Text = Convert.ToString(platillo.Precio);
-            cmbEstado.Text = platillo.Estado;
-
+            idMesa = mesa.MesaId;
+            txtMesa.Text = Convert.ToString(mesa.Mesa);
+            cmbEstado.Text = mesa.Estado;
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -239,7 +185,7 @@ namespace Rapid_Plus.Views.Administrador
 
             ControlFormulario();
 
-            txtNombrePlatillo.Focus();
+            txtMesa.Focus();
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
@@ -251,28 +197,28 @@ namespace Rapid_Plus.Views.Administrador
 
             ControlFormulario();
 
-            txtNombrePlatillo.Focus();
+            txtMesa.Focus();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (dgPlatillo.Items.Count > 0 && !string.IsNullOrEmpty(txtNombrePlatillo.Text))
+            if (dgMesas.Items.Count > 0 && !string.IsNullOrEmpty(txtMesa.Text))
             {
                 if (
-                    MessageBox.Show("¿ Desear eliminar al usuario '" + idPlatillo + "' ?",
+                    MessageBox.Show("¿ Desear eliminar al usuario '" + idMesa + "' ?",
                 "Accion",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes
-                    ) 
+                    )
                 {
-                    if (PlatilloController.EliminarPlatillo(idPlatillo, idEstado) > -1) 
+                    if (MesaController.EliminarMesa(idMesa, idEstado) > -1)
                     {
                         MessageBox.Show("Registro eliminado correctamente", "Validacion",
                           MessageBoxButton.OK, MessageBoxImage.Information);
 
                         LimpiarFormulario();
 
-                        MostrarMenu();
+                        MostrarMesas();
 
                         agregar = false;
                         editar = false;
@@ -281,7 +227,7 @@ namespace Rapid_Plus.Views.Administrador
                     }
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("Selecciona un usuario para eliminar",
                 "Accion",
@@ -294,27 +240,24 @@ namespace Rapid_Plus.Views.Administrador
             string msj = null;
 
             if (ValidarFormulario())
-            { 
+            {
                 //Recuperamos los datos
-                PlatilloModel platillo = new PlatilloModel();
-                platillo.Platillo = txtNombrePlatillo.Text;
-                platillo.Descripcion = txtDescripicion.Text;
-                platillo.CategoriaId = (int)cmbCategoria.SelectedValue;
-                platillo.Precio = Convert.ToDecimal(txtPrecio.Text);
-                platillo.EstadoId = (int)cmbEstado.SelectedValue;
+                MesasModel mesa = new MesasModel();
+                mesa.Mesa= Convert.ToInt32(txtMesa.Text);
+                mesa.EstadoId = (int)cmbEstado.SelectedValue;
 
                 if (agregar)
                 {
-                    idPlatillo = PlatilloController.AgregarPlatillo(platillo);
+                    idMesa = MesaController.CrearMesa(mesa);
                     msj = "Insercion correctamente";
                 }
-                else 
+                else
                 {
-                    idPlatillo = PlatilloController.EditarPlatillo(platillo, idPlatillo);
+                    idMesa = MesaController.EditarMesa(mesa, idMesa);
                     msj = "Actualizacion correctamente";
                 }
 
-                if (idPlatillo > 0) 
+                if (idMesa > 0)
                 {
                     //Limpiar formulario
                     LimpiarFormulario();
@@ -331,7 +274,7 @@ namespace Rapid_Plus.Views.Administrador
                     ControlFormulario();
                 }
 
-                MostrarMenu();
+                MostrarMesas();
             }
         }
 
@@ -348,8 +291,8 @@ namespace Rapid_Plus.Views.Administrador
 
                 HabilitarFormulario(false);
 
-                agregar=false;
-                editar=false;
+                agregar = false;
+                editar = false;
 
                 ControlFormulario();
             }

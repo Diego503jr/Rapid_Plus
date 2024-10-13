@@ -27,11 +27,8 @@ namespace Rapid_Plus.Views.Administrador
         // INSTANCIAS DE LAS PAGINAS
         Contactos contacto = new Contactos();
         Menu menu = new Menu();
+        Configuraciones configuracion = new Configuraciones();
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            frContent.NavigationService.Navigate(contacto);
-        }
 
         #region METODOS ESTILOS
         private void btnMenu_MouseEnter(object sender, MouseEventArgs e)
@@ -73,12 +70,38 @@ namespace Rapid_Plus.Views.Administrador
         {
             btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
         }
+
+        private void btnMas_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+        }
+
+        private void btnMas_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+        }
+
         #endregion
 
-        #region METODOS BOTONES
+        #region METODOS FORMULARIO
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(contacto);
+        }
+        private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(menu);
+        }
+
         private void btnUsuario_Click(object sender, RoutedEventArgs e)
         {
             frContent.NavigationService.Navigate(contacto);
+        }
+
+        private void btnMas_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(configuracion);
         }
 
         private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
@@ -100,10 +123,6 @@ namespace Rapid_Plus.Views.Administrador
             }
         }
 
-        private void btnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            frContent.NavigationService.Navigate(menu);
-        }
         #endregion
     }
 }

@@ -190,7 +190,7 @@ namespace Rapid_Plus.Controllers
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("Ocurrio un error al intentar editar los registros" + ex.Message, "Validacion",
+                MessageBox.Show("Ocurrio un error al intentar eliminar los registros" + ex.Message, "Validacion",
                            MessageBoxButton.OK, MessageBoxImage.Error);
             }
 

@@ -65,7 +65,7 @@
             </Grid>
         </GroupBox>
         <Grid VerticalAlignment="Top" Width="750" Height="50" Margin="50,330,50,0">
-            <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="49,0,0,0">
+            <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="50,0,0,0">
                 <Button x:Name="btnNuevo" 
                  BorderBrush="{x:Null}" Background="#FF008592" 
                  Content="Crear" FontSize="18" Click="btnNuevo_Click"/>
@@ -81,7 +81,7 @@
                  BorderBrush="{x:Null}" Content="Guardar"
                  FontSize="18" Margin="0,0,23,0" Click="btnGuardar_Click"/>
                 <Button x:Name="btnCancelar" BorderBrush="{x:Null}" 
-                 Content="Cancelar" Background="#FFD63C3C" FontSize="18"/>
+                 Content="Cancelar" Background="#FFD63C3C" FontSize="18" Click="btnCancelar_Click"/>
             </StackPanel>
         </Grid>
         <DataGrid Name="dgPlatillo" 
@@ -90,7 +90,9 @@
           AutoGenerateColumns="False" 
           IsReadOnly="True" 
           MinWidth="700" Height="300" 
-          VerticalAlignment="Top" Margin="0,410,0,0" SelectionChanged="dgPlatillo_SelectionChanged">
+          VerticalAlignment="Top" 
+          Margin="0,410,0,0"
+          SelectionChanged="dgPlatillo_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PlatilloId}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Platillo" Binding="{Binding Platillo}"></DataGridTextColumn>

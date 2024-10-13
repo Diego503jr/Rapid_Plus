@@ -6,10 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
         mc:Ignorable="d"
-        Title="DashboardAdmin" Height="751" Width="1033" WindowStyle="None" WindowState="Maximized" FontSize="30" Loaded="Window_Loaded">
+        Title="DashboardAdmin" 
+        Height="751" Width="1033" 
+        WindowStyle="None" WindowState="Maximized" 
+        FontSize="30" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
-
             <Grid DockPanel.Dock="Top" Background="#FFD63C3C" Height="60">
                 <Label Content="Panel Admin" Foreground="White" Margin="5"/>
                 <Button x:Name="btnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrarVentana_Click">
@@ -26,7 +28,7 @@
                         <Button Name="btnMenu" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnMenu_MouseEnter" MouseLeave="btnMenu_MouseLeave" Click="btnMenu_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/menu.png" />
-                                <Label Content="Menu" Foreground="White"/>
+                                <Label Content="Menu" Foreground="White" FontSize="27"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -36,7 +38,17 @@
                         <Button Name="btnUsuario" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnUsuario_MouseEnter" MouseLeave="btnUsuario_MouseLeave" Click="btnUsuario_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/usuario.png" />
-                                <Label Content="Usuario" Foreground="White"/>
+                                <Label Content="Usuario" Foreground="White" FontSize="27"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Button Name="btnMas" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnMas_MouseEnter" MouseLeave="btnMas_MouseLeave" Click="btnMas_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/ajustes.png" />
+                                <Label Content="Mas" Foreground="White" FontSize="27"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -46,18 +58,18 @@
                         <Button Name="btnReportes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnReportes_MouseEnter" MouseLeave="btnReportes_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/reporte.png" />
-                                <Label Content="Reportes" Foreground="White"/>
+                                <Label Content="Reportes" Foreground="White" FontSize="27"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,0" Orientation="Horizontal">
                     <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
                     <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click" MouseEnter="btnCerrarSesion_MouseEnter" MouseLeave="btnCerrarSesion_MouseLeave">
                         <StackPanel Orientation="Horizontal"  Width="320">
                             <Image  Width="60" Height="50" Margin="0" Source="/Assets/CerrarSesion.png" Cursor="" />
-                            <Label Content="Cerrar Sesion" Foreground="White"></Label>
+                            <Label Content="Cerrar Sesion" Foreground="White" FontSize="27"></Label>
                         </StackPanel>
                     </Button>
                 </StackPanel>
