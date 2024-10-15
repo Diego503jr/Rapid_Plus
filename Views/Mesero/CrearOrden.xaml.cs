@@ -1,4 +1,5 @@
 ﻿using Rapid_Plus.Controllers.Mesero;
+using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
 using System;
 using System.Collections.Generic;
@@ -26,39 +27,41 @@ namespace Rapid_Plus.Views.Mesero
         public CrearOrden()
         {
             InitializeComponent();
-            CargarNumeroMesa();
         }
         #region Declaracion de variables locales
         private DateTime fecha = DateTime.Now;
         private int idOrden = 0;
-
+        private int idCliente = -1;
         #endregion
 
 
-        #region MÉTODOS DEL FORMULARIO
+        #region MÉTODOS PERSONALIZADOS
         //Llenar combobox de numero de mesa
-        private void CargarNumeroMesa()
+        private int CargarNumeroMesa()
         {
+            int numMesas = -1;
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 1", conDb)) //Muestra unicamente las disponibles
+                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 1", conDb)) 
                 {
                     SqlDataReader dr = command.ExecuteReader();
+                    var mesas = new List<dynamic>();
                     while (dr.Read())
                     {
-                        cmbMesa.Items.Add(new { Id = dr.GetInt32(0), Nombre = dr.GetInt32(1) });
+                        mesas.Add(new { Id = dr.GetInt32(0), Mesa = dr.GetInt32(1) }); 
                     }
+
+                    cmbMesa.ItemsSource = mesas;
+                    numMesas = mesas.Count;
                 }
             }
-
-            // Define qué campo mostrar
-            cmbMesa.DisplayMemberPath = "Nombre";
+            cmbMesa.DisplayMemberPath = "Mesa";  
             cmbMesa.SelectedValuePath = "Id";
+
+            return numMesas ;
         }
 
-
-        //Validad campos vacios 
         private bool ValidarFomrulario()
         {
             bool estado = true;
@@ -88,12 +91,16 @@ namespace Rapid_Plus.Views.Mesero
             return estado;
         }
 
-        //Limpiar cajas
         private void LimpiarObjetos()
         {
             cmbMesa.SelectedIndex = -1;
             txtApellido.Clear();
             txtNombre.Clear();
+        }
+
+        private void MostrarClientes()
+        {
+            dgClientes.DataContext = MeseroController.ListarClientes();
         }
 
         #endregion
@@ -103,6 +110,8 @@ namespace Rapid_Plus.Views.Mesero
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LimpiarObjetos();
+            CargarNumeroMesa();
+            MostrarClientes();
         }
 
         private void btnCrearOrden_Click(object sender, RoutedEventArgs e)
@@ -131,6 +140,27 @@ namespace Rapid_Plus.Views.Mesero
             }
 
         }
+
+        private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OrdenesModel ordenes = (OrdenesModel)dgClientes.SelectedItem;
+            if (ordenes == null)
+            {
+                return;
+            }
+            txtNombre.Text = ordenes.NombreCliente;
+            txtApellido.Text = ordenes.ApellidoCliente;
+            idCliente = ordenes.IdCliente;
+        }
+
+        private void cmbMesa_DropDownOpened(object sender, EventArgs e)
+        {
+            if (CargarNumeroMesa() <= 0)
+            {
+                MessageBox.Show("No hay mesas disponibles", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
         #endregion
 
 

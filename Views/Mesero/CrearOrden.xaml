@@ -10,16 +10,26 @@
       Title="CrearOrden" Loaded="Page_Loaded">
 
     <Grid Background="White" >
-        <Rectangle Height="350" Stroke="#FFD63C3C" MinWidth="900" HorizontalAlignment="Center"/>
-        <Label MinHeight="50" Background="#FFD63C3C" MinWidth="900" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Crear Orden" Foreground="White" FontSize="30" Margin="0,0,0,300"/>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="700" Height="35" HorizontalAlignment="Center">
+        <Rectangle Height="200" Stroke="#FFD63C3C" MinWidth="900" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,90,0,0"/>
+        <Label MinHeight="50" Background="#FFD63C3C" MinWidth="900" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Crear Orden" Foreground="White" FontSize="30" Margin="0,60,0,0"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Width="700" Height="35" HorizontalAlignment="Center" Margin="0,150,0,0">
             <TextBox Name="txtNombre" Width="300" Margin="0,0,120,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" />
             <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="35" Margin="0,200,0,0">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Width="300" Height="35" Margin="0,230,0,0">
             <Label Content="Número de mesa: " FontSize="20" HorizontalAlignment="Center" ></Label>
-            <ComboBox Name="cmbMesa" HorizontalAlignment="Center" Width="100" FontSize="20" />
+            <ComboBox Name="cmbMesa" HorizontalAlignment="Center" Width="100" FontSize="20" DropDownOpened="cmbMesa_DropDownOpened" />
         </StackPanel>
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Content="Crear Orden" FontSize="25" Height="50" Margin="0,0,0,100" Background="#FF008592" Name="btnCrearOrden" Click="btnCrearOrden_Click"></Button>
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="200" Margin="0,150,0,0" HorizontalAlignment="Center">
+            <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgClientes_SelectionChanged"   >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdCliente}"/>
+                    <DataGridTextColumn Header="Nombre" CanUserResize="False" Binding="{Binding NombreCliente}"/>
+                    <DataGridTextColumn Header="Apellido" CanUserResize="False" Binding="{Binding ApellidoCliente}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Content="Crear Orden" FontSize="25" Height="50" Margin="0,0,0,60" Background="#FF008592" Name="btnCrearOrden" Click="btnCrearOrden_Click"></Button>
     </Grid>
 </Page>

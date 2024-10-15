@@ -5,23 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d"
-      Title="VerOrden" Height="997" Width="874" Loaded="Page_Loaded">
+      Title="VerOrden" Height="900" Width="874" Loaded="Page_Loaded">
 
     <Grid Background="White">
 
         <Border BorderBrush="#FF008592" CornerRadius="10" Background="#FF008592" BorderThickness="0.5" Width="160" Height="46" Margin="0,83,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Label  Background="#FF008592" Foreground="White" Width="155" Height="39" FontSize="20" Content="Lista de Ordenes" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
-
-        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="40,172,40,417">
-
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
-                <DataGridTextColumn Header="Orden" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
-                <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
-                <DataGridTextColumn Header="Número de mesa" Width="*" Binding="{Binding Mesa}"/>
-                <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,200,50,0" Height="300">
+            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
+                    <DataGridTextColumn Header="Orden" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
+                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
+                    <DataGridTextColumn Header="Número de mesa" Width="*" Binding="{Binding Mesa}"/>
+                    <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <GroupBox VerticalAlignment="Center" HorizontalAlignment="Center" Header = "Filtrar Estado de Ordenes" FontSize="20" Margin="0,300,0,0">
+            <ComboBox Name="cmbFiltro" SelectionChanged="cmbFiltro_SelectionChanged"></ComboBox>
+        </GroupBox>
+        
     </Grid>
 </Page>

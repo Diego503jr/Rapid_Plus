@@ -27,30 +27,57 @@ namespace Rapid_Plus.Views.Mesero
         public TomarOrden()
         {
             InitializeComponent();
-            CargarNumeroMesa();
 
         }
 
-        int numeroMesa = -1;
-        int idOrden = -1;
-        int idplatillo = -1;
+        #region VARIABLES LOCALES
+            int numeroMesa = -1;
+            int idOrden = -1;
+            int idplatillo = -1;
+            int idCategoria = -1;
+        #endregion
+
+        #region MÉTODOS PERSONALIZADOS
         private void CargarNumeroMesa()
         {
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Mesa FROM Mesas WHERE Id_Estado = 0", conDb)) //Muestra unicamente las disponibles
+                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 0", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
+                    var mesas = new List<dynamic>();
                     while (dr.Read())
                     {
-                        cmbMesa.Items.Add(dr.GetInt32(0));
+                        mesas.Add(new { Id = dr.GetInt32(0), Mesa = dr.GetInt32(1) });
                     }
+
+                    cmbMesa.ItemsSource = mesas;
                 }
             }
-
-            // Define qué campo mostrar
+            cmbMesa.DisplayMemberPath = "Mesa";
             cmbMesa.SelectedValuePath = "Id";
+        }
+        private void CargarCategorias()
+        {
+            using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
+            {
+                conDb.Open();
+                using (var command = new SqlCommand("SELECT Id, Categoria FROM Categorias", conDb))
+                {
+                    SqlDataReader dr = command.ExecuteReader();
+                    var estados = new List<dynamic>();
+                    while (dr.Read())
+                    {
+                        estados.Add(new { Id = dr.GetInt32(0), Categoria = dr.GetString(1) });
+                    }
+
+                    cmbFiltro.ItemsSource = estados;
+                }
+            }
+            cmbFiltro.DisplayMemberPath = "Categoria";
+            cmbFiltro.SelectedValuePath = "Id";
+
         }
         private void LimpiarObjetos()
         {
@@ -60,50 +87,18 @@ namespace Rapid_Plus.Views.Mesero
             txbOrden.Text = null;
             txbPlatillo.Text = null;
         }
-
         private int NumeroMesa()
         {
-            
+
             if (cmbMesa.SelectedIndex != -1)
             {
-                // Asume que el valor seleccionado es un entero
-                numeroMesa = (int)cmbMesa.SelectedItem;
-
+                numeroMesa = (int)cmbMesa.SelectedValue;
             }
             else
             {
                 numeroMesa = -1;
             }
             return numeroMesa;
-        }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            LimpiarObjetos();
-            MostrarPlatillos();
-        }
-
-        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            numeroMesa = NumeroMesa();
-
-            // Carga las órdenes para la mesa seleccionada
-            var ordenes = MeseroController.ListarOrdenesPorMesa(numeroMesa);
-            
-            dgOrdenes.DataContext = ordenes; // Asigna la lista al DataContext
-
-            // Verifica si hay órdenes y muestra el IdOrden de la primera fila, si existe
-            if (ordenes.Count > 0)
-            {
-                idOrden = ordenes[0].IdOrden; // Muestra el IdOrden de la primera
-                txbOrden.Text = idOrden.ToString();
-                txbEstado.Text = ordenes[0].EstadoOrden.ToString();
-            }
-            else
-            {
-                txbOrden.Text = "0"; 
-            }
-
-
         }
         private void MostrarPlatillos()
         {
@@ -138,8 +133,46 @@ namespace Rapid_Plus.Views.Mesero
             return estado;
         }
 
+        #endregion
+
+        #region EVENTOS
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LimpiarObjetos();
+            MostrarPlatillos();
+            CargarNumeroMesa();
+            CargarCategorias();
+        }
+
+        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+            numeroMesa = NumeroMesa();
+
+            var orden = MeseroController.ObtenerOrdenPorMesa(numeroMesa);
+            var ordenes = MeseroController.ListarOrdenesPorMesa(numeroMesa);
+
+            if (orden != null)
+            {
+                MeseroController.ListarOrdenesPorMesa(numeroMesa);
+                dgOrdenes.DataContext = ordenes;
+
+                txbOrden.Text = orden.IdOrden.ToString();
+                txbEstado.Text = orden.EstadoOrden;
+
+            }
+            else
+            {
+                MessageBox.Show("No hay órdenes asociadas a esta mesa.");
+                txbOrden.Text = string.Empty;
+            }
+
+
+        }
+
         private void dgPlatillos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             OrdenesModel ordenes = (OrdenesModel)dgPlatillos.SelectedItem;
             if (ordenes == null)
             {
@@ -148,7 +181,7 @@ namespace Rapid_Plus.Views.Mesero
             txbPlatillo.Text = ordenes.NombrePlatillo;
             idplatillo = ordenes.IdPlatillo;
 
-        } 
+        }
         private void btnAgregarOrden_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
@@ -170,8 +203,24 @@ namespace Rapid_Plus.Views.Mesero
 
             }
         }
+        private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            idCategoria = (int)cmbFiltro.SelectedValue;
+            var platillos = MeseroController.ListaPlatillos(idCategoria);
+            if (platillos != null)
+            {
+                dgPlatillos.DataContext = platillos;
 
-        
+            }
+            else
+            {
+                MessageBox.Show("No hay Platillos disponibles.");
+            }
+
+        }
+
+        #endregion
+
 
     }
 }

@@ -32,8 +32,11 @@ namespace Rapid_Plus.Models.Mesero
         public decimal Subtotal { get; set; }
         
 
+        public int IdCliente { get; set; }
         public string NombreCliente { get; set; }
         public string ApellidoCliente { get; set; }
+
+        public int IdCategoria { get; set; }
 
     }
 }

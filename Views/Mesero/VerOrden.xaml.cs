@@ -28,10 +28,36 @@ namespace Rapid_Plus.Views.Mesero
            
         }
 
+        #region DECLARACION DE VARIABLES LOCALES
+        int IdEstado = -1;
+        #endregion
+
         #region MÉTODOS PERSONALIZADOS
         void MostrarOrdenes()
         {
             dgOrdenes.DataContext = MeseroController.ListarOrdenes();
+        }
+
+        private void CargarEstado()
+        {
+            using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
+            {
+                conDb.Open();
+                using (var command = new SqlCommand("SELECT Id, Estado_Orden FROM EstadoOrdenes", conDb))
+                {
+                    SqlDataReader dr = command.ExecuteReader();
+                    var estados = new List<dynamic>();
+                    while (dr.Read())
+                    {
+                        estados.Add(new { Id = dr.GetInt32(0), Estado_Orden = dr.GetString(1) });
+                    }
+
+                    cmbFiltro.ItemsSource = estados;
+                }
+            }
+            cmbFiltro.DisplayMemberPath = "Estado_Orden";
+            cmbFiltro.SelectedValuePath = "Id";
+
         }
         #endregion
 
@@ -40,8 +66,24 @@ namespace Rapid_Plus.Views.Mesero
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MostrarOrdenes();
+            CargarEstado();
         }
-        #endregion
+        private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IdEstado = (int)cmbFiltro.SelectedValue;
+            var ordenes = MeseroController.ListarOrdenes(IdEstado);
+            if (ordenes != null)
+            {
+                dgOrdenes.DataContext = ordenes;
 
+            }
+            else
+            {
+                MessageBox.Show("No hay ordenes disponibles.");
+            }
+        }
     }
+    #endregion
+
+
 }
