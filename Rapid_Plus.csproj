@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Assets\AgregarOrden.png" />
     <Resource Include="Assets\ajustes.png" />
     <Resource Include="Assets\CerrarLogin.png" />
@@ -63,6 +59,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Reports\" />
   </ItemGroup>
 
 </Project>

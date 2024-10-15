@@ -96,7 +96,6 @@ namespace Rapid_Plus.Controllers
                 using (var conDb = new SqlConnection(conexion))
                 {
                     conDb.Open();
-
                     using (var command = conDb.CreateCommand())
                     {
                         command.CommandType = CommandType.StoredProcedure;
@@ -129,7 +128,6 @@ namespace Rapid_Plus.Controllers
                 using (var conDb = new SqlConnection(conexion))
                 {
                     conDb.Open();
-
                     using (var command = conDb.CreateCommand())
                     {
                         command.CommandType = CommandType.StoredProcedure;

@@ -6,10 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
         mc:Ignorable="d"
+        FontSize="30" 
         Title="DashboardAdmin" 
         Height="751" Width="1033" 
-        WindowStyle="None" WindowState="Maximized" 
-        FontSize="30" Loaded="Window_Loaded">
+        WindowStyle="None" 
+        WindowState="Maximized" 
+        Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
             <Grid DockPanel.Dock="Top" Background="#FFD63C3C" Height="60">
@@ -25,7 +27,15 @@
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
                         <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
-                        <Button Name="btnMenu" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnMenu_MouseEnter" MouseLeave="btnMenu_MouseLeave" Click="btnMenu_Click">
+                        <Button Name="btnMenu" 
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                FontSize="30" 
+                                Width="340" Height="60" 
+                                MouseEnter="btnMenu_MouseEnter" 
+                                MouseLeave="btnMenu_MouseLeave" 
+                                Click="btnMenu_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/menu.png" />
                                 <Label Content="Menu" Foreground="White" FontSize="27"/>

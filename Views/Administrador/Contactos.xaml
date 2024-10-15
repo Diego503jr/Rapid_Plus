@@ -8,14 +8,23 @@
       x:Class="Rapid_Plus.Views.Administrador.Contactos"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1033"
-      Title="Contactos" Background="White" Loaded="Page_Loaded">
+      Title="Contactos" 
+      Loaded="Page_Loaded">
     <Grid>
         <Label Content="Usuarios" 
                FontSize="36" HorizontalAlignment="Center" 
                VerticalAlignment="Top" Margin="0,10,0,0" />
         <GroupBox  Header="Usuarios" 
-         HorizontalAlignment="Center" MinWidth="900" 
-         Height="275" Margin="0,80,0,0" VerticalAlignment="Top" UseLayoutRounding="False" >
+         materialDesign:ColorZoneAssist.Background="#FF008592"
+         materialDesign:ColorZoneAssist.Foreground="White"
+         materialDesign:ColorZoneAssist.Mode="Custom"
+         FontSize="18"
+         Style="{StaticResource MaterialDesignGroupBox}"
+         HorizontalAlignment="Center" 
+         Width="900" Height="275" 
+         Margin="0,80,0,0"
+         VerticalAlignment="Top" 
+         UseLayoutRounding="False" >
             <Grid>
                 <TextBox x:Name="txtUsuario" 
                 HorizontalAlignment="Left" 
@@ -141,13 +150,14 @@
             </StackPanel>
         </Grid>
         <DataGrid Name="dgUsuarios" 
+         FontSize="16"
                   ItemsSource="{Binding}" 
                   HorizontalAlignment="Center" 
                   AutoGenerateColumns="False" 
                   IsReadOnly="True" 
                   SelectionChanged="dgUsuarios_SelectionChanged" 
-                  MinWidth="950" Height="200" 
-                  VerticalAlignment="Top" Margin="0,450,0,0">
+                  Width="900" Height="250" 
+                  VerticalAlignment="Top" Margin="0,450,0,0" Background="{x:Null}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding UsuarioId}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Usuario" Binding="{Binding Usuario}"></DataGridTextColumn>

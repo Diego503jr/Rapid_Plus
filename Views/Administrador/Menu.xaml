@@ -7,16 +7,24 @@
       xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
       mc:Ignorable="d"       
       d:DesignHeight="600" d:DesignWidth="1033"
-      Background="White"
+      
       Title="Menu" Loaded="Page_Loaded">
     <Grid>
         <Label Content="Menu" 
         FontSize="36" HorizontalAlignment="Center" 
         VerticalAlignment="Top" Margin="0,10,0,0" />
 
-        <GroupBox  Header="Platillo" HorizontalAlignment="Center" 
-         MinWidth="850" Height="200" Margin="0,100,0,0" 
-         VerticalAlignment="Top" UseLayoutRounding="False" >
+        <GroupBox  Header="Platillo"
+         materialDesign:ColorZoneAssist.Background="#FF008592"
+         materialDesign:ColorZoneAssist.Foreground="White"
+         materialDesign:ColorZoneAssist.Mode="Custom"
+         FontSize="18"
+         Style="{StaticResource MaterialDesignGroupBox}"
+         HorizontalAlignment="Center" 
+         Width="800" Height="200" 
+         Margin="0,100,0,0" 
+         VerticalAlignment="Top" 
+         UseLayoutRounding="False" >
             <Grid>
                 <TextBox x:Name="txtNombrePlatillo" 
                 HorizontalAlignment="Left" 
@@ -58,7 +66,7 @@
                     HorizontalAlignment="Left" 
                     TextWrapping="Wrap" 
                     VerticalAlignment="Top" 
-                    Width="800" 
+                    Width="750" 
                     FontSize="18"
                     materialDesign:HintAssist.Hint="Descripcion Platillo"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,87,0,0"/>
@@ -85,14 +93,15 @@
             </StackPanel>
         </Grid>
         <DataGrid Name="dgPlatillo" 
+         FontSize="16"
           ItemsSource="{Binding}" 
           HorizontalAlignment="Center" 
           AutoGenerateColumns="False" 
           IsReadOnly="True" 
-          MinWidth="700" Height="300" 
+          Width="800" Height="300" 
           VerticalAlignment="Top" 
           Margin="0,410,0,0"
-          SelectionChanged="dgPlatillo_SelectionChanged">
+          SelectionChanged="dgPlatillo_SelectionChanged" Background="{x:Null}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PlatilloId}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Platillo" Binding="{Binding Platillo}"></DataGridTextColumn>
