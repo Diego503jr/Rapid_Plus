@@ -35,6 +35,7 @@ namespace Rapid_Plus.Views.Mesero
             int idOrden = -1;
             int idplatillo = -1;
             int idCategoria = -1;
+
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
@@ -82,10 +83,12 @@ namespace Rapid_Plus.Views.Mesero
         private void LimpiarObjetos()
         {
             cmbMesa.SelectedIndex = -1;
+            cmbFiltro.SelectedIndex = -1;
             txtCantidad.Clear();
             txbEstado.Text = null;
             txbOrden.Text = null;
             txbPlatillo.Text = null;
+
         }
         private int NumeroMesa()
         {
@@ -163,7 +166,6 @@ namespace Rapid_Plus.Views.Mesero
             }
             else
             {
-                MessageBox.Show("No hay órdenes asociadas a esta mesa.");
                 txbOrden.Text = string.Empty;
             }
 

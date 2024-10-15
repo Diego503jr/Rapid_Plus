@@ -42,11 +42,12 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300">
+        <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300" >
             <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
-                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
+                    <!--<DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>-->
+                    <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

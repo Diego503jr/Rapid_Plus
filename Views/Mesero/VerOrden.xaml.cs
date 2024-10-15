@@ -43,7 +43,7 @@ namespace Rapid_Plus.Views.Mesero
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Estado_Orden FROM EstadoOrdenes", conDb))
+                using (var command = new SqlCommand("SELECT Id, Estado_Orden FROM EstadoOrdenes WHERE Id != 2", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var estados = new List<dynamic>();
@@ -61,11 +61,11 @@ namespace Rapid_Plus.Views.Mesero
         }
         #endregion
 
-
         #region EVENTOS DEL FORMULARIO
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MostrarOrdenes();
+            cmbFiltro.SelectedIndex = -1;
             CargarEstado();
         }
         private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -75,7 +75,6 @@ namespace Rapid_Plus.Views.Mesero
             if (ordenes != null)
             {
                 dgOrdenes.DataContext = ordenes;
-
             }
             else
             {
