@@ -1,4 +1,5 @@
-﻿using Rapid_Plus.Controllers.Mesero;
+﻿using Rapid_Plus.Controllers;
+using Rapid_Plus.Controllers.Mesero;
 using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
 using System;
@@ -12,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -73,21 +75,24 @@ namespace Rapid_Plus.Views.Mesero
                         estados.Add(new { Id = dr.GetInt32(0), Categoria = dr.GetString(1) });
                     }
 
-                    cmbFiltro.ItemsSource = estados;
+                    cmbPlatillo.ItemsSource = estados;
                 }
             }
-            cmbFiltro.DisplayMemberPath = "Categoria";
-            cmbFiltro.SelectedValuePath = "Id";
+            cmbPlatillo.DisplayMemberPath = "Categoria";
+            cmbPlatillo.SelectedValuePath = "Id";
 
         }
         private void LimpiarObjetos()
         {
             cmbMesa.SelectedIndex = -1;
-            cmbFiltro.SelectedIndex = -1;
+            cmbPlatillo.SelectedIndex = -1;
             txtCantidad.Clear();
             txbEstado.Text = null;
             txbOrden.Text = null;
             txbPlatillo.Text = null;
+            dgPlatillos.DataContext = null;
+            dgOrdenes.DataContext = null;
+            dgOrdenes.IsEnabled = false;
 
         }
         private int NumeroMesa()
@@ -102,10 +107,6 @@ namespace Rapid_Plus.Views.Mesero
                 numeroMesa = -1;
             }
             return numeroMesa;
-        }
-        private void MostrarPlatillos()
-        {
-            dgPlatillos.DataContext = MeseroController.ListaPlatillos();
         }
         private bool ValidarFomrulario()
         {
@@ -142,14 +143,13 @@ namespace Rapid_Plus.Views.Mesero
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LimpiarObjetos();
-            MostrarPlatillos();
             CargarNumeroMesa();
             CargarCategorias();
-        }
+            dgOrdenes.IsEnabled = false;
 
+        }
         private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
             numeroMesa = NumeroMesa();
 
             var orden = MeseroController.ObtenerOrdenPorMesa(numeroMesa);
@@ -171,7 +171,24 @@ namespace Rapid_Plus.Views.Mesero
 
 
         }
+        private void cmbPlatillo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbPlatillo.SelectedIndex != -1)
+            {
+                idCategoria = (int)cmbPlatillo.SelectedValue;
+                var platillos = MeseroController.ListaPlatillos(idCategoria);
+                if (platillos != null)
+                {
+                    dgPlatillos.DataContext = platillos;
 
+                }
+                else
+                {
+                    MessageBox.Show("No hay Platillos disponibles.");
+                }
+            }
+            
+        }
         private void dgPlatillos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -184,6 +201,29 @@ namespace Rapid_Plus.Views.Mesero
             idplatillo = ordenes.IdPlatillo;
 
         }
+        private void dgOrdenes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OrdenesModel ordenes = (OrdenesModel)dgOrdenes.SelectedItem;
+            if (ordenes == null)
+            {
+                return;
+            }
+            txtCantidad.Text = ordenes.Cantidad.ToString();
+            txbPlatillo.Text = ordenes.Orden;
+            idplatillo = ordenes.IdPlatillo;
+        }
+
+        //BOTONES
+        private void btnEditarOrden_Click(object sender, RoutedEventArgs e)
+        {
+            dgOrdenes.IsEnabled = true;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            LimpiarObjetos();
+        }
+
         private void btnAgregarOrden_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
@@ -194,35 +234,29 @@ namespace Rapid_Plus.Views.Mesero
                 orden.Cantidad = Convert.ToInt32(txtCantidad.Text);
                 orden.IdPlatillo = idplatillo;
 
-                idOrden = MeseroController.InsertarOrden(orden);
-                mensaje = "Orden creada con éxito";
+                /*if (agregar)
+                {
+                    idOrden = MeseroController.InsertarOrden(orden);
+                    mensaje = "Orden creada con éxito";
+                }
+                else
+                {
+                    idOrden = MeseroController.EditarOrden(orden,idOrden);
+                    mensaje = "La orden fue actualizada con éxito";
+                }*/
 
                 if (idOrden > 0)
                 {
-                    LimpiarObjetos();
+
                     MessageBox.Show(mensaje, "Validación de formulario", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                LimpiarObjetos();
 
             }
-        }
-        private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            idCategoria = (int)cmbFiltro.SelectedValue;
-            var platillos = MeseroController.ListaPlatillos(idCategoria);
-            if (platillos != null)
-            {
-                dgPlatillos.DataContext = platillos;
 
-            }
-            else
-            {
-                MessageBox.Show("No hay Platillos disponibles.");
-            }
 
         }
 
         #endregion
-
-
     }
 }

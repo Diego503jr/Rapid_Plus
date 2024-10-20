@@ -8,31 +8,30 @@
       mc:Ignorable="d"
       Title="TomarOrden" Height="750" Width="1024" Loaded="Page_Loaded" >
     <Grid Background="White">
-        <Rectangle VerticalAlignment="Top" Height="150" Stroke="#FFD63C3C" Width="950" Margin="0,100,0,0" />
-        <Label Content="Gestionar Orden" Background="#FFD63C3C" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="950" HorizontalAlignment="Center" Margin="0,50,0,0"></Label>
-        <StackPanel Orientation="Horizontal" Width="850" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,125,0,0">
-            <StackPanel Orientation="Vertical" Width="425">
-                <StackPanel Orientation="Horizontal"  Width="425" Height="40">
-                    <Label Content="Número de mesa: " FontSize="20" Width="181"></Label>
-                    <ComboBox Name="cmbMesa" Width="80" FontSize="20"  SelectionChanged="cmbMesa_SelectionChanged" />
+        <GroupBox Header="Gestionar Orden" FontSize="36" VerticalAlignment="Top" Margin="30,50" MinHeight="200">
+            <StackPanel Orientation="Horizontal" Width="850" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Width="425">
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40">
+                        <Label Content="Número de mesa: " FontSize="20" Width="181"></Label>
+                        <ComboBox Name="cmbMesa" Width="80" FontSize="20"  SelectionChanged="cmbMesa_SelectionChanged" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
+                        <Label Content="Categoría: " FontSize="20" Width="181"></Label>
+                        <ComboBox Name="cmbPlatillo" Width="160" FontSize="20" SelectionChanged="cmbPlatillo_SelectionChanged"  />
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
-                    <Label Content="Categoría: " FontSize="20" Width="181"></Label>
-                    <ComboBox Name="cmbFiltro" Width="160" FontSize="20" SelectionChanged="cmbFiltro_SelectionChanged"  />
+                <StackPanel Orientation="Vertical" Width="425">
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40">
+                        <Label Content="Número de Orden: " FontSize="20"/>
+                        <TextBlock TextAlignment="Center"  Name="txbOrden" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
+                        <Label Content="Estado de la orden: " FontSize="20"></Label>
+                        <TextBlock TextAlignment="Center"  Name="txbEstado" Width="118" Height="40" FontSize="20" IsEnabled="False"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Width="425">
-                <StackPanel Orientation="Horizontal"  Width="425" Height="40">
-                    <Label Content="Número de Orden: " FontSize="20"/>
-                    <TextBlock TextAlignment="Center"  Name="txbOrden" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
-                    <Label Content="Estado de la orden: " FontSize="20"></Label>
-                    <TextBlock TextAlignment="Center"  Name="txbEstado" Width="118" Height="40" FontSize="20" IsEnabled="False"></TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-        
+        </GroupBox>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0" Height="200" Width="600">
             <DataGrid Name="dgPlatillos"  AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  SelectionChanged="dgPlatillos_SelectionChanged">
@@ -43,11 +42,10 @@
             </DataGrid>
         </ScrollViewer>
         <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300" >
-            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" >
+            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgOrdenes_SelectionChanged" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
-                    <!--<DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>-->
-                    <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
+                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
@@ -59,9 +57,10 @@
             <TextBlock Name="txbPlatillo" FontSize="20" TextAlignment="Center" IsEnabled="false" Width="300" HorizontalAlignment="Right"></TextBlock>    
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Center" Margin="0,0,0,60">
-            <Button Background="#FF008592"  Name="btnAgregarOrden" Width="300" FontSize="20" Content="Agregar Orden" Height="50" HorizontalAlignment="Left" BorderBrush="#FF008592" Click="btnAgregarOrden_Click"/>
-            <Button Background= "#FF008592" Name="btnEditarOrden" Width="300" FontSize="20" Content="Editar Orden" Height="50" HorizontalAlignment="Center" Margin="40,0,0,0" BorderBrush="#FF008592"/>
-            <Button Background= "#FF008592" Name="btnEliminarOrden" Width="300" FontSize="20" Content="Eliminar Orden" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" BorderBrush="#FF008592"/>
+            <Button Background="#FF008592"  Name="btnAgregarOrden" Width="200" FontSize="20" Content="Agregar Orden" Height="50" HorizontalAlignment="Left" BorderBrush="#FF008592" Click="btnAgregarOrden_Click"/>
+            <Button Background= "#FF008592" Name="btnEditarOrden" Width="200" FontSize="20" Content="Editar Orden" Height="50" HorizontalAlignment="Center" Margin="40,0,0,0" BorderBrush="#FF008592" Click="btnEditarOrden_Click"/>
+            <Button Background= "#FF008592" Name="btnEliminarOrden" Width="200" FontSize="20" Content="Eliminar Orden" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" BorderBrush="#FF008592"/>
+            <Button Background= "#FF008592" Name="btnCancelar" Width="200" FontSize="20" Content="Cancelar" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" BorderBrush="#FF008592" Click="btnCancelar_Click"/>
         </StackPanel>
 
 

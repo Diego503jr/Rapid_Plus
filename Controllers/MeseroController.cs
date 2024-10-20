@@ -205,7 +205,7 @@ namespace Rapid_Plus.Controllers.Mesero
             {
                 conDb.Open();
 
-                string query = "SELECT TOP 1 Id FROM Ordenes WHERE Id_Mesa = @IdMesa ORDER BY Id DESC";
+                string query = "SELECT TOP 1 Ordenes.Id AS OrdenId, EstadoOrdenes.Estado_Orden AS Estado FROM Ordenes INNER JOIN EstadoOrdenes ON Ordenes.Id_Estado_Orden = EstadoOrdenes.Id WHERE Ordenes.Id_Mesa = @IdMesa ORDER BY Ordenes.Id DESC";
                 using (var command = new SqlCommand(query, conDb))
                 {
                     command.Parameters.AddWithValue("@IdMesa", idMesa);
@@ -215,7 +215,8 @@ namespace Rapid_Plus.Controllers.Mesero
                         {
                             orden = new OrdenesModel
                             {
-                                IdOrden = reader.GetInt32(reader.GetOrdinal("Id")),
+                                IdOrden = reader.GetInt32(reader.GetOrdinal("OrdenId")),
+                                EstadoOrden = reader.GetString("Estado"),
                             };
                         }
                     }
@@ -310,6 +311,39 @@ namespace Rapid_Plus.Controllers.Mesero
             {
                 MessageBox.Show("Ocurrió un error al intentar insertar los detalles de la orden: " + ex.Message, "Validación",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return res;
+        }
+
+        //EDITAR ORDEN
+        public static int EditarOrden(OrdenesModel orden, int idOrden)
+        {
+            int res = -1;
+
+            try
+            {
+                using (var conDb = new SqlConnection(conexion))
+                {
+                    conDb.Open();
+
+                    using (var command = conDb.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "ACTUALIZARORDEN";
+
+                        command.Parameters.AddWithValue("@ID", idOrden);
+                        command.Parameters.AddWithValue("@ID_ORDEN", orden.IdOrden);
+                        command.Parameters.AddWithValue("@CANTIDAD", orden.Cantidad);
+                        command.Parameters.AddWithValue("@ID_PLATILLO", orden.IdPlatillo);
+                        res = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar editar la orden" + ex.Message, "Validacion",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return res;
