@@ -33,52 +33,52 @@ namespace Rapid_Plus.Views.Administrador
         #region METODOS ESTILOS
         private void btnMenu_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnMenu_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
 
         private void btnUsuario_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnUsuario_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
 
         private void btnReportes_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnReportes_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
 
         private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
 
         private void btnMas_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnMas_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
 
         #endregion
