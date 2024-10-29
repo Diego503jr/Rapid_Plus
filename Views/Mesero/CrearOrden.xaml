@@ -9,8 +9,10 @@
       d:DesignHeight="750" d:DesignWidth="950"
       Title="CrearOrden" Loaded="Page_Loaded">
 
-    <Grid Background="White" >
-        <GroupBox Height="250" Header="Crear Orden" FontSize="36" Margin="100,50" VerticalAlignment="Top">
+    <Grid >
+        <GroupBox Height="250" Header="Crear Orden" Margin="100,50" VerticalAlignment="Top" materialDesign:ColorZoneAssist.Background="#A2BCE0"
+                    materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
+                    FontSize="20" Style="{StaticResource MaterialDesignGroupBox}">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="20,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Width="700" Height="35" HorizontalAlignment="Center" Margin="0,35">
                     <TextBox Name="txtNombre" Width="300" Margin="0,0,120,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" />
@@ -24,7 +26,7 @@
         </GroupBox>
 
         <ScrollViewer  VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="200" Margin="0,150,0,0" HorizontalAlignment="Center">
-            <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgClientes_SelectionChanged"   >
+            <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgClientes_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdCliente}"/>
                     <DataGridTextColumn Header="Nombre" CanUserResize="False" Binding="{Binding NombreCliente}"/>
@@ -32,7 +34,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200" Content="Crear Orden" FontSize="25" Height="50" Margin="0,0,0,60" Background="#FF008592" Name="btnCrearOrden" Click="btnCrearOrden_Click"></Button>
+
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Content="Crear Orden" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="50" Margin="0,0,0,60" FontSize="18" Name="btnCrearOrden" Click="btnCrearOrden_Click"></Button>
     </Grid>
 </Page>

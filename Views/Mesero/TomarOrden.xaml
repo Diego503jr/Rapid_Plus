@@ -7,8 +7,10 @@
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d"
       Title="TomarOrden" Height="750" Width="1024" Loaded="Page_Loaded" >
-    <Grid Background="White">
-        <GroupBox Header="Gestionar Orden" FontSize="36" VerticalAlignment="Top" Margin="30,50" MinHeight="200">
+    <Grid >
+        <GroupBox Header="Gestionar Orden" materialDesign:ColorZoneAssist.Background="#A2BCE0"
+                materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
+                FontSize="20" Style="{StaticResource MaterialDesignGroupBox}"  VerticalAlignment="Top" Margin="30,50" MinHeight="200">
             <StackPanel Orientation="Horizontal" Width="850" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" Width="425">
                     <StackPanel Orientation="Horizontal"  Width="425" Height="40">
@@ -34,7 +36,7 @@
         </GroupBox>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0" Height="200" Width="600">
-            <DataGrid Name="dgPlatillos"  AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  SelectionChanged="dgPlatillos_SelectionChanged">
+            <DataGrid Name="dgPlatillos"  AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  SelectionChanged="dgPlatillos_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
                     <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding DescripcionPlatillo}"/>
@@ -42,7 +44,7 @@
             </DataGrid>
         </ScrollViewer>
         <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300" >
-            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgOrdenes_SelectionChanged" >
+            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgOrdenes_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
                     <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
@@ -57,10 +59,10 @@
             <TextBlock Name="txbPlatillo" FontSize="20" TextAlignment="Center" IsEnabled="false" Width="300" HorizontalAlignment="Right"></TextBlock>    
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Center" Margin="0,0,0,60">
-            <Button Background="#FF008592"  Name="btnAgregarOrden" Width="200" FontSize="20" Content="Agregar Orden" Height="50" HorizontalAlignment="Left" BorderBrush="#FF008592" Click="btnAgregarOrden_Click"/>
-            <Button Background= "#FF008592" Name="btnEditarOrden" Width="200" FontSize="20" Content="Editar Orden" Height="50" HorizontalAlignment="Center" Margin="40,0,0,0" BorderBrush="#FF008592" Click="btnEditarOrden_Click"/>
-            <Button Background= "#FF008592" Name="btnEliminarOrden" Width="200" FontSize="20" Content="Eliminar Orden" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" BorderBrush="#FF008592"/>
-            <Button Background= "#FF008592" Name="btnCancelar" Width="200" FontSize="20" Content="Cancelar" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" BorderBrush="#FF008592" Click="btnCancelar_Click"/>
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnAgregarOrden" Width="100" FontSize="18" Content="Agregar" Height="50" HorizontalAlignment="Left" Click="btnAgregarOrden_Click"/>
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEditarOrden" Width="100" FontSize="18" Content="Editar" Height="50" HorizontalAlignment="Center" Margin="40,0,0,0" Click="btnEditarOrden_Click"/>
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEliminarOrden" Width="100" FontSize="18" Content="Eliminar" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" />
+            <Button  BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnCancelar" Width="100" FontSize="18" Content="Cancelar" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" Click="btnCancelar_Click"/>
         </StackPanel>
 
 
