@@ -163,7 +163,7 @@ namespace Rapid_Plus.Views.Administrador
             using (var conDb = new SqlConnection(conexion))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Categoria FROM Categorias", conDb))
+                using (var command = new SqlCommand("SELECT IdCategoria, Categoria FROM Categoria", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())
@@ -183,7 +183,7 @@ namespace Rapid_Plus.Views.Administrador
             using (var conDB = new SqlConnection(conexion))
             {
                 conDB.Open();
-                using (var command = new SqlCommand("SELECT Id, Estado FROM Estados", conDB))
+                using (var command = new SqlCommand("SELECT IdEstado, Estado FROM Estado", conDB))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())

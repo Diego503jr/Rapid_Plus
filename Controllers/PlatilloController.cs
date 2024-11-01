@@ -36,9 +36,9 @@ namespace Rapid_Plus.Controllers
                             {
                                 PlatilloModel platillo = new PlatilloModel();
 
-                                platillo.PlatilloId = Convert.ToInt32(dr["Id"].ToString());
-                                platillo.Platillo = dr["Nombre_Platillo"].ToString();
-                                platillo.Descripcion = dr["Descripcion_Platillos"].ToString();
+                                platillo.PlatilloId = Convert.ToInt32(dr["IdPlatillo"].ToString());
+                                platillo.Platillo = dr["NombrePlatillo"].ToString();
+                                platillo.Descripcion = dr["DescripcionPlatillo"].ToString();
                                 platillo.Categoria = dr["Categoria"].ToString();
                                 platillo.Precio = Convert.ToDecimal(dr["Precio"].ToString());
                                 platillo.Estado = dr["Estado"].ToString();
@@ -71,13 +71,13 @@ namespace Rapid_Plus.Controllers
                     using (var command = condDb.CreateCommand())
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPCREARPLATILLO";
+                        command.CommandText = "SPCREARMENU";
 
                         command.Parameters.AddWithValue("@Nombre", platillo.Platillo);
                         command.Parameters.AddWithValue("@Descripcion", platillo.Descripcion);
-                        command.Parameters.AddWithValue("@Id_Categoria", platillo.CategoriaId);
+                        command.Parameters.AddWithValue("@IdCategoria", platillo.CategoriaId);
                         command.Parameters.AddWithValue("@Precio", platillo.Precio);
-                        command.Parameters.AddWithValue("@Id_Estado", platillo.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", platillo.EstadoId);
 
                         res = command.ExecuteNonQuery();
 
@@ -106,14 +106,14 @@ namespace Rapid_Plus.Controllers
                     using (var command = condDb.CreateCommand())
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPACTUALIZARPLATILLO";
+                        command.CommandText = "SPACTUALIZARMENU";
 
-                        command.Parameters.AddWithValue("@Id", idPlatillo);
+                        command.Parameters.AddWithValue("@IdPlatillo", idPlatillo);
                         command.Parameters.AddWithValue("@Nombre", platillo.Platillo);
                         command.Parameters.AddWithValue("@Descripcion", platillo.Descripcion);
-                        command.Parameters.AddWithValue("@Id_Categoria", platillo.CategoriaId);
+                        command.Parameters.AddWithValue("@IdCategoria", platillo.CategoriaId);
                         command.Parameters.AddWithValue("@Precio", platillo.Precio);
-                        command.Parameters.AddWithValue("@Id_Estado", platillo.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", platillo.EstadoId);
 
                         res = command.ExecuteNonQuery();
                     }
@@ -141,10 +141,10 @@ namespace Rapid_Plus.Controllers
                     using (var command = condB.CreateCommand()) 
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPELIMINARPLATILLO";
+                        command.CommandText = "SPELIMINARMENU";
 
-                        command.Parameters.AddWithValue("@Id", id);
-                        command.Parameters.AddWithValue("@Id_Estado", estado);
+                        command.Parameters.AddWithValue("@IdPlatillo", id);
+                        command.Parameters.AddWithValue("@IdEstado", estado);
 
                         res = command.ExecuteNonQuery();
                     }

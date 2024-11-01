@@ -37,7 +37,7 @@ namespace Rapid_Plus.Controllers
                             {
                                 MesasModel mesa = new MesasModel();
 
-                                mesa.MesaId = Convert.ToInt32(dr["Id"].ToString());
+                                mesa.MesaId = Convert.ToInt32(dr["IdMesa"].ToString());
                                 mesa.Mesa = Convert.ToInt32(dr["Mesa"].ToString());
                                 mesa.Estado = dr["Estado"].ToString();
 
@@ -71,7 +71,7 @@ namespace Rapid_Plus.Controllers
                         command.CommandText = "SPCREARMESA";
 
                         command.Parameters.AddWithValue("@Mesa", mesa.Mesa);
-                        command.Parameters.AddWithValue("@Id_Estado", mesa.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", mesa.EstadoId);
 
                         res = command.ExecuteNonQuery();
                     }
@@ -101,9 +101,9 @@ namespace Rapid_Plus.Controllers
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "SPACTUALIZARMESA";
 
-                        command.Parameters.AddWithValue("@Id", idMesa);
+                        command.Parameters.AddWithValue("@IdMesa", idMesa);
                         command.Parameters.AddWithValue("@Mesa", mesa.Mesa);
-                        command.Parameters.AddWithValue("@Id_Estado", mesa.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", mesa.EstadoId);
 
                         res = command.ExecuteNonQuery();
                     }
@@ -133,8 +133,8 @@ namespace Rapid_Plus.Controllers
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "SPELIMINARMESA";
 
-                        command.Parameters.AddWithValue("@Id", mesa);
-                        command.Parameters.AddWithValue("@Id_Estado", estado);
+                        command.Parameters.AddWithValue("@IdMesa", mesa);
+                        command.Parameters.AddWithValue("@IdEstado", estado);
 
                         res = command.ExecuteNonQuery();
                     }

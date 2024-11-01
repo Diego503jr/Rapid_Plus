@@ -36,15 +36,15 @@ namespace Rapid_Plus.Controllers
                             while (dr.Read()) 
                             {
                                 UsuarioModel usuario = new UsuarioModel();
-                                usuario.UsuarioId = int.Parse(dr["Id"].ToString());
+                                usuario.UsuarioId = int.Parse(dr["IdUsuario"].ToString());
                                 usuario.Usuario = dr["Usuario"].ToString();
                                 usuario.Clave = dr["Clave"].ToString();
-                                usuario.Nombres = dr["Nombre_Usuario"].ToString();
-                                usuario.Apellidos = dr["Apellido_Usuario"].ToString();
+                                usuario.Nombres = dr["NombreUsuario"].ToString();
+                                usuario.Apellidos = dr["ApellidoUsuario"].ToString();
                                 usuario.Rol = dr["Rol"].ToString();
                                 usuario.DUI = int.Parse(dr["DUI"].ToString());
                                 usuario.Sexo = dr["Sexo"].ToString();
-                                usuario.FechaNacimiento = DateTime.Parse(dr["Fecha_Nacimiento"].ToString());
+                                usuario.FechaNacimiento = DateTime.Parse(dr["FechaNacimiento"].ToString());
                                 usuario.Estado = dr["Estado"].ToString();
 
                                 //Agregar a la lista
@@ -57,7 +57,7 @@ namespace Rapid_Plus.Controllers
                                 // Segunda consulta: obtener los teléfonos de los usuarios
                                 while (dr.Read())
                                 {
-                                    int usuarioId = int.Parse(dr["Id_Usuario"].ToString());
+                                    int usuarioId = int.Parse(dr["IdUsuario"].ToString());
                                     string telefono1 = dr["Telefono1"].ToString();
                                     string telefono2 = dr["Telefono2"].ToString();
 
@@ -102,11 +102,11 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Clave", user.Clave);
                         command.Parameters.AddWithValue("@Nombres", user.Nombres);
                         command.Parameters.AddWithValue("@Apellidos", user.Apellidos);
-                        command.Parameters.AddWithValue("@Id_Rol", user.RolId);
+                        command.Parameters.AddWithValue("@IdRol", user.RolId);
                         command.Parameters.AddWithValue("@DUI", user.DUI);
-                        command.Parameters.AddWithValue("@Id_Sexo", user.SexoId);
-                        command.Parameters.AddWithValue("@Fecha_Nacimiento", user.FechaNacimiento);
-                        command.Parameters.AddWithValue("@Id_Estado", user.EstadoId);
+                        command.Parameters.AddWithValue("@IdSexo", user.SexoId);
+                        command.Parameters.AddWithValue("@FechaNacimiento", user.FechaNacimiento);
+                        command.Parameters.AddWithValue("@IdEstado", user.EstadoId);
                         command.Parameters.AddWithValue("@Telefono1", user.Telefono1);
                         command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
@@ -139,16 +139,16 @@ namespace Rapid_Plus.Controllers
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "SPACTUALIZARUSUARIO";
 
-                        command.Parameters.AddWithValue("@Id", idUsuario);
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
                         command.Parameters.AddWithValue("@Usuario", user.Usuario);
                         command.Parameters.AddWithValue("@Clave", user.Clave);
                         command.Parameters.AddWithValue("@Nombres", user.Nombres);
                         command.Parameters.AddWithValue("@Apellidos", user.Apellidos);
-                        command.Parameters.AddWithValue("@Id_Rol", user.RolId);
+                        command.Parameters.AddWithValue("@IdRol", user.RolId);
                         command.Parameters.AddWithValue("@DUI", user.DUI);
-                        command.Parameters.AddWithValue("@Id_Sexo", user.SexoId);
-                        command.Parameters.AddWithValue("@Fecha_Nacimiento", user.FechaNacimiento);
-                        command.Parameters.AddWithValue("@Id_Estado", user.EstadoId);
+                        command.Parameters.AddWithValue("@IdSexo", user.SexoId);
+                        command.Parameters.AddWithValue("@FechaNacimiento", user.FechaNacimiento);
+                        command.Parameters.AddWithValue("@IdEstado", user.EstadoId);
                         command.Parameters.AddWithValue("@Telefono1", user.Telefono1);
                         command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
@@ -181,8 +181,8 @@ namespace Rapid_Plus.Controllers
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "SPELIMINARUSUARIO";
 
-                        command.Parameters.AddWithValue("@Id", idUsuario);
-                        command.Parameters.AddWithValue("@Id_Estado", idEstado);
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        command.Parameters.AddWithValue("@IdEstado", idEstado);
 
                         res = command.ExecuteNonQuery();
                     }

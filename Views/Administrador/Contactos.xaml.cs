@@ -202,7 +202,7 @@ namespace Rapid_Plus.Views.Administrador
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Rol FROM Roles", conDb))
+                using (var command = new SqlCommand("SELECT IdRol, Rol FROM Rol", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())
@@ -222,7 +222,7 @@ namespace Rapid_Plus.Views.Administrador
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Sexo FROM Sexo", conDb))
+                using (var command = new SqlCommand("SELECT IdSexo, Sexo FROM Sexo", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())
@@ -242,7 +242,7 @@ namespace Rapid_Plus.Views.Administrador
             using (var conDB = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             { 
                 conDB.Open();
-                using (var command = new SqlCommand("SELECT Id, Estado FROM Estados", conDB))
+                using (var command = new SqlCommand("SELECT IdEstado, Estado FROM Estado", conDB))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())
