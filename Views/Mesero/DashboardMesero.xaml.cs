@@ -49,6 +49,28 @@ namespace Rapid_Plus.Views.Mesero
         }
         #endregion
 
+        #region ESTILOS
+        private void BotonMesero_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
+        }
+
+        private void BotonMesero_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            }
+        }
+        #endregion
+
         #region EVENTOS
         //Cerrar Sesión
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
@@ -69,27 +91,12 @@ namespace Rapid_Plus.Views.Mesero
             Close();
         }
 
-        //MOUSE LEAVE / MOUSE ENTER
-
-        private void BotonMesero_MouseEnter(object sender, MouseEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Button boton = sender as Button;
-
-            if (boton != null)
-            {
-                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
-            }
+            frContent.NavigationService.Navigate(verOrden);
         }
 
-        private void BotonMesero_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Button boton = sender as Button;
 
-            if (boton != null)
-            {
-                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
-            }
-        }
         #endregion
 
 

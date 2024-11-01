@@ -43,7 +43,7 @@ namespace Rapid_Plus.Views.Mesero
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 1", conDb)) 
+                using (var command = new SqlCommand("SELECT IdMesa, Mesa FROM Mesa WHERE IdEstado = 1", conDb)) 
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var mesas = new List<dynamic>();
@@ -96,6 +96,7 @@ namespace Rapid_Plus.Views.Mesero
             cmbMesa.SelectedIndex = -1;
             txtApellido.Clear();
             txtNombre.Clear();
+            dgClientes.SelectedIndex = -1;
         }
 
         private void MostrarClientes()
@@ -160,6 +161,12 @@ namespace Rapid_Plus.Views.Mesero
                 MessageBox.Show("No hay mesas disponibles", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            LimpiarObjetos();
+        }
+
 
         #endregion
 

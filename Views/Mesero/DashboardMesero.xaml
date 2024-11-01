@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
         mc:Ignorable="d"
-        Title="DashboardMesero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+        Title="DashboardMesero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" FontSize="30" Loaded="Window_Loaded" >
     <Grid>
         <DockPanel>
 
-            <Grid DockPanel.Dock="Top" Background="#FFD63C3C" Height="60">
-                <Label Content="Panel Mesero" Foreground="White" FontSize="36"/>
+            <Grid DockPanel.Dock="Top" Background="#0B5563" Height="60">
+                <Label Content="Panel Mesero" Foreground="White" />
                 <Button x:Name="btnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnCerrarVentana_Click">
                     <Image Source="/Assets/CerrarVentana.png" ></Image>
                 </Button>
             </Grid>
 
-            <Grid DockPanel.Dock="Left" Background="#FF008592" MinWidth="350">
+            <Grid DockPanel.Dock="Left" Background="#5299D3" MinWidth="350">
                 <StackPanel Grid.Row="0">
                     <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
-                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
                         <Button Name="btnCrear" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnTomarOrden_Click" MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/AgregarOrden.png" />
@@ -31,7 +31,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
                         <Button Name="btnVerOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnVerOrden_Click" MouseEnter ="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
@@ -40,7 +40,7 @@
                         </Button>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
                         <Button Name="btnGestionar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter ="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave" Click="btnGestionar_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/GestionarOrden.png" />
@@ -52,8 +52,8 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">
-                    <Rectangle Width="10" Height="60" Fill="#FFD63C3C"/>
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,0" Orientation="Horizontal">
+                    <Rectangle Width="10" Height="60" Fill="#0B5563"/>
                     <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click" MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
                         <StackPanel Orientation="Horizontal"  Width="320">
                             <Image  Width="60" Height="50" Margin="0" Source="/Assets/CerrarSesion.png" Cursor="" />
@@ -63,7 +63,7 @@
                 </StackPanel>
             </Grid>
 
-            <Rectangle DockPanel.Dock="Bottom" Fill="#FFD63C3C" Height="60" MinWidth="450"/>
+            <Rectangle DockPanel.Dock="Bottom" Fill="#0B5563" Height="60" MinWidth="450"/>
 
             <Frame Name="frContent" NavigationUIVisibility="Hidden"/>
         </DockPanel>

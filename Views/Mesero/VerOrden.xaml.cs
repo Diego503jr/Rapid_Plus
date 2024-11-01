@@ -29,7 +29,7 @@ namespace Rapid_Plus.Views.Mesero
         }
 
         #region DECLARACION DE VARIABLES LOCALES
-        int IdEstado = -1;
+        int IdEstadoOrden = -1;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
@@ -43,25 +43,25 @@ namespace Rapid_Plus.Views.Mesero
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Estado_Orden FROM EstadoOrdenes WHERE Id != 2", conDb))
+                using (var command = new SqlCommand("SELECT IdEstadoOrden, EstadoOrden FROM EstadoOrden WHERE IdEstadoOrden != 2", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var estados = new List<dynamic>();
                     while (dr.Read())
                     {
-                        estados.Add(new { Id = dr.GetInt32(0), Estado_Orden = dr.GetString(1) });
+                        estados.Add(new { IdEstadoOrden = dr.GetInt32(0), EstadoOrden = dr.GetString(1) });
                     }
 
                     cmbFiltro.ItemsSource = estados;
                 }
             }
-            cmbFiltro.DisplayMemberPath = "Estado_Orden";
-            cmbFiltro.SelectedValuePath = "Id";
+            cmbFiltro.DisplayMemberPath = "EstadoOrden";
+            cmbFiltro.SelectedValuePath = "IdEstadoOrden";
 
         }
         #endregion
 
-        #region EVENTOS DEL FORMULARIO
+        #region EVENTOS
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MostrarOrdenes();
@@ -70,16 +70,28 @@ namespace Rapid_Plus.Views.Mesero
         }
         private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IdEstado = (int)cmbFiltro.SelectedValue;
-            var ordenes = MeseroController.ListarOrdenes(IdEstado);
-            if (ordenes != null)
+            if (cmbFiltro.SelectedIndex != -1)
             {
-                dgOrdenes.DataContext = ordenes;
+                IdEstadoOrden = (int)cmbFiltro.SelectedValue;
+                var ordenes = MeseroController.ListarOrdenes(IdEstadoOrden);
+                if (ordenes != null)
+                {
+                    dgOrdenes.DataContext = ordenes;
+
+                }
+                else
+                {
+                    MessageBox.Show("No hay Ordenes disponibles.");
+                }
             }
-            else
-            {
-                MessageBox.Show("No hay ordenes disponibles.");
-            }
+
+           
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            cmbFiltro.SelectedIndex = -1;
+            MostrarOrdenes();
         }
     }
     #endregion
