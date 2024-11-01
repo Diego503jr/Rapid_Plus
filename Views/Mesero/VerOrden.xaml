@@ -10,7 +10,7 @@
 
     <Grid >
         <Label Content="Ordenes" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" />
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,200,50,0" Height="300">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,150,50,0" Height="300">
             <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
@@ -21,10 +21,14 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <GroupBox VerticalAlignment="Center" HorizontalAlignment="Center" Header = "Filtrar Estado de Ordenes" Margin="0,300,0,0" materialDesign:ColorZoneAssist.Background="#A2BCE0"
-                  materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom" FontSize="20" Style="{StaticResource MaterialDesignGroupBox}">
-            <ComboBox Name="cmbFiltro" SelectionChanged="cmbFiltro_SelectionChanged"></ComboBox>
-        </GroupBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Margin="0,300,0,0">
+            <GroupBox VerticalAlignment="Center" HorizontalAlignment="Center" Header = "Filtrar Estado de Ordenes"  materialDesign:ColorZoneAssist.Background="#A2BCE0"
+           materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom" FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="275">
+                <ComboBox Name="cmbFiltro" SelectionChanged="cmbFiltro_SelectionChanged"></ComboBox>
+            </GroupBox>
+            <Button Content="Cancelar filtro" Name="btnCancelar" VerticalAlignment="bottom" Width="150" Height="50" BorderBrush="{x:Null}" Background="#A2BCE0" Margin="275,0,0,23" Cursor="Hand" Click="btnCancelar_Click"></Button>
+        </StackPanel>
+       
         
     </Grid>
 </Page>

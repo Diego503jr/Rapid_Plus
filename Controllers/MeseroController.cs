@@ -178,7 +178,7 @@ namespace Rapid_Plus.Controllers.Mesero
                             while (dr.Read())
                             {
                                 OrdenesModel ordenes = new OrdenesModel();
-                                ordenes.IdCliente = int.Parse(dr["ID"].ToString());
+                                ordenes.IdCliente = int.Parse(dr["IDCLIENTE"].ToString());
                                 ordenes.NombreCliente = dr["NOMBRE"].ToString();
                                 ordenes.ApellidoCliente = dr["APELLIDO"].ToString();
 
@@ -205,7 +205,7 @@ namespace Rapid_Plus.Controllers.Mesero
             {
                 conDb.Open();
 
-                string query = "SELECT TOP 1 Ordenes.Id AS OrdenId, EstadoOrdenes.Estado_Orden AS Estado FROM Ordenes INNER JOIN EstadoOrdenes ON Ordenes.Id_Estado_Orden = EstadoOrdenes.Id WHERE Ordenes.Id_Mesa = @IdMesa ORDER BY Ordenes.Id DESC";
+                string query = "SELECT TOP 1 Orden.IdOrden AS OrdenId, EstadoOrden.EstadoOrden AS Estado FROM Orden INNER JOIN EstadoOrden ON Orden.IdEstadoOrden = EstadoOrden.IdEstadoOrden WHERE Orden.IdMesa = @IdMesa ORDER BY Orden.IdOrden DESC";
                 using (var command = new SqlCommand(query, conDb))
                 {
                     command.Parameters.AddWithValue("@IdMesa", idMesa);
@@ -242,13 +242,13 @@ namespace Rapid_Plus.Controllers.Mesero
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "SPCREARORDEN";
 
-                        command.Parameters.AddWithValue("@Nombre_Cliente", orden.NombreCliente);
-                        command.Parameters.AddWithValue("@Apellido_Cliente", orden.ApellidoCliente);
-                        command.Parameters.AddWithValue("@Fecha_Orden", orden.FechaOrden);
+                        command.Parameters.AddWithValue("@NombreCliente", orden.NombreCliente);
+                        command.Parameters.AddWithValue("@ApellidoCliente", orden.ApellidoCliente);
+                        command.Parameters.AddWithValue("@FechaOrden", orden.FechaOrden);
                         command.Parameters.AddWithValue("@Total", orden.Total);
-                        command.Parameters.AddWithValue("@Id_Mesa", orden.Mesa);
-                        command.Parameters.AddWithValue("@Id_Usuario", orden.UsuarioId);
-                        command.Parameters.AddWithValue("@Id_Estado_Orden", orden.IdEstadoOrden);
+                        command.Parameters.AddWithValue("@IdMesa", orden.Mesa);
+                        command.Parameters.AddWithValue("@IdUsuario", orden.UsuarioId);
+                        command.Parameters.AddWithValue("@IdEstadoOrden", orden.IdEstadoOrden);
 
                         object result = command.ExecuteScalar();
                         if (result != null && int.TryParse(result.ToString(), out int parsedId))
@@ -287,11 +287,13 @@ namespace Rapid_Plus.Controllers.Mesero
                         command.CommandText = "SPINSERTARORDEN";
 
                         // Validar que los datos sean válidos
-                        if (orden.IdOrden > 0 && orden.Cantidad > 0 && orden.IdPlatillo > 0)
+                        if (orden.Cantidad > 0)
                         {
-                            command.Parameters.AddWithValue("@ID_ORDEN", orden.IdOrden);
+                            command.Parameters.AddWithValue("@IDORDEN", orden.IdOrden);
                             command.Parameters.AddWithValue("@CANTIDAD", orden.Cantidad);
-                            command.Parameters.AddWithValue("@ID_PLATILLO", orden.IdPlatillo);
+                            command.Parameters.AddWithValue("@IDESTADO", orden.IdEstado);
+                            command.Parameters.AddWithValue("@IDPLATILLO", orden.IdPlatillo);
+                            
 
                             // Ejecutar la inserción
                             res = command.ExecuteNonQuery();
@@ -333,9 +335,9 @@ namespace Rapid_Plus.Controllers.Mesero
                         command.CommandText = "ACTUALIZARORDEN";
 
                         command.Parameters.AddWithValue("@ID", idOrden);
-                        command.Parameters.AddWithValue("@ID_ORDEN", orden.IdOrden);
+                        command.Parameters.AddWithValue("@IDORDEN", orden.IdOrden);
                         command.Parameters.AddWithValue("@CANTIDAD", orden.Cantidad);
-                        command.Parameters.AddWithValue("@ID_PLATILLO", orden.IdPlatillo);
+                        command.Parameters.AddWithValue("@IDPLATILLO", orden.IdPlatillo);
                         res = command.ExecuteNonQuery();
                     }
                 }

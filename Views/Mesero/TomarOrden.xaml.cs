@@ -46,7 +46,7 @@ namespace Rapid_Plus.Views.Mesero
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 0", conDb))
+                using (var command = new SqlCommand("SELECT IdMesa, Mesa FROM Mesa WHERE IdEstado = 0", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var mesas = new List<dynamic>();
@@ -66,7 +66,7 @@ namespace Rapid_Plus.Views.Mesero
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Categoria FROM Categorias", conDb))
+                using (var command = new SqlCommand("SELECT IdCategoria, Categoria FROM Categoria", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var estados = new List<dynamic>();
@@ -151,7 +151,6 @@ namespace Rapid_Plus.Views.Mesero
         private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             numeroMesa = NumeroMesa();
-
             var orden = MeseroController.ObtenerOrdenPorMesa(numeroMesa);
             var ordenes = MeseroController.ListarOrdenesPorMesa(numeroMesa);
 
@@ -232,7 +231,12 @@ namespace Rapid_Plus.Views.Mesero
                 OrdenesModel orden = new OrdenesModel();
                 orden.IdOrden = Convert.ToInt32(txbOrden.Text);
                 orden.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                orden.IdEstado = 1;
                 orden.IdPlatillo = idplatillo;
+                MessageBox.Show("IdOrden: " + txbOrden.Text + "cantidad" + txtCantidad.Text + "platillo" + idplatillo);
+
+                idOrden = MeseroController.InsertarOrden(orden);
+                mensaje = "Orden creada con éxito";
 
                 /*if (agregar)
                 {

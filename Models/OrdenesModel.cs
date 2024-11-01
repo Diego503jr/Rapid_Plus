@@ -38,5 +38,7 @@ namespace Rapid_Plus.Models.Mesero
 
         public int IdCategoria { get; set; }
 
+        public int IdEstado { get; set; }
+
     }
 }

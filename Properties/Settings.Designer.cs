@@ -26,9 +26,9 @@ namespace Rapid_Plus.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=RapidPlus.mssql.somee.com;Initial Catalog=RapidPlus;Persist Security " +
-            "Info=True;User ID=DieCaris503_SQLLogin_1;Password=wyej8uij24;Encrypt=False;Trust" +
-            "ServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Rapid_Plus.mssql.somee.com;Initial Catalog=Rapid_Plus;Persist Securit" +
+            "y Info=True;User ID=DieCaris503_SQLLogin_1;Password=wyej8uij24;Encrypt=False;Tru" +
+            "stServerCertificate=True")]
         public string DbRapidPlus {
             get {
                 return ((string)(this["DbRapidPlus"]));

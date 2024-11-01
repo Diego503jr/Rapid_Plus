@@ -35,6 +35,10 @@
             </DataGrid>
         </ScrollViewer>
 
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Content="Crear Orden" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="50" Margin="0,0,0,60" FontSize="18" Name="btnCrearOrden" Click="btnCrearOrden_Click"></Button>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,60">
+            <Button  Width="150" Content="Crear Orden" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="50" Margin="0,0,0,0" FontSize="18" Name="btnCrearOrden" Click="btnCrearOrden_Click" Cursor="Hand"></Button>
+            <Button Width="150" Content="Cancelar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="50" Margin="40,0,0,0" FontSize="18" Name="btnCancelar" Click="btnCancelar_Click" ></Button>
+        </StackPanel>
+        
     </Grid>
 </Page>
