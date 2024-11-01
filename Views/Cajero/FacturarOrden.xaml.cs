@@ -28,29 +28,25 @@ namespace Rapid_Plus.Views.Cajero
         public FacturarOrden()
         {
             InitializeComponent();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //MostrarOrdenesMesa();
-        }
-
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-             MostrarOrdenesMesa();
+           
         }
 
         #region METODOS PERSONALIZADOS
+
         void MostrarOrdenesMesa()
         {
-            if (int.TryParse(txtMesa.Text, out int numeroMesa))
+            // Verifica si el ComboBox tiene un valor seleccionado
+            if (cmbMesa.SelectedValue != null)
             {
+                // Obtén el número de mesa a partir de SelectedValue
+                int numeroMesa = (int)cmbMesa.SelectedValue;
+
+                // Llama al procedimiento almacenado con el número de mesa seleccionado
                 var ordenes = CajeroController.MostrarOrdenPorMesa(numeroMesa);
 
-                // Verifica si hay órdenes y, si es así, muestra el primer registro
+                // Verifica si hay órdenes y, si es así, las muestra
                 if (ordenes.Count > 0)
                 {
-    
                     dgOrdenes.ItemsSource = ordenes;
 
                     // Calcular el total
@@ -61,13 +57,33 @@ namespace Rapid_Plus.Views.Cajero
                 {
                     MessageBox.Show("No se encontraron órdenes para esta mesa.", "Validación", MessageBoxButton.OK, MessageBoxImage.Information);
                     LimpiarFormulario();
-
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, ingrese un número de mesa válido.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, seleccione una mesa válida.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void CargarNumeroMesa()
+        {
+            using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
+            {
+                conDb.Open();
+                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 0", conDb))
+                {
+                    SqlDataReader dr = command.ExecuteReader();
+                    var mesas = new List<dynamic>();
+                    while (dr.Read())
+                    {
+                        mesas.Add(new { Id = dr.GetInt32(0), Mesa = dr.GetInt32(1) });
+                    }
+
+                    cmbMesa.ItemsSource = mesas;
+                }
+            }
+            cmbMesa.DisplayMemberPath = "Mesa";
+            cmbMesa.SelectedValuePath = "Id";
         }
 
 
@@ -113,14 +129,10 @@ namespace Rapid_Plus.Views.Cajero
         //Metodo para limpiar el formulario
         void LimpiarFormulario()
         {
-            txtMesa.Clear();
+           // txtMesa.Clear();
             txbTotal.Text = string.Empty; // Limpia el contenido del TextBlock
             dgOrdenes.ItemsSource = null; // Limpia el DataGrid
         }
-
-
-
-        #endregion
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -130,5 +142,21 @@ namespace Rapid_Plus.Views.Cajero
                 LimpiarFormulario();
             }
         }
+
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            CargarNumeroMesa();
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarOrdenesMesa();
+        }
+
+
+        #endregion
+
+
     }
 }
