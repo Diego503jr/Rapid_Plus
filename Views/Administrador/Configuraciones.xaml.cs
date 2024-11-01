@@ -141,7 +141,6 @@ namespace Rapid_Plus.Views.Administrador
                     while (dr.Read())
                     {
                         cmbEstado.Items.Add(new { Id = dr.GetInt32(0), Nombre = dr.GetString(1) });
-                        cmbEstadoOrden.Items.Add(new { Id= dr.GetInt32(0), Nombre = dr.GetString(1)});
                     }
                 }
             }
@@ -149,9 +148,6 @@ namespace Rapid_Plus.Views.Administrador
             //Definir en que campos mostrar
             cmbEstado.DisplayMemberPath = "Nombre";
             cmbEstado.SelectedValuePath = "Id";
-
-            cmbEstadoOrden.DisplayMemberPath= "Nombre";
-            cmbEstadoOrden.SelectedValuePath = "Id";
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
