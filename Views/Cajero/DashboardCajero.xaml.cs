@@ -40,22 +40,22 @@ namespace Rapid_Plus.Views.Cajero
 
         private void btnFacturar_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnFacturar_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
 
         private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
         }
 
         private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
         }
         #endregion
 

@@ -10,8 +10,8 @@
 
     <Grid Background="White" Margin="0,-139,-34,0">
 
-        <Rectangle VerticalAlignment="Top" Height="150" Stroke="#FFD63C3C" Margin="62,100,62,0" />
-        <Label Content="Facturar Orden" Background="#FFD63C3C" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
+        <Rectangle VerticalAlignment="Top" Height="150" Stroke="#0B5563" Margin="62,100,62,0" />
+        <Label Content="Facturar Orden" Background="#0B5563" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
 
         <StackPanel Orientation="Horizontal"  Width="425" Height="40" Margin="0,118,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"/>

@@ -70,7 +70,7 @@ namespace Rapid_Plus.Views.Cajero
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT Id, Mesa FROM Mesas WHERE Id_Estado = 0", conDb))
+                using (var command = new SqlCommand("SELECT IdMesa, Mesa FROM Mesa WHERE IdEstado = 0 ", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var mesas = new List<dynamic>();
@@ -83,7 +83,7 @@ namespace Rapid_Plus.Views.Cajero
                 }
             }
             cmbMesa.DisplayMemberPath = "Mesa";
-            cmbMesa.SelectedValuePath = "Id";
+            cmbMesa.SelectedValuePath = "Mesa";
         }
 
 
@@ -132,6 +132,8 @@ namespace Rapid_Plus.Views.Cajero
            // txtMesa.Clear();
             txbTotal.Text = string.Empty; // Limpia el contenido del TextBlock
             dgOrdenes.ItemsSource = null; // Limpia el DataGrid
+            cmbMesa.ItemsSource = null;
+
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

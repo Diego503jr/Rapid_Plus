@@ -46,7 +46,7 @@ namespace Rapid_Plus.Controllers
                                 ordenes.IdOrden = int.Parse(dr["NumeroOrden"].ToString());
                                 ordenes.NombreCliente = dr["Cliente"].ToString();
                                 ordenes.NombreUsuario = dr["Usuario"].ToString();
-                                ordenes.FechaOrden = Convert.ToDateTime(dr["Fecha_Orden"]); // Asegúrate de que este nombre sea correcto
+                                ordenes.FechaOrden = Convert.ToDateTime(dr["FechaOrden"]);
                                 ordenes.Orden = dr["Platillo"].ToString();
                                 ordenes.PrecioPlatillo = decimal.Parse(dr["Precio"].ToString());
                                 ordenes.Cantidad = int.Parse(dr["Cantidad"].ToString());
