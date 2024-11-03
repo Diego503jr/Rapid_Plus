@@ -11,13 +11,13 @@ using System.Windows.Shapes;
 
 using System.Data;
 using System.Data.SqlClient;
-using Rapid_Plus.Models;
-using System.Windows;
 using System.Data.Common;
+using Rapid_Plus.Models;
 using Rapid_Plus.Views.Administrador;
 using Rapid_Plus.Views.Mesero;
 using Rapid_Plus.Views.Cajero;
 using Rapid_Plus.Views.JefeDeCocina;
+using System;
 
 namespace Rapid_Plus
 {
@@ -88,7 +88,7 @@ namespace Rapid_Plus
                         MessageBox.Show("Error inesperado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception ex) 
                 {
                     MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }

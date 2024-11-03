@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Rapid_Plus.Models.Mesero;
-using System.Data.SqlClient;
-using System.Data;
 using Rapid_Plus.Models;
 
 
@@ -216,7 +214,7 @@ namespace Rapid_Plus.Controllers.Mesero
                             orden = new OrdenesModel
                             {
                                 IdOrden = reader.GetInt32(reader.GetOrdinal("OrdenId")),
-                                EstadoOrden = reader.GetString("Estado"),
+                                EstadoOrden = reader.GetString(reader.GetOrdinal("Estado"))
                             };
                         }
                     }

@@ -1,9 +1,15 @@
-﻿using Rapid_Plus.Models;
-using Rapid_Plus.Models.Mesero;
-using System.Data;
-using System.Data.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
+using Rapid_Plus.Models;
+using Rapid_Plus.Models.Mesero;
+using System.Data.Common;
 using System.Windows;
+using System.Collections;
 
 
 namespace Rapid_Plus.Controllers
@@ -11,6 +17,11 @@ namespace Rapid_Plus.Controllers
     public class CajeroController
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
+
+        internal static void CambiarEstadoOrden(int idOrden)
+        {
+            throw new NotImplementedException();
+        }
 
         //MOSTRAR ORDENES DE ACUERDO A LA MESA
         internal static List<OrdenesModel> MostrarOrdenPorMesa(int numeroMesa)
@@ -58,67 +69,9 @@ namespace Rapid_Plus.Controllers
             return lstOrdenes;
         }
 
-        //MOSTRAR UNICAMENTE LAS MESAS LISTAS
-        internal static List<MesasModel> ObtenerMesas()
+        internal static IEnumerable ObtenerMesas()
         {
-            List<MesasModel> mesas = new List<MesasModel>();
-
-            try
-            {
-                using (var con = new SqlConnection(conexion))
-                {
-                    con.Open();
-                    using (var command = con.CreateCommand())
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPOBTENERMESASLISTAS"; // Asegúrate de que el nombre es correcto
-
-                        using (DbDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                mesas.Add(new MesasModel
-                                {
-                                    Mesa = reader.GetInt32(0) // Suponiendo que la mesa es el primer campo en la consulta
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al intentar mostrar los registros de mesas: " + ex.Message, "Validación", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return mesas;
+            throw new NotImplementedException();
         }
-
-        //ACTUALIZAR/FACTURAR LA ORDEN QUE ESTE LISTA
-        public static void CambiarEstadoOrden(int idOrden)
-        {
-            using (var con = new SqlConnection(conexion))
-            {
-                con.Open();
-                using (var command = con.CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "SPCAMBIARESTADOORDEN"; // Asegúrate de que el nombre es correcto
-                    command.Parameters.AddWithValue("@IdOrden", idOrden);
-
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("El estado de la orden ha sido actualizado.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ocurrió un error al intentar cambiar el estado de la orden: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-            }
-        }
-
-
-
     }
 }

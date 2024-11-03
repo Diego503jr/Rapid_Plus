@@ -28,7 +28,6 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
                         <Button Name="btnMenu" 
-                                Style="{StaticResource MaterialDesignRaisedButton}"
                                 Background="{x:Null}" 
                                 BorderBrush="{x:Null}" 
                                 FontSize="30" 
