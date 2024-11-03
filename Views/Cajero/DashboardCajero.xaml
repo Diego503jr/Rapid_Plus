@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Cajero"
         mc:Ignorable="d"
-        Title="DashboardCajero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+        Title="DashboardCajero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
 
@@ -35,7 +35,7 @@
                     
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal">
                     <Rectangle Width="10" Height="60" Fill="#0B5563"/>
                     <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click_1" MouseEnter="btnCerrarSesion_MouseEnter" MouseLeave="btnCerrarSesion_MouseLeave">
                         <StackPanel Orientation="Horizontal"  Width="320">

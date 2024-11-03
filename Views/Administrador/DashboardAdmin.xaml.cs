@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rapid_Plus.Reports;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace Rapid_Plus.Views.Administrador
         Contactos contacto = new Contactos();
         Menu menu = new Menu();
         Configuraciones configuracion = new Configuraciones();
+        rptRapidPlus rpt = new rptRapidPlus();
+        vwRapidPlus vw = new vwRapidPlus();
 
 
         #region METODOS ESTILOS
@@ -104,6 +107,11 @@ namespace Rapid_Plus.Views.Administrador
             frContent.NavigationService.Navigate(configuracion);
         }
 
+        private void btnReportes_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
         private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -124,5 +132,6 @@ namespace Rapid_Plus.Views.Administrador
         }
 
         #endregion
+
     }
 }
