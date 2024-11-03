@@ -55,7 +55,7 @@
         <Button x:Name="btnRealizar" 
                     BorderBrush="{x:Null}" Background="#FF008592" 
                     Content="Realizar" FontSize="18" 
-                    Margin="560,581,442,92"/>
+                    Margin="560,581,442,92" Click="btnRealizar_Click_1"/>
         <Button x:Name="btnCancelar" 
             BorderBrush="{x:Null}" Background="#FF008592" 
             Content="Cancelar" FontSize="18" 
