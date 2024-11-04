@@ -21,9 +21,12 @@ namespace Rapid_Plus.Views.Mesero
     {
 
         #region Instancia de las páginas
+
+        //Crear objeto de cada page
         TomarOrden tomarOrden = new TomarOrden();
         VerOrden verOrden = new VerOrden();
         CrearOrden crearOrden = new CrearOrden();
+        GestionClientes clientes = new GestionClientes();
         #endregion
         public DashboardMesero()
         {
@@ -31,7 +34,7 @@ namespace Rapid_Plus.Views.Mesero
         }
 
         #region NAVEGACIÓN HACIA LAS PÁGINAS
-        //Abrir páginas
+        //Abrir páginas con NavigationService
         private void btnTomarOrden_Click(object sender, RoutedEventArgs e)
         {
             frContent.NavigationService.Navigate(crearOrden);
@@ -47,9 +50,15 @@ namespace Rapid_Plus.Views.Mesero
         {
             frContent.NavigationService.Navigate(tomarOrden);
         }
+        private void btnClientes_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(clientes);
+        }
         #endregion
 
         #region ESTILOS
+
+        //Estilo al pasar sobre los botones
         private void BotonMesero_MouseEnter(object sender, MouseEventArgs e)
         {
             Button boton = sender as Button;
@@ -91,14 +100,17 @@ namespace Rapid_Plus.Views.Mesero
             Close();
         }
 
+
+        //Página inicial por defecto
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             frContent.NavigationService.Navigate(verOrden);
         }
 
 
+
         #endregion
 
-
+       
     }
 }

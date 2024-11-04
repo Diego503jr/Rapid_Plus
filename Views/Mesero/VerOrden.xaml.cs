@@ -33,11 +33,13 @@ namespace Rapid_Plus.Views.Mesero
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
+        //Lista las ordenes en un datagrid
         void MostrarOrdenes()
         {
             dgOrdenes.DataContext = MeseroController.ListarOrdenes();
         }
 
+        //Llena el combobox con los estados Listo y pendiente
         private void CargarEstado()
         {
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
@@ -55,6 +57,8 @@ namespace Rapid_Plus.Views.Mesero
                     cmbFiltro.ItemsSource = estados;
                 }
             }
+
+            //Define que campos mostrar
             cmbFiltro.DisplayMemberPath = "EstadoOrden";
             cmbFiltro.SelectedValuePath = "IdEstadoOrden";
 
@@ -62,12 +66,16 @@ namespace Rapid_Plus.Views.Mesero
         #endregion
 
         #region EVENTOS
+
+        //Carga por defecto
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MostrarOrdenes();
             cmbFiltro.SelectedIndex = -1;
             CargarEstado();
         }
+
+        //Filtra ordenes según el estado
         private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbFiltro.SelectedIndex != -1)
@@ -88,6 +96,7 @@ namespace Rapid_Plus.Views.Mesero
            
         }
 
+        //Cancela operación
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             cmbFiltro.SelectedIndex = -1;
