@@ -25,7 +25,7 @@ namespace Rapid_Plus.Views.Mesero
         VerOrden verOrden = new VerOrden();
         CrearOrden crearOrden = new CrearOrden();
         #endregion
-        public DashboardMesero()
+        public DashboardMesero(int usuarioID)
         {
             InitializeComponent();
         }
