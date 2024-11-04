@@ -25,12 +25,14 @@ namespace Rapid_Plus.Views.Mesero
         //Crear objeto de cada page
         TomarOrden tomarOrden = new TomarOrden();
         VerOrden verOrden = new VerOrden();
-        CrearOrden crearOrden = new CrearOrden();
+        private CrearOrden crearOrden;
         GestionClientes clientes = new GestionClientes();
         #endregion
-        public DashboardMesero(int usuarioID)
+
+        public DashboardMesero(int usuarioId)
         {
             InitializeComponent();
+            crearOrden = new CrearOrden(usuarioId);
         }
 
         #region NAVEGACIÓN HACIA LAS PÁGINAS

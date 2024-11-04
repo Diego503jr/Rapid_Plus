@@ -24,14 +24,18 @@ namespace Rapid_Plus.Views.Mesero
     /// </summary>
     public partial class CrearOrden : Page
     {
-        public CrearOrden()
+        
+        public CrearOrden(int usuarioID)
         {
             InitializeComponent();
+            usuarioId = usuarioID;
         }
+
         #region Declaracion de variables locales
         private DateTime fecha = DateTime.Now; //Fecha y hora actual
         private int idOrden = 0;
         private int idCliente = -1;
+        int usuarioId;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
@@ -110,6 +114,7 @@ namespace Rapid_Plus.Views.Mesero
 
         #endregion
 
+
         #region EVENTOS
 
         //Cargas por defecto
@@ -173,7 +178,7 @@ namespace Rapid_Plus.Views.Mesero
             {
                 OrdenesModel orden = new OrdenesModel();
                 orden.IdCliente = idCliente;
-                orden.UsuarioId = 0;
+                orden.UsuarioId = usuarioId;
                 orden.FechaOrden = fecha;
                 orden.Total = 0;
                 orden.Mesa = (int)cmbMesa.SelectedValue;
