@@ -28,7 +28,7 @@ namespace Rapid_Plus.Views.Mesero
         CrearOrden crearOrden = new CrearOrden();
         GestionClientes clientes = new GestionClientes();
         #endregion
-        public DashboardMesero()
+        public DashboardMesero(int usuarioID)
         {
             InitializeComponent();
         }

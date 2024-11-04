@@ -78,5 +78,10 @@ namespace Rapid_Plus.Views.Cajero
         {
             frContent.NavigationService.Navigate(factura);
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(factura);
+        }
     }
 }

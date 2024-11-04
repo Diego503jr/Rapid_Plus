@@ -64,7 +64,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnReportes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnReportes_MouseEnter" MouseLeave="btnReportes_MouseLeave">
+                        <Button Name="btnReportes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnReportes_MouseEnter" MouseLeave="btnReportes_MouseLeave" Click="btnReportes_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/reporte.png" />
                                 <Label Content="Reportes" Foreground="White" FontSize="27"/>
