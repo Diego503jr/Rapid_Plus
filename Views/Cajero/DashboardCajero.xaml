@@ -20,7 +20,46 @@
                 <StackPanel Grid.Row="0">
                     <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
 
-                    
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                        <Button Name="btnClientes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnClientes_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/usuario.png" />
+                                <Label Content="Clientes" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                        <Button Name="btnCrearOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCrearOrden_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/AgregarOrden.png" />
+                                <Label Content="Crear Orden" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                        <Button Name="btnVerOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnVerOrden_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Ver Ordenes" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                        <Button Name="btnGestionar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnGestionar_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/GestionarOrden.png" />
+                                <Label Content="Gestionar Orden" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
@@ -31,6 +70,7 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
+                    
 
                     
                 </StackPanel>
