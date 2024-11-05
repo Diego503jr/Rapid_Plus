@@ -46,6 +46,7 @@
         <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300" >
             <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgOrdenes_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdDetalleOrden}"/>
                     <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
                     <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
                 </DataGrid.Columns>
@@ -59,10 +60,11 @@
             <TextBlock Name="txbPlatillo" FontSize="20" TextAlignment="Center" IsEnabled="false" Width="300" HorizontalAlignment="Right"></TextBlock>    
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Center" Margin="0,0,0,60">
-            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnAgregarOrden" Width="100" FontSize="18" Content="Agregar" Height="50" HorizontalAlignment="Left" Click="btnAgregarOrden_Click"/>
-            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEditarOrden" Width="100" FontSize="18" Content="Editar" Height="50" HorizontalAlignment="Center" Margin="40,0,0,0" Click="btnEditarOrden_Click"/>
-            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEliminarOrden" Width="100" FontSize="18" Content="Eliminar" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" />
-            <Button  BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnCancelar" Width="100" FontSize="18" Content="Cancelar" Height="50" HorizontalAlignment="Right" Margin="40,0,0,0" Click="btnCancelar_Click"/>
+            <Button  BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnNuevo" Width="100" FontSize="18" Content="Nuevo" Height="40" HorizontalAlignment="Left" Margin="0,0,0,0" Click="btnNuevo_Click" />
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnGuardar" Width="100" FontSize="18" Content="Agregar" Height= "40" HorizontalAlignment="Left" Margin="40,0,0,0" Click="btnAgregarOrden_Click"/>
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEditarOrden" Width="100" FontSize="18" Content="Editar" Height="40" HorizontalAlignment="Center" Margin="40,0,0,0" Click="btnEditarOrden_Click"/>
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEliminarOrden" Width="100" FontSize="18" Content="Eliminar" Height="40" HorizontalAlignment="Right" Margin="40,0,0,0" Click="btnEliminarOrden_Click" />
+            <Button  BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnCancelar" Width="100" FontSize="18" Content="Cancelar" Height="40" HorizontalAlignment="Right" Margin="40,0,0,0" Click="btnCancelar_Click"/>
         </StackPanel>
 
 

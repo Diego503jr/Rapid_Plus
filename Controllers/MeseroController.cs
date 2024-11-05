@@ -17,7 +17,7 @@ namespace Rapid_Plus.Controllers.Mesero
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
 
-        //MOSTRAR DATOS
+        //MOSTRAR
         public static List<OrdenesModel> ListarOrdenes(int? IdEstado = null)
         {
             List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
@@ -137,6 +137,7 @@ namespace Rapid_Plus.Controllers.Mesero
                             {
                                 OrdenesModel ordenes = new OrdenesModel();
                                 ordenes.IdOrden = int.Parse(dr["ORDEN"].ToString());
+                                ordenes.IdDetalleOrden = int.Parse(dr["IdDetalleOrden"].ToString());
                                 ordenes.Orden = dr["PLATILLO"].ToString();
                                 ordenes.Mesa = int.Parse(dr["MESA"].ToString());
                                 ordenes.Cantidad = int.Parse(dr["CANTIDAD"].ToString());
@@ -224,11 +225,10 @@ namespace Rapid_Plus.Controllers.Mesero
             return orden;
         }
 
-        //CREAR ORDEN
-
+        //CREAR
         public static int CrearOrden(OrdenesModel orden)
         {
-            int idOrden = 0;
+            int res = -1;
             try
             {
                 using (var conDb = new SqlConnection(conexion))
@@ -240,22 +240,17 @@ namespace Rapid_Plus.Controllers.Mesero
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "SPCREARORDEN";
 
-                        command.Parameters.AddWithValue("@NombreCliente", orden.NombreCliente);
-                        command.Parameters.AddWithValue("@ApellidoCliente", orden.ApellidoCliente);
+                        command.Parameters.AddWithValue("@IdCliente", orden.IdCliente);
+                        command.Parameters.AddWithValue("@IdUsuario", orden.UsuarioId);
                         command.Parameters.AddWithValue("@FechaOrden", orden.FechaOrden);
                         command.Parameters.AddWithValue("@Total", orden.Total);
                         command.Parameters.AddWithValue("@IdMesa", orden.Mesa);
-                        command.Parameters.AddWithValue("@IdUsuario", orden.UsuarioId);
                         command.Parameters.AddWithValue("@IdEstadoOrden", orden.IdEstadoOrden);
 
-                        object result = command.ExecuteScalar();
-                        if (result != null && int.TryParse(result.ToString(), out int parsedId))
+                        res = command.ExecuteNonQuery();
+                        if (res <= 0)
                         {
-                            idOrden = parsedId;
-                        }
-                        else
-                        {
-                            throw new Exception("No se pudo obtener el ID de la orden creada.");
+                            throw new Exception("Cliente ya existe.");
                         }
                     }
                 }
@@ -266,10 +261,43 @@ namespace Rapid_Plus.Controllers.Mesero
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            return idOrden;
+            return res;
+        }
+        public static int CrearCliente(OrdenesModel cliente)
+        {
+            int res = -1;
+            try
+            {
+                using (var conDb = new SqlConnection(conexion))
+                {
+                    conDb.Open();
+
+                    using (var command = conDb.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SPCREARCLIENTE";
+
+                        command.Parameters.AddWithValue("@NombreCliente", cliente.NombreCliente);
+                        command.Parameters.AddWithValue("@ApellidoCliente", cliente.ApellidoCliente);
+
+                        res = command.ExecuteNonQuery();
+                        if (res <= 0)
+                        {
+                            throw new Exception("Cliente ya existe.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al intentar almacenar los datos del cliente: " + ex.Message, "Validación",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return res;
         }
 
-        // AGREGAR ORDEN
+        //AGREGAR
         public static int InsertarOrden(OrdenesModel orden)
         {
             int res = -1;
@@ -316,7 +344,7 @@ namespace Rapid_Plus.Controllers.Mesero
             return res;
         }
 
-        //EDITAR ORDEN
+        //EDITAR 
         public static int EditarOrden(OrdenesModel orden, int idOrden)
         {
             int res = -1;
@@ -349,6 +377,67 @@ namespace Rapid_Plus.Controllers.Mesero
             return res;
         }
 
+        public static int EditarCliente(OrdenesModel cliente, int idCliente)
+        {
+            int res = -1;
+
+            try
+            {
+                using (var conDb = new SqlConnection(conexion))
+                {
+                    conDb.Open();
+
+                    using (var command = conDb.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "ACTUALIZARCLIENTE";
+
+                        command.Parameters.AddWithValue("@IDCLIENTE", idCliente);
+                        command.Parameters.AddWithValue("@NOMBRECLIENTE", cliente.NombreCliente);
+                        command.Parameters.AddWithValue("@APELLIDOCLIENTE", cliente.ApellidoCliente);
+                        res = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar editar la orden" + ex.Message, "Validacion",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return res;
+        }
+
+        //ELIMINAR
+        public static int EliminarDetalleOrden(int idDetalleOrden, int idOrden)
+        {
+            int res = -1;
+
+            try
+            {
+                using (var conDb = new SqlConnection(conexion))
+                {
+                    conDb.Open();
+
+                    using (var command = conDb.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SPELIMINARDETALLEORDEN";
+
+                        command.Parameters.AddWithValue("@IDDETALLEORDEN", idDetalleOrden);
+                        command.Parameters.AddWithValue("@IDORDEN", idOrden);
+                        res = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar eliminar el detalle de la orden" + ex.Message, "Validacion",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return res;
+        }
 
     }
 

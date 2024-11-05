@@ -1,0 +1,43 @@
+﻿<Page x:Class="Rapid_Plus.Views.Mesero.GestionClientes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
+      mc:Ignorable="d" 
+       d:DesignHeight="750" d:DesignWidth="950"
+ Title="CrearCliente" Loaded="Page_Loaded">
+
+    <Grid >
+        <GroupBox Height="200" Header="Gestión de Clientes" Margin="100,50" VerticalAlignment="Top" materialDesign:ColorZoneAssist.Background="#A2BCE0"
+            materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
+            FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="750">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Height="35" HorizontalAlignment="Center" Margin="0,35">
+                <TextBox Name="txtNombre" Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente"/>
+                <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" />
+            </StackPanel>
+        </GroupBox>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,120" >
+            <Label Content="Buscar cliente: " Margin="0,0,30,0" FontSize="20"></Label>
+            <TextBox Name="txtFiltro" Width="225" FontSize="20" TextChanged="txtFiltro_TextChanged" ></TextBox>
+        </StackPanel>
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="275" Margin="0,200,0,0" HorizontalAlignment="Center">
+            <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" SelectionChanged="dgClientes_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdCliente}"/>
+                    <DataGridTextColumn Header="Nombre" CanUserResize="False" Binding="{Binding NombreCliente}"/>
+                    <DataGridTextColumn Header="Apellido" CanUserResize="False" Binding="{Binding ApellidoCliente}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,60">
+            <Button  Width="100" Content="Nuevo " BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="0,0,0,0" FontSize="18" Name="btnNuevoCliente" Cursor="Hand" Click="btnNuevoCliente_Click"></Button>
+            <Button Width="100" Content="Guardar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnGuardar" Click="btnGuardar_Click" ></Button>
+            <Button  Width="100" Content="Editar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnEditar" Click="btnEditar_Click" ></Button>
+            <Button  Width="100" Content="Cancelar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnCancelar" Click="btnCancelar_Click" ></Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

@@ -123,6 +123,9 @@
     <Compile Include="Views\Mesero\DashboardMesero.xaml.cs">
       <DependentUpon>DashboardMesero.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mesero\GestionClientes.xaml.cs">
+      <DependentUpon>GestionClientes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mesero\TomarOrden.xaml.cs">
       <DependentUpon>TomarOrden.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
     <Page Include="Views\Mesero\DashboardMesero.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Mesero\GestionClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Mesero\TomarOrden.xaml">
       <Generator>MSBuild:Compile</Generator>
