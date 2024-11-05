@@ -82,6 +82,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\JefeCocinaController.cs" />
+    <Compile Include="Models\EstadoModel.cs" />
     <Compile Include="Reports\rptRapidPlus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,6 +113,9 @@
     </Compile>
     <Compile Include="Views\JefeDeCocina\DashboardJefeCocina.xaml.cs">
       <DependentUpon>DashboardJefeCocina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JefeDeCocina\EstadoOrden.xaml.cs">
+      <DependentUpon>EstadoOrden.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Mesero\CrearOrden.xaml.cs">
       <DependentUpon>CrearOrden.xaml</DependentUpon>
@@ -175,6 +180,10 @@
     <Page Include="Views\JefeDeCocina\DashboardJefeCocina.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\JefeDeCocina\EstadoOrden.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Mesero\CrearOrden.xaml">
       <Generator>MSBuild:Compile</Generator>
