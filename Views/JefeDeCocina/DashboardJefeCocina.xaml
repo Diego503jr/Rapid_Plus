@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.JefeDeCocina"
         mc:Ignorable="d"
-        Title="DashboardJefeCocina" Height="450" Width="800">
+        Title="DashboardJefeCocina" Height="600" Width="900" WindowStyle="None" WindowState="Maximized" FontSize="30" Loaded="Window_Loaded">
+
     <Grid>
-        
+        <DockPanel>
+
+            <Grid DockPanel.Dock="Top" Background="#0B5563" Height="60">
+                <Label Content="Panel Jefe de Cocina" Foreground="White" Margin="5"/>
+                <Button x:Name="btnCerrarVentana" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnCerrarVentana_Click" >
+                    <Image Source="/Assets/CerrarVentana.png" ></Image>
+                </Button>
+            </Grid>
+
+            <Grid DockPanel.Dock="Left" Background="#5299D3" MinWidth="350">
+                <StackPanel Grid.Row="0">
+                    <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                        <Button Name="btnOrdenes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnOrdenes_Click" >
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Ordenes" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">
+                    <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                    <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click" >
+                        <StackPanel Orientation="Horizontal"  Width="320">
+                            <Image  Width="60" Height="50" Margin="0" Source="/Assets/CerrarSesion.png" Cursor="" />
+                            <Label Content="Cerrar Sesion" Foreground="White"></Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+            <Rectangle DockPanel.Dock="Bottom" Fill="#0B5563" Height="60" MinWidth="450"/>
+
+            <Frame Name="frContent" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>
