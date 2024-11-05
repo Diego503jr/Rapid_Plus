@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d"
       Title="TomarOrden" Height="750" Width="1024" Loaded="Page_Loaded" >
-    <Grid >
+    <Grid Background="White">
         <GroupBox Header="Gestionar Orden" materialDesign:ColorZoneAssist.Background="#A2BCE0"
                 materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
                 FontSize="20" Style="{StaticResource MaterialDesignGroupBox}"  VerticalAlignment="Top" Margin="30,50" MinHeight="200">
@@ -46,7 +46,7 @@
         <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300" >
             <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgOrdenes_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdDetalleOrden}"/>
+                    <DataGridTextColumn Header="idplatillo" CanUserResize="False" Binding="{Binding IdPlatilloOrden}"/>
                     <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
                     <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
                 </DataGrid.Columns>

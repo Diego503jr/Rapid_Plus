@@ -137,6 +137,7 @@ namespace Rapid_Plus.Controllers.Mesero
                             {
                                 OrdenesModel ordenes = new OrdenesModel();
                                 ordenes.IdOrden = int.Parse(dr["ORDEN"].ToString());
+                                ordenes.IdPlatilloOrden = int.Parse(dr["IdPlatilloOrden"].ToString());
                                 ordenes.IdDetalleOrden = int.Parse(dr["IdDetalleOrden"].ToString());
                                 ordenes.Orden = dr["PLATILLO"].ToString();
                                 ordenes.Mesa = int.Parse(dr["MESA"].ToString());
@@ -360,10 +361,10 @@ namespace Rapid_Plus.Controllers.Mesero
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "ACTUALIZARORDEN";
 
-                        command.Parameters.AddWithValue("@ID", idOrden);
+                        command.Parameters.AddWithValue("@IDDETALLEORDEN", idOrden);
                         command.Parameters.AddWithValue("@IDORDEN", orden.IdOrden);
                         command.Parameters.AddWithValue("@CANTIDAD", orden.Cantidad);
-                        command.Parameters.AddWithValue("@IDPLATILLO", orden.IdPlatillo);
+                        command.Parameters.AddWithValue("@IDPLATILLO", orden.IdPlatilloOrden);
                         res = command.ExecuteNonQuery();
                     }
                 }
