@@ -31,6 +31,7 @@ namespace Rapid_Plus.Views.JefeDeCocina
         {
             InitializeComponent();
         }
+
         #region DECLARACION DE VARIABLES LOCALES
         int IdEstadoOrden = -1;
         #endregion
@@ -142,10 +143,8 @@ namespace Rapid_Plus.Views.JefeDeCocina
             LimpiarFormulario();
             MostrarOrdenes();
         }
-
+        #endregion
     }
-
-    #endregion
 
 
 
