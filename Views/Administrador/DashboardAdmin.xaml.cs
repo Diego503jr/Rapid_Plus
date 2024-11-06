@@ -29,8 +29,7 @@ namespace Rapid_Plus.Views.Administrador
         Contactos contacto = new Contactos();
         Menu menu = new Menu();
         Configuraciones configuracion = new Configuraciones();
-        rptRapidPlus rpt = new rptRapidPlus();
-        vwRapidPlus vw = new vwRapidPlus();
+        ParametrosReporte prReport = new ParametrosReporte();
 
 
         #region METODOS ESTILOS
@@ -92,6 +91,7 @@ namespace Rapid_Plus.Views.Administrador
         {
             frContent.NavigationService.Navigate(contacto);
         }
+
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             frContent.NavigationService.Navigate(menu);
@@ -109,12 +109,13 @@ namespace Rapid_Plus.Views.Administrador
 
         private void btnReportes_Click(object sender, RoutedEventArgs e)
         {
-           
+            var prReport = new ParametrosReporte();
+            prReport.ShowDialog();
         }
 
         private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)

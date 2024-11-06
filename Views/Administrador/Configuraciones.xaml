@@ -9,7 +9,7 @@
       d:DesignHeight="600" d:DesignWidth="1033"
       Title="Configuraciones" Loaded="Page_Loaded" Background="White">
     <Grid>
-        <Grid>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label 
             Content="Configuraciones" 
             FontSize="36" 

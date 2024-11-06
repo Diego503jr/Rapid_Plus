@@ -82,8 +82,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
+    <Compile Include="Reports\ParametrosReporte.xaml.cs">
+      <DependentUpon>ParametrosReporte.xaml</DependentUpon>
+    </Compile>
+=======
     <Compile Include="Controllers\JefeCocinaController.cs" />
     <Compile Include="Models\EstadoModel.cs" />
+>>>>>>> 9301fc171778397a74dab9f8c9333b3101fe1a9b
     <Compile Include="Reports\rptRapidPlus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +155,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Reports\ParametrosReporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Reports\vwRapidPlus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

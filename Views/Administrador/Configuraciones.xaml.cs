@@ -207,7 +207,7 @@ namespace Rapid_Plus.Views.Administrador
             if (dgMesas.Items.Count > 0 && !string.IsNullOrEmpty(txtMesa.Text))
             {
                 if (
-                    MessageBox.Show("¿ Desear eliminar al usuario '" + idMesa + "' ?",
+                    MessageBox.Show("¿ Desear eliminar la mesa '" + idMesa + "' ?",
                 "Accion",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes
@@ -231,7 +231,7 @@ namespace Rapid_Plus.Views.Administrador
             }
             else
             {
-                MessageBox.Show("Selecciona un usuario para eliminar",
+                MessageBox.Show("Selecciona una mesa para eliminar",
                 "Accion",
                 MessageBoxButton.OK, MessageBoxImage.Error);
             }

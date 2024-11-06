@@ -74,6 +74,12 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@IdEstado", mesa.EstadoId);
 
                         res = command.ExecuteNonQuery();
+
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe esta mesa");
+                        }
+
                     }
                 }
             }
@@ -106,6 +112,12 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@IdEstado", mesa.EstadoId);
 
                         res = command.ExecuteNonQuery();
+
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe esta mesa");
+                        }
+
                     }
                 }
             }
