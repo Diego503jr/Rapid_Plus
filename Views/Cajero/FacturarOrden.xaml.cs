@@ -49,6 +49,11 @@ namespace Rapid_Plus.Views.Cajero
                 {
                     dgOrdenes.ItemsSource = ordenes;
 
+                    //Mostramos la info en los TexBlock
+                    txbCliente.Text = ordenes.First().NombreCliente;
+                    txbOrden.Text = ordenes.First().IdOrden.ToString();
+                    txbUsuario.Text = ordenes.First().NombreUsuario;
+
                     // Calcular el total
                     decimal total = ordenes.Sum(o => o.Subtotal);
                     txbTotal.Text = $"${total:F2}"; // Actualiza el TextBlock con el total
@@ -70,6 +75,38 @@ namespace Rapid_Plus.Views.Cajero
             cmbMesa.ItemsSource = CajeroController.ObtenerMesas();
             cmbMesa.DisplayMemberPath = "Mesa"; // Mostrar el número de mesa
             cmbMesa.SelectedValuePath = "Mesa";
+        }
+
+        private void btnRealizar_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Verifica que el DataGrid tenga al menos un elemento
+            if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
+            {
+                // Muestra el mensaje de confirmación
+                MessageBoxResult resultado = MessageBox.Show(
+                    "¿Estás seguro de Facturar la Orden?",
+                    "Confirmación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                // Si el usuario confirma, cambia el estado de la orden
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    int idOrden = primeraOrden.IdOrden; // Obtén el IdOrden de la primera fila
+
+                    // Llama al método para cambiar el estado de la orden
+                    CajeroController.CambiarEstadoOrden(idOrden);
+
+
+                    // Refresca la lista de órdenes en el DataGrid
+                    MostrarOrdenesMesa();
+
+                    //Mandamos a limpiar la pestaña
+                    LimpiarFormulario();
+                }
+            }
+
         }
 
 
@@ -119,6 +156,9 @@ namespace Rapid_Plus.Views.Cajero
             txbTotal.Text = string.Empty; // Limpia el contenido del TextBlock
             dgOrdenes.ItemsSource = null; // Limpia el DataGrid
             cmbMesa.SelectedValue = null;
+            txbCliente.Text = string.Empty;
+            txbOrden.Text = string.Empty;
+            txbUsuario.Text = string.Empty;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -147,35 +187,6 @@ namespace Rapid_Plus.Views.Cajero
 
        
 
-        private void btnRealizar_Click_1(object sender, RoutedEventArgs e)
-        {
-            // Verifica que el DataGrid tenga al menos un elemento
-            if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
-            {
-                // Muestra el mensaje de confirmación
-                MessageBoxResult resultado = MessageBox.Show(
-                    "¿Estás seguro de que deseas cambiar el estado de la primera orden en la lista?",
-                    "Confirmación",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question
-                );
-
-                // Si el usuario confirma, cambia el estado de la orden
-                if (resultado == MessageBoxResult.Yes)
-                {
-                    int idOrden = primeraOrden.IdOrden; // Obtén el IdOrden de la primera fila
-
-                    // Llama al método para cambiar el estado de la orden
-                    CajeroController.CambiarEstadoOrden(idOrden);
-
-                    // Muestra un mensaje de éxito
-                    MessageBox.Show("Se ha realizado la facturación exitosamente", "FACTURACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    // Refresca la lista de órdenes en el DataGrid
-                    MostrarOrdenesMesa();
-                }
-            }
-            
-        }
+       
     }
 }

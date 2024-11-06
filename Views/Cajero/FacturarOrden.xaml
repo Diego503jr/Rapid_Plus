@@ -8,7 +8,7 @@
       mc:Ignorable="d"
       Title="FacturarOrden" Loaded="Page_Loaded" Height="583" Width="1086">
 
-    <Grid Background="White" Margin="0,-139,-34,0">
+    <Grid Background="White" Margin="0,-139,-27,-84">
 
         <Rectangle VerticalAlignment="Top" Height="150" Stroke="#0B5563" Margin="62,100,62,0" />
         <Label Content="Facturar Orden" Background="#0B5563" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
@@ -24,7 +24,7 @@
 
 
 
-        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="17,266,7,196" RenderTransformOrigin="0.5,0.5">
+        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="17,349,7,199" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -35,31 +35,34 @@
             </DataGrid.RenderTransform>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
-                <DataGridTextColumn Header="Cliente" Width="*" Binding="{Binding NombreCliente}"/>
-                <DataGridTextColumn Header="Usuario" Width="*" Binding="{Binding NombreUsuario}"/>
                 <DataGridTextColumn Header="Fecha de orden" Width="*" Binding="{Binding FechaOrden}"/>
                 <DataGridTextColumn Header="Platillo" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
-                <DataGridTextColumn Header="Precio" CanUserResize="False" Width="*" Binding="{Binding PrecioPlatillo}"/>
+                <DataGridTextColumn Header="Precio" CanUserResize="False" Width="*" Binding="{Binding PrecioPlatillo,StringFormat=\${0:F2}}"/>
                 <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
-                <DataGridTextColumn Header="Subtotal" CanUserResize="False" Width="*" Binding="{Binding Subtotal}"/>
+                <DataGridTextColumn Header="Subtotal" CanUserResize="False" Width="*" Binding="{Binding Subtotal, StringFormat=\${0:F2}}"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="TOTAL" HorizontalAlignment="Left" Margin="50,555,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="50,604,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="50,644,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
-        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,595,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="35" TextChanged="txtRecibido_TextChanged"/>
-        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="186,555,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="191,648,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="TOTAL" HorizontalAlignment="Left" Margin="50,632,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="50,680,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="50,725,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
+        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,672,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="34" TextChanged="txtRecibido_TextChanged"/>
+        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="186,632,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="207,725,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnRealizar" 
                     BorderBrush="{x:Null}" Background="#FF008592" 
                     Content="Realizar" FontSize="18" 
-                    Margin="560,581,442,92" Click="btnRealizar_Click_1"/>
+                    Margin="564,681,438,93" Click="btnRealizar_Click_1"/>
         <Button x:Name="btnCancelar" 
             BorderBrush="{x:Null}" Background="#FF008592" 
             Content="Cancelar" FontSize="18" 
-            Margin="698,590,304,100" Click="btnCancelar_Click"/>
+            Margin="702,681,300,93" Click="btnCancelar_Click"/>
+        <Label Content="Numero de Orden:" HorizontalAlignment="Left" Margin="62,275,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="465,275,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Usuario:" HorizontalAlignment="Left" Margin="796,275,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <TextBlock x:Name="txbOrden" HorizontalAlignment="Left" Margin="275,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbCliente" HorizontalAlignment="Left" Margin="574,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbUsuario" HorizontalAlignment="Left" Margin="886,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
 
 
     </Grid>

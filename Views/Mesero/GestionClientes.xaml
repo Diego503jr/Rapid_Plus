@@ -13,9 +13,9 @@
         <GroupBox Height="200" Header="Gestión de Clientes" Margin="100,50" VerticalAlignment="Top" materialDesign:ColorZoneAssist.Background="#A2BCE0"
             materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
             FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="750">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Height="35" HorizontalAlignment="Center" Margin="0,35">
-                <TextBox Name="txtNombre" Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente"/>
-                <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Height="55" HorizontalAlignment="Center" Margin="0,35">
+                <TextBox Name="txtNombre" Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             </StackPanel>
         </GroupBox>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,120" >
