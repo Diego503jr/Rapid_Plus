@@ -19,7 +19,7 @@
                  FontSize="16"
                  CaretBrush="{x:Null}" Background="White" SnapsToDevicePixels="True"
                  Style="{StaticResource MaterialDesignTextBox}" SelectionBrush="{x:Null}"  />
-                <Label Margin="5" Content="Password" Foreground="White" FontSize="12" FontFamily="Bahnschrift"/>
+                <Label Margin="5" Content="Password" Foreground="White" FontSize="12" FontFamily="Bahnschrift" Cursor=""/>
                 <PasswordBox
                      x:Name="txtPassword"
                      FontFamily="Bahnschrift"

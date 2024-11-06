@@ -84,6 +84,9 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\JefeCocinaController.cs" />
     <Compile Include="Models\EstadoModel.cs" />
+    <Compile Include="Reports\ParametroReporte.xaml.cs">
+      <DependentUpon>ParametroReporte.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptRapidPlus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +152,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Reports\ParametroReporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Reports\vwRapidPlus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
