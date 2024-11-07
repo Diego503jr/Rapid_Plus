@@ -39,8 +39,9 @@
         </ScrollViewer>
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,60">
-            <Button  Width="100" Content="Guardar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnCrearOrden" Click="btnCrearOrden_Click" Cursor="Hand"></Button>
-            <Button Width="100" Content="Cancelar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnCancelar" Click="btnCancelar_Click" ></Button>
+            <Button Name="btnCrear"    Height="40" Width="100" Content="Crear"    BorderBrush="{x:Null}" FontSize="18" Margin="0,0,0,0"  Background="#A2BCE0"   Click="btnCrear_Click"></Button>
+            <Button Name="btnGuardar"  Height="40" Width="100" Content="Guardar"  BorderBrush="{x:Null}" FontSize="18" Margin="40,0,0,0" Background="#0B5563" Click="btnGuardar_Click"  ></Button>
+            <Button Name="btnCancelar" Height="40" Width="100" Content="Cancelar" BorderBrush="{x:Null}" FontSize="18" Margin="40,0,0,0" Background="#FFD63C3C" Click="btnCancelar_Click"></Button>
         </StackPanel>
         
     </Grid>

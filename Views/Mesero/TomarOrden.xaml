@@ -7,10 +7,10 @@
       xmlns:local="clr-namespace:Rapid_Plus.Views.Mesero"
       mc:Ignorable="d"
       Title="TomarOrden" Height="750" Width="1024" Loaded="Page_Loaded" >
-    <Grid Background="White">
+    <Grid>
         <GroupBox Header="Gestionar Orden" materialDesign:ColorZoneAssist.Background="#A2BCE0"
                 materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
-                FontSize="20" Style="{StaticResource MaterialDesignGroupBox}"  VerticalAlignment="Top" Margin="30,50" MinHeight="200">
+                FontSize="20" Style="{StaticResource MaterialDesignGroupBox}"  VerticalAlignment="Top" Margin="30,30" MinHeight="200">
             <StackPanel Orientation="Horizontal" Width="850" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" Width="425">
                     <StackPanel Orientation="Horizontal"  Width="425" Height="40">
@@ -25,49 +25,48 @@
                 <StackPanel Orientation="Vertical" Width="425">
                     <StackPanel Orientation="Horizontal"  Width="425" Height="40">
                         <Label Content="Número de Orden: " FontSize="20"/>
-                        <TextBlock TextAlignment="Center"  Name="txbOrden" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
+                        <TextBlock Name="txbOrden" TextAlignment="Center" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
                         <Label Content="Estado de la orden: " FontSize="20"></Label>
-                        <TextBlock TextAlignment="Center"  Name="txbEstado" Width="118" Height="40" FontSize="20" IsEnabled="False"></TextBlock>
+                        <TextBlock Name="txbEstado"  TextAlignment="Center" Width="118" Height="40" FontSize="20" IsEnabled="False"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0" Height="200" Width="600">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,60,185">
+            <Label Content="Platillos Disponibles:" FontSize="18" Margin="15,0,460,0" BorderBrush="Black"></Label>
+            <Label Content="Detalle de orden:" FontSize="18"></Label>
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,100,0,0" Height="250" Width="600">
             <DataGrid Name="dgPlatillos"  AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  SelectionChanged="dgPlatillos_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
-                    <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding DescripcionPlatillo}"/>
+                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding Platillo}"/>
+                    <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding Descripcion}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,57,0" Height="200" Width="300" >
+        <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,100,57,0" Height="250" Width="300" >
             <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgOrdenes_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="idplatillo" CanUserResize="False" Binding="{Binding IdPlatilloOrden}"/>
-                    <DataGridTextColumn Header="Orden" CanUserResize="False" Binding="{Binding Orden}"/>
+                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
                     <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
         
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Width="700" Height="40" HorizontalAlignment="Center" Margin="0,0,0,150" Cursor="">
-            <TextBox Name="txtCantidad" Width="200" FontSize="20" materialDesign:HintAssist.Hint="Cantidad de Platillo" HorizontalAlignment="Left"/>
-            <Label Content="Platillo: " FontSize="20" HorizontalAlignment="Right" Margin="100,0,0,0"></Label>
-            <TextBlock Name="txbPlatillo" FontSize="20" TextAlignment="Center" IsEnabled="false" Width="300" HorizontalAlignment="Right"></TextBlock>    
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Width="700" Height="40" HorizontalAlignment="Center" Margin="0,0,0,100" Cursor="">
+            <TextBox   Name="txtCantidad"  Width="200"    FontSize="20"      materialDesign:HintAssist.Hint="Cantidad de Platillo" HorizontalAlignment="Left"/>
+            <Label     Content="Platillo:" FontSize="20"  Margin="100,0,0,0" HorizontalAlignment="Right"></Label>
+            <TextBlock Name="txbPlatillo"  Width="300"    FontSize="20"      TextAlignment="Center" IsEnabled="false"  HorizontalAlignment="Right"></TextBlock>    
         </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Center" Margin="0,0,0,60">
-            <Button  BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnNuevo" Width="100" FontSize="18" Content="Nuevo" Height="40" HorizontalAlignment="Left" Margin="0,0,0,0" Click="btnNuevo_Click" />
-            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnGuardar" Width="100" FontSize="18" Content="Agregar" Height= "40" HorizontalAlignment="Left" Margin="40,0,0,0" Click="btnAgregarOrden_Click"/>
-            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEditarOrden" Width="100" FontSize="18" Content="Editar" Height="40" HorizontalAlignment="Center" Margin="40,0,0,0" Click="btnEditarOrden_Click"/>
-            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnEliminarOrden" Width="100" FontSize="18" Content="Eliminar" Height="40" HorizontalAlignment="Right" Margin="40,0,0,0" Click="btnEliminarOrden_Click" />
-            <Button  BorderBrush="{x:Null}" Background="#A2BCE0" Name="btnCancelar" Width="100" FontSize="18" Content="Cancelar" Height="40" HorizontalAlignment="Right" Margin="40,0,0,0" Click="btnCancelar_Click"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="50" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <Button Name="btnNuevo"    Width="100" FontSize="18" Content="Crear"    Height="40"  HorizontalAlignment="Left"   Margin="0,0,0,0"  BorderBrush="{x:Null}" Background="#A2BCE0"   Click="btnNuevo_Click" />
+            <Button Name="btnEditar"   Width="100" FontSize="18" Content="Editar"   Height="40"  HorizontalAlignment="Center" Margin="40,0,0,0" BorderBrush="{x:Null}" Background="#A2BCE0" Click="btnEditar_Click"   />
+            <Button Name="btnEliminar" Width="100" FontSize="18" Content="Eliminar" Height="40"  HorizontalAlignment="Right"  Margin="40,0,0,0" BorderBrush="{x:Null}" Background="#A2BCE0" Click="btnEliminar_Click"   />
+            <Button Name="btnGuardar"  Width="100" FontSize="18" Content="Guardar"  Height= "40" HorizontalAlignment="Left"   Margin="90,0,0,0" BorderBrush="{x:Null}" Background="#0B5563" Click="btnGuardar_Click"   />
+            <Button Name="btnCancelar" Width="100" FontSize="18" Content="Cancelar" Height="40"  HorizontalAlignment="Right"  Margin="40,0,0,0" BorderBrush="{x:Null}" Background="#FFD63C3C" Click="btnCancelar_Click"/>
         </StackPanel>
-
-
-
     </Grid>
 </Page>

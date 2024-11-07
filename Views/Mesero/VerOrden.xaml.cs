@@ -1,4 +1,5 @@
-﻿using Rapid_Plus.Controllers.Mesero;
+﻿using Rapid_Plus.Controllers;
+using Rapid_Plus.Models.Mesero;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,38 +31,55 @@ namespace Rapid_Plus.Views.Mesero
 
         #region DECLARACION DE VARIABLES LOCALES
         int IdEstadoOrden = -1;
+        int idMesa = -1;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
         //Lista las ordenes en un datagrid
-        void MostrarOrdenes()
+        private int IdMesa()
         {
-            dgOrdenes.DataContext = MeseroController.ListarOrdenes();
+
+            if (cmbFiltro.SelectedIndex != -1)
+            {
+                idMesa = (int)cmbFiltro.SelectedValue;
+            }
+            else
+            {
+                idMesa = -1;
+            }
+            return idMesa;
         }
 
         //Llena el combobox con los estados Listo y pendiente
-        private void CargarEstado()
+        private void CargarNumeroMesa()
         {
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT IdEstadoOrden, EstadoOrden FROM EstadoOrden WHERE IdEstadoOrden != 2", conDb))
+                using (var command = new SqlCommand("SPMOSTRARMESASPENDIENTES", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
-                    var estados = new List<dynamic>();
+                    var mesas = new List<dynamic>();
                     while (dr.Read())
                     {
-                        estados.Add(new { IdEstadoOrden = dr.GetInt32(0), EstadoOrden = dr.GetString(1) });
+                        mesas.Add(new { IdMesa = dr.GetInt32(0), Mesa = dr.GetInt32(1) });
                     }
 
-                    cmbFiltro.ItemsSource = estados;
+                    cmbFiltro.ItemsSource = mesas;
                 }
             }
 
             //Define que campos mostrar
-            cmbFiltro.DisplayMemberPath = "EstadoOrden";
-            cmbFiltro.SelectedValuePath = "IdEstadoOrden";
+            cmbFiltro.DisplayMemberPath = "Mesa";
+            cmbFiltro.SelectedValuePath = "IdMesa";
+        }
 
+        private void LimpiarObjetos()
+        {
+            cmbFiltro.SelectedIndex = -1;
+            dgOrdenes.DataContext = null;
+            txbOrden.Text = null;
+            txbEstado.Text = null;
         }
         #endregion
 
@@ -70,38 +88,38 @@ namespace Rapid_Plus.Views.Mesero
         //Carga por defecto
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MostrarOrdenes();
-            cmbFiltro.SelectedIndex = -1;
-            CargarEstado();
+            LimpiarObjetos();
+            CargarNumeroMesa();
         }
 
         //Filtra ordenes según el estado
         private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbFiltro.SelectedIndex != -1)
-            {
-                IdEstadoOrden = (int)cmbFiltro.SelectedValue;
-                var ordenes = MeseroController.ListarOrdenes(IdEstadoOrden);
-                if (ordenes != null)
-                {
-                    dgOrdenes.DataContext = ordenes;
+            idMesa = IdMesa();
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
 
-                }
-                else
-                {
-                    MessageBox.Show("No hay Ordenes disponibles.");
-                }
+            if (detalle != null)
+            {
+                OrdenController.MostrarOrdenesPorMesa(idMesa);
+                dgOrdenes.DataContext = ordenes;
+
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
+            }
+            else
+            {
+                txbOrden.Text = string.Empty;
             }
 
-           
+
         }
 
-        //Cancela operación
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private void btnLimpiarFiltro_Click(object sender, RoutedEventArgs e)
         {
-            cmbFiltro.SelectedIndex = -1;
-            MostrarOrdenes();
+            LimpiarObjetos();
         }
+
     }
     #endregion
 

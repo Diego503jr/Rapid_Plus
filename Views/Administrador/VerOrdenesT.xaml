@@ -1,0 +1,35 @@
+﻿<Page x:Class="Rapid_Plus.Views.Administrador.VerOrdenesT"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Rapid_Plus.Views.Administrador"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+       Title="VerOrden" Height="900" Width="874" Loaded="Page_Loaded">
+
+    <Grid >
+        <Label Content="Ordenes Completas" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,150,50,0" Height="300">
+            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
+                    <DataGridTextColumn Header="Orden" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
+                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="*" Binding="{Binding Cantidad}"/>
+                    <DataGridTextColumn Header="Número de mesa" Width="*" Binding="{Binding Mesa}"/>
+                    <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Margin="0,300,0,0">
+            <GroupBox VerticalAlignment="Center" HorizontalAlignment="Center" Header = "Filtrar Estado de Ordenes"  materialDesign:ColorZoneAssist.Background="#A2BCE0"
+       materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom" FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="275">
+                <ComboBox Name="cmbFiltro" SelectionChanged="cmbFiltro_SelectionChanged"></ComboBox>
+            </GroupBox>
+            <Button Content="Cancelar filtro" Name="btnCancelar" VerticalAlignment="bottom" Width="150" Height="50" BorderBrush="{x:Null}" Background="#A2BCE0" Margin="275,0,0,23" Cursor="Hand" Click="btnCancelar_Click"></Button>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

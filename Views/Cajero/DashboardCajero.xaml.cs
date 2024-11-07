@@ -1,4 +1,5 @@
-﻿using Rapid_Plus.Views.Mesero;
+﻿using Rapid_Plus.Views.Administrador;
+using Rapid_Plus.Views.Mesero;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,9 @@ namespace Rapid_Plus.Views.Cajero
         VerOrden verOrden = new VerOrden();
         private CrearOrden crearOrden;
         GestionClientes clientes = new GestionClientes();
+
+        //Prueba Ordenes Admin
+        VerOrdenesT ordenesFinal = new VerOrdenesT();
         #endregion
 
 
@@ -91,6 +95,13 @@ namespace Rapid_Plus.Views.Cajero
             frContent.NavigationService.Navigate(tomarOrden);
         }
 
+        //Prueba de Funcionamiento, Ver Orden Admin
+        private void btnOrdenesFinal_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(ordenesFinal);
+        }
+
+
         //Colocamos la factura para inicializar al entrar a Cajero
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -112,9 +123,9 @@ namespace Rapid_Plus.Views.Cajero
             }
 
         }
+
+
         #endregion
 
-        
-       
     }
 }
