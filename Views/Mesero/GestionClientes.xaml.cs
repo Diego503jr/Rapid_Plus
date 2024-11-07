@@ -70,7 +70,7 @@ namespace Rapid_Plus.Views.Mesero
         //Muestra clientes en el datagrid
         private void MostrarClientes()
         {
-            dgClientes.DataContext = MeseroController.ListarClientes();
+            dgClientes.DataContext = MeseroController.MostrarClientes();
         }
         
         //Activa botones y campos
@@ -78,13 +78,13 @@ namespace Rapid_Plus.Views.Mesero
         {
             bool accion = editando || agregando;
 
-            btnNuevoCliente.IsEnabled = !accion;
+            btnCrear.IsEnabled = !accion;
             btnEditar.IsEnabled = !accion;
             btnGuardar.IsEnabled = accion;
             btnCancelar.IsEnabled = accion;
             txtNombre.IsEnabled = accion;
             txtApellido.IsEnabled = accion;
-            dgClientes.IsEnabled = accion;
+            dgClientes.IsEnabled = editando;
         }
 
         #endregion
@@ -134,7 +134,7 @@ namespace Rapid_Plus.Views.Mesero
         }
 
         //Acciones con botones
-        private void btnNuevoCliente_Click(object sender, RoutedEventArgs e)
+        private void btnCrear_Click(object sender, RoutedEventArgs e)
         {
             //Limpia campos
             txtNombre.Clear();
@@ -143,6 +143,16 @@ namespace Rapid_Plus.Views.Mesero
             //Agregando
             agregando = true;
             editando = false;
+
+            //Método para activar y desactivar campos y botones
+            ControlAcciones();
+        }
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Editand
+            agregando = false;
+            editando = true;
 
             //Método para activar y desactivar campos y botones
             ControlAcciones();
@@ -168,7 +178,7 @@ namespace Rapid_Plus.Views.Mesero
                 }
                 else
                 {
-                    idCliente = MeseroController.EditarCliente(cliente, idCliente);
+                    idCliente = MeseroController.ActualizarCliente(cliente, idCliente);
                     mensaje = "Cliente editado con éxito";
                     MostrarClientes();
                 }
@@ -183,18 +193,15 @@ namespace Rapid_Plus.Views.Mesero
                     editando = false;
                     ControlAcciones();
                 }
+                else
+                {
+                    LimpiarObjetos();
+                    agregando = false;
+                    editando = false;
+                    ControlAcciones();
+                }
 
             }
-        }
-        private void btnEditar_Click(object sender, RoutedEventArgs e)
-        {
-
-            //Editand
-            agregando = false;
-            editando = true;
-
-            //Método para activar y desactivar campos y botones
-            ControlAcciones();
         }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {

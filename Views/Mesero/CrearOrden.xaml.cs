@@ -28,14 +28,15 @@ namespace Rapid_Plus.Views.Mesero
         public CrearOrden(int usuarioID)
         {
             InitializeComponent();
-            usuarioId = usuarioID;
+            //Usuario logueado para crear orden
+            usuarioId = usuarioID; 
         }
 
         #region Declaracion de variables locales
-        private DateTime fecha = DateTime.Now; //Fecha y hora actual
         private int idOrden = 0;
         private int idCliente = -1;
         int usuarioId;
+        bool agregando = false;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
@@ -109,19 +110,32 @@ namespace Rapid_Plus.Views.Mesero
         //Listar clientes en datagrid
         private void MostrarClientes()
         {
-            dgClientes.DataContext = MeseroController.ListarClientes();
+            dgClientes.DataContext = MeseroController.MostrarClientes();
+        }
+
+        //Activar/Desactivar botones
+        private void ControlAcciones(bool agregando)
+        {
+            btnGuardar.IsEnabled = agregando;
+            btnCancelar.IsEnabled = agregando;
+            txtNombre.IsEnabled = false;
+            txtApellido.IsEnabled = false;
+            btnCrear.IsEnabled = !agregando;
+            
+            dgClientes.IsEnabled = agregando;
+            cmbMesa.IsEnabled = agregando;
+           
         }
 
         #endregion
-
 
         #region EVENTOS
 
         //Cargas por defecto
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            txtNombre.IsEnabled = false;
-            txtApellido.IsEnabled = false;
+            agregando = false;
+            ControlAcciones(agregando);
             LimpiarObjetos();
             CargarNumeroMesa();
             MostrarClientes();
@@ -156,29 +170,37 @@ namespace Rapid_Plus.Views.Mesero
         {
             CollectionViewSource.GetDefaultView(dgClientes.ItemsSource).Filter = item =>
             {
-                var objeto = item as dynamic;
-                if (objeto == null) return false;
+                var texto = item as dynamic;
+                if (texto == null) return false;
 
                 string filtro = txtFiltro.Text.ToLower();
-                var palabrasFiltro = filtro.Split(' '); //Separa la cadena escrita
+                var textoFiltro = filtro.Split(' '); //Separa la cadena escrita
 
-                string nombreCompleto = (objeto.NombreCliente + " " + objeto.ApellidoCliente).ToLower();
+                string nombreCompleto = (texto.NombreCliente + " " + texto.ApellidoCliente).ToLower();
 
-                return palabrasFiltro.All(palabra => nombreCompleto.Contains(palabra));
+                return textoFiltro.All(palabra => nombreCompleto.Contains(palabra));
             };
 
             CollectionViewSource.GetDefaultView(dgClientes.ItemsSource).Refresh();
         }
 
+
         //Acciones con botones
-        private void btnCrearOrden_Click(object sender, RoutedEventArgs e)
+        private void btnCrear_Click(object sender, RoutedEventArgs e)
+        {
+            agregando = true;
+            LimpiarObjetos();
+            ControlAcciones(agregando);
+        }
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
             if (ValidarFomrulario())
             {
                 OrdenesModel orden = new OrdenesModel();
+                DateTime fecha = DateTime.Now; //Fecha y hora actual
                 orden.IdCliente = idCliente;
-                orden.UsuarioId = usuarioId;
+                orden.IdUsuario = usuarioId;
                 orden.FechaOrden = fecha;
                 orden.Total = 0;
                 orden.Mesa = (int)cmbMesa.SelectedValue;
@@ -194,18 +216,20 @@ namespace Rapid_Plus.Views.Mesero
                 }
 
             }
-
         }
-
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 LimpiarObjetos();
+                agregando = false;
+                ControlAcciones(agregando);
             }
         }
+
+
         #endregion
 
-
+        
     }
 }
