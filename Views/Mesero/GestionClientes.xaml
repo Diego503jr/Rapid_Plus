@@ -14,13 +14,13 @@
             materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
             FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="750">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Height="55" HorizontalAlignment="Center" Margin="0,35">
-                <TextBox Name="txtNombre"   Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Name="txtNombre"   Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="txtNombre_PreviewTextInput"/>
+                <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="txtApellido_PreviewTextInput"/>
             </StackPanel>
         </GroupBox>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,120" >
             <Label Content="Buscar cliente: " Margin="0,0,30,0" FontSize="20"></Label>
-            <TextBox Name="txtFiltro" Width="225" FontSize="20" TextChanged="txtFiltro_TextChanged" ></TextBox>
+            <TextBox Name="txtFiltro" Width="225" FontSize="20" TextChanged="txtFiltro_TextChanged" PreviewTextInput="txtFiltro_PreviewTextInput" ></TextBox>
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="275" Margin="0,200,0,0" HorizontalAlignment="Center">
             <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" SelectionChanged="dgClientes_SelectionChanged">

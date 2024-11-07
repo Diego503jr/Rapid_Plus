@@ -163,9 +163,6 @@ namespace Rapid_Plus.Views.Cajero
                     CajeroController.CambiarEstadoOrden(idOrden);
 
 
-                    // Refresca la lista de órdenes en el DataGrid
-                    MostrarOrdenesMesa();
-
                     //Mandamos a limpiar la pestaña
                     LimpiarFormulario();
                 }
@@ -175,7 +172,7 @@ namespace Rapid_Plus.Views.Cajero
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //CargarNumeroMesa();
+            CargarNumeroMesa();
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -193,5 +190,9 @@ namespace Rapid_Plus.Views.Cajero
 
         #endregion
 
+        private void txtRecibido_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
     }
 }

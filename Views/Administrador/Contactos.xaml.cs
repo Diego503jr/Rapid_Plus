@@ -415,6 +415,36 @@ namespace Rapid_Plus.Views.Administrador
             }
         }
 
+        private void txtNombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        private void txtApellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        private void txtDUI_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
+
+        private void txtTelefono1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
+
+        private void txtTelefono2_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
+
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             //Validamos si quiere confirmar la cancelacion
