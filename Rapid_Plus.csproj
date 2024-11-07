@@ -105,6 +105,9 @@
     <Compile Include="Views\Administrador\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Administrador\VerOrdenesT.xaml.cs">
+      <DependentUpon>VerOrdenesT.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Cajero\DashboardCajero.xaml.cs">
       <DependentUpon>DashboardCajero.xaml</DependentUpon>
     </Compile>
@@ -168,6 +171,10 @@
     <Page Include="Views\Administrador\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Administrador\VerOrdenesT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Cajero\DashboardCajero.xaml">
       <Generator>MSBuild:Compile</Generator>

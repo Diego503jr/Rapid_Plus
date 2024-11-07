@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rapid_Plus.Views.Cajero"
         mc:Ignorable="d"
-        Title="DashboardCajero" Height="683" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded">
+        Title="DashboardCajero" Height="874" Width="1141" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
 
@@ -70,9 +70,17 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    
 
-                    
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                        <Button Name="btnOrdenesFinal" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnOrdenesFinal_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Ordenes Admin" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal">

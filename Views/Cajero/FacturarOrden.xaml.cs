@@ -60,7 +60,7 @@ namespace Rapid_Plus.Views.Cajero
                 }
                 else
                 {
-                    MessageBox.Show("No se encontraron órdenes para esta mesa.", "Validación", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("No se encontraron órdenes para esta mesa.", "Validación", MessageBoxButton.OK, MessageBoxImage.Error);
                     LimpiarFormulario();
                 }
             }
@@ -77,38 +77,7 @@ namespace Rapid_Plus.Views.Cajero
             cmbMesa.SelectedValuePath = "Mesa";
         }
 
-        private void btnRealizar_Click_1(object sender, RoutedEventArgs e)
-        {
-            // Verifica que el DataGrid tenga al menos un elemento
-            if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
-            {
-                // Muestra el mensaje de confirmación
-                MessageBoxResult resultado = MessageBox.Show(
-                    "¿Estás seguro de Facturar la Orden?",
-                    "Confirmación",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question
-                );
-
-                // Si el usuario confirma, cambia el estado de la orden
-                if (resultado == MessageBoxResult.Yes)
-                {
-                    int idOrden = primeraOrden.IdOrden; // Obtén el IdOrden de la primera fila
-
-                    // Llama al método para cambiar el estado de la orden
-                    CajeroController.CambiarEstadoOrden(idOrden);
-
-
-                    // Refresca la lista de órdenes en el DataGrid
-                    MostrarOrdenesMesa();
-
-                    //Mandamos a limpiar la pestaña
-                    LimpiarFormulario();
-                }
-            }
-
-        }
-
+        
 
         #endregion
 
@@ -152,13 +121,15 @@ namespace Rapid_Plus.Views.Cajero
         //Metodo para limpiar el formulario
         void LimpiarFormulario()
         {
-           // txtMesa.Clear();
+           
             txbTotal.Text = string.Empty; // Limpia el contenido del TextBlock
             dgOrdenes.ItemsSource = null; // Limpia el DataGrid
             cmbMesa.SelectedValue = null;
             txbCliente.Text = string.Empty;
             txbOrden.Text = string.Empty;
             txbUsuario.Text = string.Empty;
+            txbDevolucion.Text = string.Empty;
+            txtRecibido.Text = string.Empty;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -170,10 +141,42 @@ namespace Rapid_Plus.Views.Cajero
             }
         }
 
+        //Boton para realizar la facturación
+        private void btnRealizar_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Verifica que el DataGrid tenga al menos un elemento
+            if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
+            {
+                // Muestra el mensaje de confirmación
+                MessageBoxResult resultado = MessageBox.Show(
+                    "¿Estás seguro de Facturar la Orden?",
+                    "Confirmación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                // Si el usuario confirma, cambia el estado de la orden
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    int idOrden = primeraOrden.IdOrden; // Obtén el IdOrden de la primera fila
+
+                    // Llama al método para cambiar el estado de la orden
+                    CajeroController.CambiarEstadoOrden(idOrden);
+
+
+                    // Refresca la lista de órdenes en el DataGrid
+                    MostrarOrdenesMesa();
+
+                    //Mandamos a limpiar la pestaña
+                    LimpiarFormulario();
+                }
+            }
+
+        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarNumeroMesa();
+            //CargarNumeroMesa();
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -181,12 +184,15 @@ namespace Rapid_Plus.Views.Cajero
             MostrarOrdenesMesa();
         }
 
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+            CargarNumeroMesa();
+            MessageBox.Show("Página Actualizada", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
 
 
         #endregion
 
-       
-
-       
     }
 }
