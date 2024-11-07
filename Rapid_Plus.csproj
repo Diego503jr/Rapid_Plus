@@ -82,7 +82,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\DetalleOrdenController.cs" />
     <Compile Include="Controllers\JefeCocinaController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
+    <Compile Include="Models\DetalleOrdenModel.cs" />
     <Compile Include="Models\EstadoModel.cs" />
     <Compile Include="Reports\ParametroReporte.xaml.cs">
       <DependentUpon>ParametroReporte.xaml</DependentUpon>
@@ -107,6 +112,9 @@
     </Compile>
     <Compile Include="Views\Administrador\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administrador\VerOrdenesT.xaml.cs">
+      <DependentUpon>VerOrdenesT.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Cajero\DashboardCajero.xaml.cs">
       <DependentUpon>DashboardCajero.xaml</DependentUpon>
@@ -145,7 +153,6 @@
     </Compile>
     <Compile Include="Controllers\CajeroController.cs" />
     <Compile Include="Controllers\MesaController.cs" />
-    <Compile Include="Controllers\MeseroController.cs" />
     <Compile Include="Controllers\PlatilloController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -175,6 +182,10 @@
     <Page Include="Views\Administrador\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Administrador\VerOrdenesT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Cajero\DashboardCajero.xaml">
       <Generator>MSBuild:Compile</Generator>

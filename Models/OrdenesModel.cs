@@ -10,39 +10,31 @@ namespace Rapid_Plus.Models.Mesero
     {
 
         //Atributos
-        //Número de orden, orden, número de mesa, estado
-        public int IdOrden { get; set; }
-        public int Cantidad { get; set; }
-        public string Orden { get; set; }
+
+        //ORDENES
+        public int IdCliente { get; set; }
+        public int IdUsuario { get; set; }
+        public DateTime FechaOrden { get; set; }
+        public decimal Total { get; set; }
         public int Mesa { get; set; }
         public int IdEstadoOrden { get; set; }
-        public string EstadoOrden { get; set; }
-
-        public int IdPlatillo { get; set; }
-        public string NombrePlatillo { get; set; }
-        public string DescripcionPlatillo { get; set;}
-        public decimal PrecioPlatillo { get; set; }
-
-
-        public DateTime FechaOrden{ get; set; }
-        public decimal Total { get; set; }
-        public int UsuarioId { get; set; }
-
-        public string NombreUsuario { get; set; }
-        public decimal Subtotal { get; set; }
-        
-
-        public int IdCliente { get; set; }
-        public string NombreCliente { get; set; }
-        public string ApellidoCliente { get; set; }
-
-        public int IdCategoria { get; set; }
-
-        public int IdEstado { get; set; }
-
-        public int IdDetalleOrden { get; set; }
-        
+        public string Orden { get; set; }
+        public int IdOrden { get; set; }
         public int IdPlatilloOrden { get; set; }
+        public int IdDetalleOrden { get; set; }
+        public string NombrePlatillo { get; set; }
+        public string DescripcionPlatillo { get; set; }
+        public int IdMesa { get; set; }
+        public int Cantidad { get; set; }
+        public string EstadoOrden { get; set; }
+        public string NombreUsuario { get; set; }
+        public int IdPlatillo { get; set; }
+
+
+        //ATRIBUTOS PARA CAJERO
+        public decimal Subtotal { get; set; }
+        public decimal PrecioPlatillo { get; set; }
+        public string NombreCliente { get; set; }
 
     }
 }

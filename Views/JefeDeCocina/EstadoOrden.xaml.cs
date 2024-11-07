@@ -1,6 +1,5 @@
 ﻿using MaterialDesignColors;
 using Rapid_Plus.Controllers;
-using Rapid_Plus.Controllers.Mesero;
 using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
 using Rapid_Plus.Views.Mesero;
