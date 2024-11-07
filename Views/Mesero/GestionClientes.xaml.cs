@@ -204,6 +204,26 @@ namespace Rapid_Plus.Views.Mesero
 
             }
         }
+
+        //VALIDACIONES DE INGRESO EN TEXTBOXS
+        private void txtNombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        private void txtApellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

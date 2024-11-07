@@ -228,8 +228,13 @@ namespace Rapid_Plus.Views.Mesero
         }
 
 
+
         #endregion
 
-        
+        private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
     }
 }
