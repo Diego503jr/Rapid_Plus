@@ -1,4 +1,4 @@
-﻿using Rapid_Plus.Controllers.Mesero;
+﻿using Rapid_Plus.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -34,7 +34,7 @@ namespace Rapid_Plus.Views.Administrador
         #region Metodos Personalizados
         void MostrarOrdenes()
         {
-            dgOrdenes.DataContext = MeseroController.ListarOrdenes();
+            dgOrdenes.DataContext = OrdenController.MostrarOrdenes();
         }
 
         private void CargarEstado()
@@ -77,7 +77,7 @@ namespace Rapid_Plus.Views.Administrador
             if (cmbFiltro.SelectedIndex != -1)
             {
                 IdEstadoOrden = (int)cmbFiltro.SelectedValue;
-                var ordenes = MeseroController.ListarOrdenes(IdEstadoOrden);
+                var ordenes = OrdenController.MostrarOrdenes(IdEstadoOrden);
                 if (ordenes != null)
                 {
                     dgOrdenes.DataContext = ordenes;

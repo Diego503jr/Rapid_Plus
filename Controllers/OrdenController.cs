@@ -55,7 +55,7 @@ namespace Rapid_Plus.Controllers
         }
 
         //MOSTRAR LISTADO DE ORDENES FILTRANDO POR ESTADO
-        /*public static List<OrdenesModel> MostrarOrdenes(int? IdEstado = null)
+        public static List<OrdenesModel> MostrarOrdenes(int? IdEstado = null)
         {
             List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
 
@@ -103,7 +103,7 @@ namespace Rapid_Plus.Controllers
             }
             return lstOrdenes;
 
-        }*/
+        }
 
        
         //MOSTRAR LISTADO DE ORDENES FILTRANDO POR MESA
