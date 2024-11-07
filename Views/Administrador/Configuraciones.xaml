@@ -58,7 +58,7 @@
             VerticalAlignment="Top" 
             Margin="450,100,0,0" SelectionChanged="dgMesas_SelectionChanged" Background="{x:Null}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding MesaId}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Identificador" Binding="{Binding MesaId}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Mesa" Binding="{Binding Mesa}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Estado" Binding="{Binding Estado}"></DataGridTextColumn>
                 </DataGrid.Columns>
