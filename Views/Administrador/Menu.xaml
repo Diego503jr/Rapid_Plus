@@ -8,8 +8,8 @@
       mc:Ignorable="d"       
       d:DesignHeight="600" d:DesignWidth="1033"
       
-      Title="Menu" Loaded="Page_Loaded">
-    <Grid>
+      Title="Menu" Loaded="Page_Loaded" Background="White">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Label Content="Menu" 
         FontSize="36" HorizontalAlignment="Center" 
         VerticalAlignment="Top" Margin="0,10,0,0" />

@@ -8,6 +8,7 @@ using Rapid_Plus.Models;
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Windows;
+using Rapid_Plus.Models.Mesero;
 
 namespace Rapid_Plus.Controllers
 {
@@ -81,6 +82,10 @@ namespace Rapid_Plus.Controllers
 
                         res = command.ExecuteNonQuery();
 
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe este platillo");
+                        }
                     }
                 }
             }
@@ -116,6 +121,12 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@IdEstado", platillo.EstadoId);
 
                         res = command.ExecuteNonQuery();
+
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe este platillo");
+                        }
+
                     }
                 }
             }
@@ -158,5 +169,55 @@ namespace Rapid_Plus.Controllers
 
             return res;
         }
+
+        //PLATILLOS MESERO
+        public static List<PlatilloModel> MostrarPlatillos(int? IdCategoria = null)
+        {
+            List<PlatilloModel> lstPlatillos = new List<PlatilloModel>();
+
+            try
+            {
+                using (var con = new SqlConnection(conexion))
+                {
+                    con.Open();
+                    using (var command = con.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SPMOSTRARPLATILLOS";
+                        if (IdCategoria.HasValue)
+                        {
+                            command.Parameters.AddWithValue("@CATEGORIA", IdCategoria.Value);
+                        }
+                        else
+                        {
+                            // Si no se pasa un valor, asegurarse de que el parámetro sea NULL
+                            command.Parameters.AddWithValue("@CATEGORIA", DBNull.Value);
+                        }
+                        using (DbDataReader dr = command.ExecuteReader())
+                        {
+                            //Recorrer el dataReader
+                            while (dr.Read())
+                            {
+                                PlatilloModel platillo = new PlatilloModel();
+                                platillo.PlatilloId = int.Parse(dr["IDPLATILLO"].ToString());
+                                platillo.Platillo = dr["PLATILLO"].ToString();
+                                platillo.Descripcion = dr["DESCRIPCION"].ToString();
+
+                                //Agregar a la lista inicial
+                                lstPlatillos.Add(platillo);
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al intentar mostrar los registros:" + ex.Message, "Validaccion", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return lstPlatillos;
+
+        }
+
     }
 }

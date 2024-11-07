@@ -14,7 +14,7 @@
             materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
             FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="750">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Height="55" HorizontalAlignment="Center" Margin="0,35">
-                <TextBox Name="txtNombre" Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Name="txtNombre"   Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             </StackPanel>
         </GroupBox>
@@ -22,21 +22,21 @@
             <Label Content="Buscar cliente: " Margin="0,0,30,0" FontSize="20"></Label>
             <TextBox Name="txtFiltro" Width="225" FontSize="20" TextChanged="txtFiltro_TextChanged" ></TextBox>
         </StackPanel>
-        <ScrollViewer  VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="275" Margin="0,200,0,0" HorizontalAlignment="Center">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="275" Margin="0,200,0,0" HorizontalAlignment="Center">
             <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" SelectionChanged="dgClientes_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdCliente}"/>
-                    <DataGridTextColumn Header="Nombre" CanUserResize="False" Binding="{Binding NombreCliente}"/>
+                    <DataGridTextColumn Header="Id"       CanUserResize="False" Binding="{Binding IdCliente}"/>
+                    <DataGridTextColumn Header="Nombre"   CanUserResize="False" Binding="{Binding NombreCliente}"/>
                     <DataGridTextColumn Header="Apellido" CanUserResize="False" Binding="{Binding ApellidoCliente}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,60">
-            <Button  Width="100" Content="Nuevo " BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="0,0,0,0" FontSize="18" Name="btnNuevoCliente" Cursor="Hand" Click="btnNuevoCliente_Click"></Button>
-            <Button Width="100" Content="Guardar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnGuardar" Click="btnGuardar_Click" ></Button>
-            <Button  Width="100" Content="Editar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnEditar" Click="btnEditar_Click" ></Button>
-            <Button  Width="100" Content="Cancelar" BorderBrush="{x:Null}" Background="#A2BCE0"  Height="40" Margin="40,0,0,0" FontSize="18" Name="btnCancelar" Click="btnCancelar_Click" ></Button>
+            <Button Name="btnCrear"    Content="Crear"    Width="100" BorderBrush="{x:Null}" Height="40" Margin="0,0,0,0"  FontSize="18" Background="#A2BCE0"   Click="btnCrear_Click" ></Button>
+            <Button Name="btnEditar"   Content="Editar"   Width="100" BorderBrush="{x:Null}" Height="40" Margin="40,0,0,0" FontSize="18" Background="#A2BCE0"   Click="btnEditar_Click" ></Button>
+            <Button Name="btnGuardar"  Content="Guardar"  Width="100" BorderBrush="{x:Null}" Height="40" Margin="90,0,0,0" FontSize="18" Background="#0B5563"   Click="btnGuardar_Click" ></Button>
+            <Button Name="btnCancelar" Content="Cancelar" Width="100" BorderBrush="{x:Null}" Height="40" Margin="40,0,0,0" FontSize="18" Background="#FFD63C3C" Click="btnCancelar_Click" ></Button>
         </StackPanel>
 
     </Grid>
