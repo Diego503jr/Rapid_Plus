@@ -33,29 +33,45 @@ namespace Rapid_Plus.Views.JefeDeCocina
 
         #region DECLARACION DE VARIABLES LOCALES
         int IdEstadoOrden = -1;
+        int idMesa = -1;
+
         #endregion
         #region MÉTODOS PERSONALIZADOS
-        void MostrarOrdenes()
+        private int Mesa()
         {
-            dgOrdenes.DataContext = JefeCocinaController.VerOrdenes();
+
+            if (cmbNumMesa.SelectedIndex != -1)
+            {
+                idMesa = (int)cmbNumMesa.SelectedValue;
+            }
+            else
+            {
+                idMesa = -1;
+            }
+            return idMesa;
         }
 
-        private void MostrarEstado()
+        private void MostrarOrdenesPorMesa()
         {
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT IdEstadoOrden, EstadoOrden FROM EstadoOrden WHERE IdEstadoOrden = 0", conDb))
+                using (var command = new SqlCommand("SPMOSTRARMESASPENDIENTES", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
-                    var estados = new List<dynamic>();
+                    var mesas = new List<dynamic>();
                     while (dr.Read())
                     {
-                        estados.Add(new { IdEstadoOrden = dr.GetInt32(0), EstadoOrden = dr.GetString(1) });
+                        mesas.Add(new { IdMesa = dr.GetInt32(0), Mesa = dr.GetInt32(1) });
                     }
 
+                    cmbNumMesa.ItemsSource = mesas;
                 }
             }
+
+            //Define que campos mostrar
+            cmbNumMesa.DisplayMemberPath = "Mesa";
+            cmbNumMesa.SelectedValuePath = "IdMesa";
         }
 
         private bool ValidarFomrulario()
@@ -63,10 +79,16 @@ namespace Rapid_Plus.Views.JefeDeCocina
             bool estado = true;
             string mensaje = null;
 
-            if (string.IsNullOrEmpty(txtOrden.Text))
+            if (string.IsNullOrEmpty(txbOrden.Text))
             {
                 estado = false;
                 mensaje += "Orden\n";
+            }
+
+            if (string.IsNullOrEmpty(txbEstado.Text))
+            {
+                estado = false;
+                mensaje += "Estado de la orden\n";
             }
 
             if (!estado)
@@ -78,25 +100,16 @@ namespace Rapid_Plus.Views.JefeDeCocina
         }
         void LimpiarFormulario()
         {
-            txbIdOrden.Text = string.Empty; // Limpia el contenido del TextBlock
-            txtOrden.Text = string.Empty; // Limpia el contenido del TextBox
+            cmbNumMesa.SelectedIndex = -1;
+            dgOrdenes.DataContext = null;
+            txbOrden.Text = string.Empty; // Limpia el contenido del TextBlock
+            txbEstado.Text = string.Empty; // Limpia el contenido del TextBox
         }
         #endregion
         #region EVENTOS
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MostrarOrdenes();
-            MostrarEstado();
-        }
-        private void dgOrdenes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            EstadoModel estado = (EstadoModel)dgOrdenes.SelectedItem;
-            if (estado == null)
-            {
-                return;
-            }
-            txbIdOrden.Text = estado.IdOrden.ToString();
-            txtOrden.Text = estado.Orden.ToString();
+            MostrarOrdenesPorMesa();
         }
 
         private void btnLista_Click(object sender, RoutedEventArgs e)
@@ -110,7 +123,7 @@ namespace Rapid_Plus.Views.JefeDeCocina
             try
             {
                 // Obtener el ID de la orden desde la interfaz de usuario
-                if (!int.TryParse(txbIdOrden.Text, out int idOrden))
+                if (!int.TryParse(txbOrden.Text, out int idOrden))
                 {
                     return;
                 }
@@ -118,7 +131,7 @@ namespace Rapid_Plus.Views.JefeDeCocina
                 // Asignar el estado 
                 int nuevoEstado = 1;
 
-                EstadoModel estado = new EstadoModel
+                OrdenesModel estado = new OrdenesModel
                 {
                     IdEstadoOrden = nuevoEstado
                 };
@@ -140,11 +153,29 @@ namespace Rapid_Plus.Views.JefeDeCocina
                 MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             LimpiarFormulario();
-            MostrarOrdenes();
+            MostrarOrdenesPorMesa();
+        }
+        private void cmbNumMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            idMesa = Mesa();
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = JefeCocinaController.MostrarOrdenesPorMesa(idMesa);
+
+            if (detalle != null)
+            {
+                JefeCocinaController.MostrarOrdenesPorMesa(idMesa);
+                dgOrdenes.DataContext = ordenes;
+
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
+            }
+            else
+            {
+                txbOrden.Text = string.Empty;
+            }
         }
         #endregion
+
     }
-
-
 
 }

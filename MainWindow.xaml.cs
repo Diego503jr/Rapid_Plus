@@ -139,7 +139,7 @@ namespace Rapid_Plus
 
             if (boton != null)
             {
-                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFD63C3C"));
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A2BCE0"));
             }
         }
 

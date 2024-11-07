@@ -16,11 +16,11 @@ namespace Rapid_Plus.Controllers
     internal class JefeCocinaController
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
-
-        //MOSTRAR DATOS
-        public static List<EstadoModel> VerOrdenes(int? IdEstado = null)
+       
+        //EDITAR ESTADO DE LA ORDEN
+        public static List<OrdenesModel> MostrarOrdenesPorMesa(int idMesa)
         {
-            List<EstadoModel> lstEstados = new List<EstadoModel>();
+            List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
 
             try
             {
@@ -30,29 +30,25 @@ namespace Rapid_Plus.Controllers
                     using (var command = con.CreateCommand())
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPMOSTRARORDENESPENDIENTES";
-
-                        if (IdEstado.HasValue)
-                        {
-                            command.Parameters.AddWithValue("@ESTADO", IdEstado.Value);
-                        }
-                        else
-                        {
-                            // Si no se pasa un valor, asegurarse de que el parámetro sea NULL
-                            command.Parameters.AddWithValue("@ESTADO", DBNull.Value);
-                        }
+                        command.CommandText = "SPMOSTRARORDENESPORMESA";
+                        command.Parameters.AddWithValue("@IDMESA", idMesa);
                         using (DbDataReader dr = command.ExecuteReader())
                         {
                             //Recorrer el dataReader
                             while (dr.Read())
                             {
-                                EstadoModel estado = new EstadoModel();
-                                estado.IdOrden = int.Parse(dr["ORDEN"].ToString());
-                                estado.Orden = dr["PLATILLO"].ToString();
-                                estado.EstadoOrden = dr["ESTADO"].ToString();
+                                OrdenesModel ordenes = new OrdenesModel();
+                                ordenes.IdOrden = int.Parse(dr["IDORDEN"].ToString());
+                                ordenes.IdPlatilloOrden = int.Parse(dr["IDPLATILLOORDEN"].ToString());
+                                ordenes.IdDetalleOrden = int.Parse(dr["IDDETALLEORDEN"].ToString());
+                                ordenes.NombrePlatillo = dr["PLATILLO"].ToString();
+                                ordenes.DescripcionPlatillo = dr["DESCRIPCION"].ToString();
+                                ordenes.IdMesa = int.Parse(dr["MESA"].ToString());
+                                ordenes.Cantidad = int.Parse(dr["CANTIDAD"].ToString());
+                                ordenes.EstadoOrden = dr["ESTADOORDEN"].ToString();
 
                                 //Agregar a la lista inicial
-                                lstEstados.Add(estado);
+                                lstOrdenes.Add(ordenes);
                             }
                         }
 
@@ -61,13 +57,14 @@ namespace Rapid_Plus.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al intentar mostrar los registros:" + ex.Message, "Validaccion", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ocurrio un error al intentar mostrar las ordenes:" + ex.Message, "Validaccion ordenes", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            return lstEstados;
+            return lstOrdenes;
 
         }
-        //EDITAR ESTADO DE LA ORDEN
-        public static int EditarEstadoOrden(EstadoModel estado, int idOrden)
+    
+
+public static int EditarEstadoOrden(OrdenesModel estado, int idOrden)
         {
             int res = -1;
 

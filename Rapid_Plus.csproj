@@ -88,7 +88,6 @@
     <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\DetalleOrdenModel.cs" />
-    <Compile Include="Models\EstadoModel.cs" />
     <Compile Include="Reports\ParametroReporte.xaml.cs">
       <DependentUpon>ParametroReporte.xaml</DependentUpon>
     </Compile>
