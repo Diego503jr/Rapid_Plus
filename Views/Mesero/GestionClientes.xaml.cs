@@ -1,4 +1,5 @@
-﻿using Rapid_Plus.Controllers.Mesero;
+﻿using Rapid_Plus.Controllers;
+using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ namespace Rapid_Plus.Views.Mesero
         //Muestra clientes en el datagrid
         private void MostrarClientes()
         {
-            dgClientes.DataContext = MeseroController.MostrarClientes();
+            dgClientes.DataContext = ClienteController.MostrarClientes();
         }
         
         //Activa botones y campos
@@ -113,14 +114,14 @@ namespace Rapid_Plus.Views.Mesero
         //Selección de registro en datagrid
         private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OrdenesModel ordenes = (OrdenesModel)dgClientes.SelectedItem;
-            if (ordenes == null)
+            ClienteModel cliente = (ClienteModel)dgClientes.SelectedItem;
+            if (cliente == null)
             {
                 return;
             }
-            txtNombre.Text = ordenes.NombreCliente;
-            txtApellido.Text = ordenes.ApellidoCliente;
-            idCliente = ordenes.IdCliente;
+            txtNombre.Text = cliente.NombreCliente;
+            txtApellido.Text = cliente.ApellidoCliente;
+            idCliente = cliente.IdCliente;
         }
 
         //Cargas por 'defecto'
@@ -164,7 +165,7 @@ namespace Rapid_Plus.Views.Mesero
             {
 
                 //Obtiene datos del cliente
-                OrdenesModel cliente = new OrdenesModel();
+                ClienteModel cliente = new ClienteModel();
                 cliente.NombreCliente = txtNombre.Text;
                 cliente.ApellidoCliente = txtApellido.Text;
 
@@ -172,13 +173,13 @@ namespace Rapid_Plus.Views.Mesero
                 //Verifica si se está editando o agregando registro y llamada al método correspondiente
                 if (agregando)
                 {
-                    idCliente = MeseroController.CrearCliente(cliente);
+                    idCliente = ClienteController.CrearCliente(cliente);
                     mensaje = "Cliente agregado con éxito";
                     MostrarClientes();
                 }
                 else
                 {
-                    idCliente = MeseroController.ActualizarCliente(cliente, idCliente);
+                    idCliente = ClienteController.ActualizarCliente(cliente, idCliente);
                     mensaje = "Cliente editado con éxito";
                     MostrarClientes();
                 }

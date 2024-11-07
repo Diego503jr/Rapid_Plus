@@ -1,5 +1,4 @@
 ﻿using Rapid_Plus.Controllers;
-using Rapid_Plus.Controllers.Mesero;
 using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
 using System;
@@ -190,16 +189,16 @@ namespace Rapid_Plus.Views.Mesero
         private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             idMesa = IdMesa();
-            var orden = MeseroController.ObtenerDetalleOrden(idMesa);
-            var ordenes = MeseroController.MostrarOrdenesPorMesa(idMesa);
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
 
-            if (orden != null)
+            if (detalle != null)
             {
-                MeseroController.MostrarOrdenesPorMesa(idMesa);
+                OrdenController.MostrarOrdenesPorMesa(idMesa);
                 dgOrdenes.DataContext = ordenes;
 
-                txbOrden.Text = orden.IdOrden.ToString();
-                txbEstado.Text = orden.EstadoOrden;
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
             }
             else
             {
@@ -213,7 +212,7 @@ namespace Rapid_Plus.Views.Mesero
             if (cmbPlatillo.SelectedIndex != -1)
             {
                 idCategoria = (int)cmbPlatillo.SelectedValue;
-                var platillos = MeseroController.MostrarPlatillos(idCategoria);
+                var platillos = PlatilloController.MostrarPlatillos(idCategoria);
                 if (platillos != null)
                 {
                     dgPlatillos.DataContext = platillos;
@@ -231,13 +230,13 @@ namespace Rapid_Plus.Views.Mesero
         private void dgPlatillos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            OrdenesModel ordenes = (OrdenesModel)dgPlatillos.SelectedItem;
-            if (ordenes == null)
+            PlatilloModel platillo = (PlatilloModel)dgPlatillos.SelectedItem;
+            if (platillo == null)
             {
                 return;
             }
-            txbPlatillo.Text = ordenes.NombrePlatillo;
-            idplatillo = ordenes.IdPlatillo;
+            txbPlatillo.Text = platillo.Platillo;
+            idplatillo = platillo.PlatilloId;
 
         }
         private void dgOrdenes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -270,21 +269,21 @@ namespace Rapid_Plus.Views.Mesero
             string mensaje = null;
             if (ValidarFomrulario())
             {
-                OrdenesModel orden = new OrdenesModel();
-                orden.IdOrden = Convert.ToInt32(txbOrden.Text);
-                orden.Cantidad = Convert.ToInt32(txtCantidad.Text);
-                orden.IdEstado = 1;
-                orden.IdPlatillo = idplatillo;
-                orden.IdPlatilloOrden = idPlatilloOrden;
+                DetalleOrdenModel detalle = new DetalleOrdenModel();
+                detalle.IdOrden = Convert.ToInt32(txbOrden.Text);
+                detalle.Cantidad = Convert.ToInt32(txtCantidad.Text);
+                detalle.IdEstado = 1;
+                detalle.IdPlatillo = idplatillo;
+                detalle.IdPlatilloOrden = idPlatilloOrden;
 
                 if (agregando)
                 {
-                    idOrden = MeseroController.CrearDetalleOrden(orden);
+                    idOrden = DetalleOrdenController.CrearDetalleOrden(detalle);
                     mensaje = "Orden creada con éxito";
                 }
                 else
                 {
-                    idOrden = MeseroController.ActualizarDetalleOrden(orden, idDetalleOrden);
+                    idOrden = DetalleOrdenController.ActualizarDetalleOrden(detalle, idDetalleOrden);
                     mensaje = "Orden actualizada";
                 }
 
@@ -330,7 +329,7 @@ namespace Rapid_Plus.Views.Mesero
                 if (MessageBox.Show("¿Desea eliminar el detalle de la orden?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
 
-                    MeseroController.EliminarDetalleOrden(idDetalleOrden, idOrden);
+                    DetalleOrdenController.EliminarDetalleOrden(idDetalleOrden, idOrden);
                     MessageBox.Show("Detalle de orden eliminado con éxito.", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     LimpiarObjetos();

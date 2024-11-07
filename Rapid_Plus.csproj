@@ -82,7 +82,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\DetalleOrdenController.cs" />
     <Compile Include="Controllers\JefeCocinaController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
+    <Compile Include="Models\DetalleOrdenModel.cs" />
     <Compile Include="Models\EstadoModel.cs" />
     <Compile Include="Reports\ParametroReporte.xaml.cs">
       <DependentUpon>ParametroReporte.xaml</DependentUpon>
@@ -145,7 +150,6 @@
     </Compile>
     <Compile Include="Controllers\CajeroController.cs" />
     <Compile Include="Controllers\MesaController.cs" />
-    <Compile Include="Controllers\MeseroController.cs" />
     <Compile Include="Controllers\PlatilloController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="MainWindow.xaml.cs">

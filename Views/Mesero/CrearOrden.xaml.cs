@@ -1,4 +1,4 @@
-﻿using Rapid_Plus.Controllers.Mesero;
+﻿using Rapid_Plus.Controllers;
 using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
 using System;
@@ -110,7 +110,7 @@ namespace Rapid_Plus.Views.Mesero
         //Listar clientes en datagrid
         private void MostrarClientes()
         {
-            dgClientes.DataContext = MeseroController.MostrarClientes();
+            dgClientes.DataContext = ClienteController.MostrarClientes();
         }
 
         //Activar/Desactivar botones
@@ -145,14 +145,14 @@ namespace Rapid_Plus.Views.Mesero
         //Obtiene datos de registro en datagrid
         private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            OrdenesModel ordenes = (OrdenesModel)dgClientes.SelectedItem;
-            if (ordenes == null)
+            ClienteModel clientes = (ClienteModel)dgClientes.SelectedItem;
+            if (clientes == null)
             {
                 return;
             }
-            txtNombre.Text = ordenes.NombreCliente;
-            txtApellido.Text = ordenes.ApellidoCliente;
-            idCliente = ordenes.IdCliente;
+            txtNombre.Text = clientes.NombreCliente;
+            txtApellido.Text = clientes.ApellidoCliente;
+            idCliente = clientes.IdCliente;
         }
 
         //Evento se activa al desplegar el combobox, verifica si no existen elementos
@@ -206,7 +206,7 @@ namespace Rapid_Plus.Views.Mesero
                 orden.Mesa = (int)cmbMesa.SelectedValue;
                 orden.IdEstadoOrden = 0;
 
-                idOrden = MeseroController.CrearOrden(orden);
+                idOrden = OrdenController.CrearOrden(orden);
                 mensaje = "Orden creada con éxito";
 
                 if (idOrden > 0)

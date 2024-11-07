@@ -15,6 +15,7 @@ namespace Rapid_Plus.Models
         public string Categoria { get; set; }
         public decimal Precio { get; set; }
         public int EstadoId { get; set; }
-        public string Estado { get; set; }
+        public string Estado { get; set; }        
+
     }
 }

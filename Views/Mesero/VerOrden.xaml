@@ -16,7 +16,7 @@
                 <StackPanel Orientation="Vertical" Width="425" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  Width="425" Height="40">
                         <Label Content="Número de mesa: " FontSize="20" Width="181"></Label>
-                        <ComboBox Name="cmbFiltro" Width="80" FontSize="20"  SelectionChanged="cmbMesa_SelectionChanged" />
+                        <ComboBox Name="cmbFiltro" Width="80" FontSize="20" SelectionChanged="cmbFiltro_SelectionChanged" />
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="425">

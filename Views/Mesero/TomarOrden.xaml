@@ -41,8 +41,8 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,100,0,0" Height="250" Width="600">
             <DataGrid Name="dgPlatillos"  AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  SelectionChanged="dgPlatillos_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
-                    <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding DescripcionPlatillo}"/>
+                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding Platillo}"/>
+                    <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding Descripcion}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

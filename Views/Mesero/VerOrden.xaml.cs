@@ -1,4 +1,4 @@
-﻿using Rapid_Plus.Controllers.Mesero;
+﻿using Rapid_Plus.Controllers;
 using Rapid_Plus.Models.Mesero;
 using System;
 using System.Collections.Generic;
@@ -95,43 +95,24 @@ namespace Rapid_Plus.Views.Mesero
         //Filtra ordenes según el estado
         private void cmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbFiltro.SelectedIndex != -1)
-            {
-                IdEstadoOrden = (int)cmbFiltro.SelectedValue;
-                var ordenes = MeseroController.MostrarOrdenes(IdEstadoOrden);
-                if (ordenes != null)
-                {
-                    dgOrdenes.DataContext = ordenes;
-
-                }
-                else
-                {
-                    MessageBox.Show("No hay Ordenes disponibles.");
-                }
-            }
-
-           
-        }
-
-
-        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
             idMesa = IdMesa();
-            var orden = MeseroController.ObtenerDetalleOrden(idMesa);
-            var ordenes = MeseroController.MostrarOrdenesPorMesa(idMesa);
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
 
-            if (orden != null)
+            if (detalle != null)
             {
-                MeseroController.MostrarOrdenesPorMesa(idMesa);
+                OrdenController.MostrarOrdenesPorMesa(idMesa);
                 dgOrdenes.DataContext = ordenes;
 
-                txbOrden.Text = orden.IdOrden.ToString();
-                txbEstado.Text = orden.EstadoOrden;
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
             }
             else
             {
                 txbOrden.Text = string.Empty;
             }
+
+
         }
 
         private void btnLimpiarFiltro_Click(object sender, RoutedEventArgs e)
