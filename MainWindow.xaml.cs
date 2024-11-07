@@ -86,7 +86,7 @@ namespace Rapid_Plus
                                 dashboardMesero.Show();
                                 break;
                             case 2:
-                                DashboardCajero dashboardCajero = new DashboardCajero();
+                                DashboardCajero dashboardCajero = new DashboardCajero(usuarioID);
                                 dashboardCajero.Show();
                                 break;
                             case 3:

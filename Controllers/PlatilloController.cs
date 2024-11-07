@@ -81,6 +81,10 @@ namespace Rapid_Plus.Controllers
 
                         res = command.ExecuteNonQuery();
 
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe este platillo");
+                        }
                     }
                 }
             }
@@ -116,6 +120,12 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@IdEstado", platillo.EstadoId);
 
                         res = command.ExecuteNonQuery();
+
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe este platillo");
+                        }
+
                     }
                 }
             }

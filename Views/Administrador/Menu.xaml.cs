@@ -259,7 +259,7 @@ namespace Rapid_Plus.Views.Administrador
             if (dgPlatillo.Items.Count > 0 && !string.IsNullOrEmpty(txtNombrePlatillo.Text))
             {
                 if (
-                    MessageBox.Show("¿ Desear eliminar al usuario '" + idPlatillo + "' ?",
+                    MessageBox.Show("¿ Desear eliminar el platillo '" + idPlatillo + "' ?",
                 "Accion",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes
@@ -283,7 +283,7 @@ namespace Rapid_Plus.Views.Administrador
             }
             else 
             {
-                MessageBox.Show("Selecciona un usuario para eliminar",
+                MessageBox.Show("Selecciona un platillo para eliminar",
                 "Accion",
                 MessageBoxButton.OK, MessageBoxImage.Error);
             }

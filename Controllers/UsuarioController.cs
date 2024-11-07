@@ -111,6 +111,11 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
                         res = command.ExecuteNonQuery();
+
+                        if (res < 0) 
+                        {
+                            throw new Exception(" Ya existe este usuario");
+                        }
                     }
                 }
             }
@@ -153,6 +158,11 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
                         res = command.ExecuteNonQuery();
+
+                        if (res < 0)
+                        {
+                            throw new Exception(" Ya existe este usuario");
+                        }
                     }
                 }
             }

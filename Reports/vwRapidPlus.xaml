@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:Rapid_Plus.Reports"
         xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="Rapid_Plus.Reports.vwRapidPlus"
         mc:Ignorable="d"
-        Title="vwRapidPlus" Height="450" Width="800">
+        Title="vwRapidPlus" Height="800" Width="1100" WindowStartupLocation="CenterScreen">
     <Grid>
 
-        <Viewer:CrystalReportsViewer HorizontalAlignment="Center" VerticalAlignment="Center" Height="450" Width="800"/>
+        <Viewer:CrystalReportsViewer x:Name="crvReportRapidPlus" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="1100" MinHeight="780" />
 
     </Grid>
 </Window>

@@ -110,7 +110,7 @@ namespace Rapid_Plus.Controllers
                     try
                     {
                         command.ExecuteNonQuery();
-                        MessageBox.Show("El estado de la orden ha sido actualizado.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Se ha realizado la facturación exitosamente", "FACTURACIÓN", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
