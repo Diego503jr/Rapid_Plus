@@ -8,25 +8,39 @@
         mc:Ignorable="d"
         Title="Login" Height="400" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
-        <Rectangle Height="400" VerticalAlignment="Center" Margin="0,0,300,0" Fill="#FF008592"/>
+        <Rectangle Height="400" VerticalAlignment="Center" Margin="0,0,300,0" Fill="#0B5563"/>
         <Grid Height="240" Width="280" VerticalAlignment="Center" Margin="10,0,310,0">
             <Label Content="Login" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-25,5,0" Foreground="White" FontSize="24" FontFamily="Bahnschrift"/>
-            <StackPanel VerticalAlignment="Top" Margin="30,46,30,0">
+            <StackPanel VerticalAlignment="Top" Margin="35,39,31,0">
                 <Label Margin="5" Content="E-mail" Foreground="White" FontSize="12" FontFamily="Bahnschrift"/>
                 <TextBox
                  x:Name="txtCorreo"
                  FontFamily="Bahnschrift" 
                  FontSize="16"
                  CaretBrush="{x:Null}" BorderBrush="{x:Null}" Background="White" SnapsToDevicePixels="True"
-                 Style="{StaticResource MaterialDesignTextBox}" SelectionBrush="{x:Null}"/>
-
+                 Style="{StaticResource MaterialDesignTextBox}" SelectionBrush="{x:Null}" Width="176"/>
                 <Label Margin="5" Content="Password" Foreground="White" FontSize="12" FontFamily="Bahnschrift" Cursor=""/>
+                <Grid>
                 <PasswordBox
-                     x:Name="txtPassword"
-                     FontFamily="Bahnschrift"
-                     FontSize="16"
-                     Background="White" SnapsToDevicePixels="True"
-                     Style="{StaticResource MaterialDesignPasswordBox}"  SelectionBrush="{x:Null}" CaretBrush="{x:Null}" BorderBrush="{x:Null}"/>
+                x:Name="txtPassword"
+                FontFamily="Bahnschrift"
+                FontSize="17"
+                Background="White" SnapsToDevicePixels="True"
+                Style="{StaticResource MaterialDesignPasswordBox}"  
+                SelectionBrush="{x:Null}" CaretBrush="{x:Null}" BorderBrush="{x:Null}" Margin="20,0,17,0"/>
+                <!-- Campo de contraseña visible (inicialmente oculto) -->
+                <TextBox x:Name="txtPasswordVisible" 
+                         FontFamily="Bahnschrift" 
+                         FontSize="16" Margin="20,0,17,0"
+                         Background="White" 
+                         SnapsToDevicePixels="True" 
+                         Style="{StaticResource MaterialDesignTextBox}" 
+                         Visibility="Collapsed" />
+                    <Button x:Name="btnVisualizar" Height="20" Background="{x:Null}" BorderBrush="{x:Null}"  Foreground="{x:Null}" Margin="155,5,15,4" Click="btnVisualizar_Click">
+                        <Image Source="/Assets/ojo.png" />
+                    </Button>
+                </Grid>
+
             </StackPanel>
         </Grid>
         <Image Height="204" Margin="326,0,22,0" VerticalAlignment="Center" Source="/Assets/logoN.png"/>

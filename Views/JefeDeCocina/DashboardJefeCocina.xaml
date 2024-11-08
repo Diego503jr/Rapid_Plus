@@ -23,7 +23,7 @@
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnOrdenes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnOrdenes_Click" >
+                        <Button Name="btnOrdenes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnOrdenes_Click" MouseEnter="btnOrdenes_MouseEnter" MouseLeave="btnOrdenes_MouseLeave" >
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
                                 <Label Content="Ordenes" Foreground="White"/>
@@ -34,7 +34,7 @@
 
                 <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20" Orientation="Horizontal">
                     <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                    <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click" >
+                    <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click" MouseEnter="btnCerrarSesion_MouseEnter" MouseLeave="btnCerrarSesion_MouseLeave" >
                         <StackPanel Orientation="Horizontal"  Width="320">
                             <Image  Width="60" Height="50" Margin="0" Source="/Assets/CerrarSesion.png" Cursor="" />
                             <Label Content="Cerrar Sesion" Foreground="White"></Label>

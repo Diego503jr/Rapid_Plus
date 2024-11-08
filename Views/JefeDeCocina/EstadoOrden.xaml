@@ -20,7 +20,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="900,150,0,125">
+        <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="876,362,0,338">
             <Button BorderBrush="{x:Null}" Background="#A2BCE0" Content="Lista" FontSize="18" Margin="10,0,0,0" x:Name="btnLista" Click="btnLista_Click" />
         </StackPanel>
         <GroupBox Header="Modificar Estado" materialDesign:ColorZoneAssist.Background="#A2BCE0"
