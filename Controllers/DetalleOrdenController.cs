@@ -130,7 +130,7 @@ namespace Rapid_Plus.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al intentar editar la orden " + ex.Message, "Validacion",
+                MessageBox.Show("Ocurrio un error al intentar editar la orden: " + ex.Message, "Validacion",
                         MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
@@ -161,7 +161,7 @@ namespace Rapid_Plus.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al intentar eliminar el detalle de la orden" + ex.Message, "Validacion",
+                MessageBox.Show("Ocurrio un error al intentar eliminar el detalle de la orden: " + ex.Message, "Validacion",
                         MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
