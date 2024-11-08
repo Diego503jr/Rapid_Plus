@@ -42,7 +42,7 @@ namespace Rapid_Plus.Views.Administrador
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
-                using (var command = new SqlCommand("SELECT IdEstadoOrden, EstadoOrden FROM EstadoOrden WHERE IdEstadoOrden != 2", conDb))
+                using (var command = new SqlCommand("SELECT IdEstadoOrden, EstadoOrden FROM EstadoOrden WHERE IdEstadoOrden != 3", conDb))
                 {
                     SqlDataReader dr = command.ExecuteReader();
                     var estados = new List<dynamic>();

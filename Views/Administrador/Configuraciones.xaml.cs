@@ -280,6 +280,12 @@ namespace Rapid_Plus.Views.Administrador
             }
         }
 
+        private void txtMesa_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
+
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (

@@ -322,6 +322,13 @@ namespace Rapid_Plus.Views.Mesero
                 
             }
         }
+
+        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
+
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (idDetalleOrden > 0 && idOrden > 0 && idPlatilloOrden != -1)

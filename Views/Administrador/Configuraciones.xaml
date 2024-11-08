@@ -35,7 +35,7 @@
                     HorizontalAlignment="Left"
                     Width="150"
                     materialDesign:HintAssist.Hint="Mesa"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="txtMesa_PreviewTextInput"
                     />
                     <ComboBox x:Name="cmbEstado" 
                     FontSize="18"

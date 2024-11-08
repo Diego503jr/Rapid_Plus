@@ -9,27 +9,43 @@
   Title="VerOrden" Height="750" Width="1024" Loaded="Page_Loaded">
 
     <Grid >
-        <Label Content="Ordenes" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" />
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,150,50,0" Height="300">
-            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" SelectionChanged="dgOrdenes_SelectionChanged" >
+        <Label Content="Ordenes Pendientes" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,350,0,0" Height="244" Width="766">
+            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  Background="{x:Null}" FontSize="16" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Número de orden" Width="*" Binding="{Binding IdOrden}"/>
-                    <DataGridTextColumn Header="Orden" CanUserResize="False" Width="*" Binding="{Binding Orden}"/>
-                    <DataGridTextColumn Header="Estado" Width="*" Binding="{Binding EstadoOrden}"/>
+                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
+                    <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding DescripcionPlatillo}"/>
+                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
+
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="478,575,0,125">
-            <Button BorderBrush="{x:Null}" Background="#FF008592" Content="Lista" FontSize="18" Margin="10,0,0,0" x:Name="btnLista" Click="btnLista_Click" />
+        <StackPanel Height="50" HorizontalAlignment="Left" Orientation="Horizontal" Margin="900,150,0,125">
+            <Button BorderBrush="{x:Null}" Background="#A2BCE0" Content="Lista" FontSize="18" Margin="10,0,0,0" x:Name="btnLista" Click="btnLista_Click" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal"  Margin="50,483,549,227">
-            <Label Content="Número de Orden: " FontSize="20"/>
-            <TextBlock TextAlignment="Center"  x:Name="txbIdOrden" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal"  Margin="512,483,86,227" >
-            <Label Content="Orden: " FontSize="20"/>
-            <TextBox Name ="txtOrden" TextAlignment="Center" Width="220" Height="40" FontSize="20" IsEnabled="False"/>
-        </StackPanel>
+        <GroupBox Header="Modificar Estado" materialDesign:ColorZoneAssist.Background="#A2BCE0"
+            materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
+            FontSize="20" Style="{StaticResource MaterialDesignGroupBox}"  VerticalAlignment="Top" Margin="70,150,70,0" MinHeight="200" Height="168">
+            <StackPanel Orientation="Horizontal" Width="850" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Width="425">
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40">
+                        <Label Content="Número de mesa: " FontSize="20" Width="181"/>
+                        <ComboBox x:Name="cmbNumMesa" Width="80" FontSize="20" SelectionChanged="cmbNumMesa_SelectionChanged" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="425">
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40">
+                        <Label Content="Número de Orden: " FontSize="20"/>
+                        <TextBlock TextAlignment="Center"  x:Name="txbOrden" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
+                        <Label Content="Estado de la orden: " FontSize="20"/>
+                        <TextBlock TextAlignment="Center"  x:Name="txbEstado" Width="118" Height="40" FontSize="20" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
 
     </Grid>
+
 </Page>
