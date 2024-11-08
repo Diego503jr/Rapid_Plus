@@ -66,7 +66,6 @@ namespace Rapid_Plus.Views.Administrador
             MostrarMesas();
             ControlFormulario();
             LimpiarFormulario();
-            MessageBox.Show("Actualizando contenido cada 3 segundos.");
         }
 
         //Validar formulario 
