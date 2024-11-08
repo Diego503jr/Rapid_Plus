@@ -43,27 +43,22 @@ namespace Rapid_Plus
 
 
         #region METODOS
-        // Método para alternar la visibilidad de la contraseña
+        // Métodos para alternar la visibilidad de la contraseña
         void VisualizarClave()
         {
-            isPasswordVisible = !isPasswordVisible;
-
-            if (isPasswordVisible)
-            {
-                // Cambia a TextBox para mostrar la contraseña en texto claro
-                txtPassword.Visibility = Visibility.Collapsed;
-                txtPasswordVisible.Visibility = Visibility.Visible;
-                txtPasswordVisible.Text = txtPassword.Password;
-            }
-            else
-            {
-                // Cambia a PasswordBox para ocultar la contraseña
-                txtPassword.Visibility = Visibility.Visible;
-                txtPasswordVisible.Visibility = Visibility.Collapsed;
-                txtPassword.Password = txtPasswordVisible.Text;
-            }
+            // Cambia a TextBox para mostrar la contraseña en texto claro
+            txtPassword.Visibility = Visibility.Collapsed;
+            txtPasswordVisible.Visibility = Visibility.Visible;
+            txtPasswordVisible.Text = txtPassword.Password;
         }
 
+        void OcultarClave()
+        {
+            // Cambia a TextBox para ocultar la contraseña en texto claro
+            txtPassword.Visibility = Visibility.Visible;    
+            txtPasswordVisible.Visibility = Visibility.Collapsed; 
+            txtPassword.Password = txtPasswordVisible.Text;
+        }
         void EncontrarUsuario()
         {
 
@@ -177,15 +172,17 @@ namespace Rapid_Plus
         {
             EncontrarUsuario();
         }
-
-        private void btnVisualizar_Click(object sender, RoutedEventArgs e)
+        private void btnVisualizar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             VisualizarClave();
         }
-        
+
+        private void btnVisualizar_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            OcultarClave();
+        }
 
         #endregion
 
-        
     }
 }

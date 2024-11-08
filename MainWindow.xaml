@@ -12,7 +12,7 @@
         <Grid Height="240" Width="280" VerticalAlignment="Center" Margin="10,0,310,0">
             <Label Content="Login" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-25,5,0" Foreground="White" FontSize="24" FontFamily="Bahnschrift"/>
             <StackPanel VerticalAlignment="Top" Margin="35,39,31,0">
-                <Label Margin="5" Content="E-mail" Foreground="White" FontSize="12" FontFamily="Bahnschrift"/>
+                <Label Margin="5" Content="User" Foreground="White" FontSize="12" FontFamily="Bahnschrift"/>
                 <TextBox
                  x:Name="txtCorreo"
                  FontFamily="Bahnschrift" 
@@ -36,7 +36,7 @@
                          SnapsToDevicePixels="True" 
                          Style="{StaticResource MaterialDesignTextBox}" 
                          Visibility="Collapsed" />
-                    <Button x:Name="btnVisualizar" Height="20" Background="{x:Null}" BorderBrush="{x:Null}"  Foreground="{x:Null}" Margin="155,5,15,4" Click="btnVisualizar_Click">
+                    <Button x:Name="btnVisualizar" Height="20" Background="{x:Null}" BorderBrush="{x:Null}"  Foreground="{x:Null}" Margin="155,5,15,4" PreviewMouseDown="btnVisualizar_MouseDown" PreviewMouseUp="btnVisualizar_MouseUp">
                         <Image Source="/Assets/ojo.png" />
                     </Button>
                 </Grid>

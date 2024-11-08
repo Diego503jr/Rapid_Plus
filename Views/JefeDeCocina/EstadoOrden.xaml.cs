@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.JefeDeCocina
 {
@@ -29,12 +30,13 @@ namespace Rapid_Plus.Views.JefeDeCocina
         public EstadoOrden()
         {
             InitializeComponent();
+            IniciarTemporizador();
         }
 
         #region DECLARACION DE VARIABLES LOCALES
+        private DispatcherTimer timer;
         int IdEstadoOrden = -1;
         int idMesa = -1;
-
         #endregion
         #region MÉTODOS PERSONALIZADOS
         private int Mesa()
@@ -111,7 +113,17 @@ namespace Rapid_Plus.Views.JefeDeCocina
         {
             MostrarOrdenesPorMesa();
         }
-
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarOrdenesPorMesa();
+        }
         private void btnLista_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidarFomrulario())
