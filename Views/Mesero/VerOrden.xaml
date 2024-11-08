@@ -9,40 +9,16 @@
       Title="VerOrden" Height="900" Width="874" Loaded="Page_Loaded">
 
     <Grid >
-        <GroupBox Header="Ordenes Pendientes" materialDesign:ColorZoneAssist.Background="#A2BCE0"
-        materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
-        FontSize="20" Style="{StaticResource MaterialDesignGroupBox}"  VerticalAlignment="Top" Margin="30,30" MinHeight="200">
-            <StackPanel Orientation="Horizontal" Width="800" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel Orientation="Vertical" Width="425" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal"  Width="425" Height="40">
-                        <Label Content="Número de mesa: " FontSize="20" Width="181"></Label>
-                        <ComboBox Name="cmbFiltro" Width="80" FontSize="20" SelectionChanged="cmbFiltro_SelectionChanged" />
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Width="425">
-                    <StackPanel Orientation="Horizontal"  Width="425" Height="40">
-                        <Label Content="Número de Orden: " FontSize="20"/>
-                        <TextBlock Name="txbOrden" TextAlignment="Center" Width="80"  Height="40" FontSize="20" IsEnabled="False" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"  Width="425" Height="40" >
-                        <Label Content="Estado de la orden: " FontSize="20"></Label>
-                        <TextBlock Name="txbEstado"  TextAlignment="Center" Width="118" Height="40" FontSize="20" IsEnabled="False"></TextBlock>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </GroupBox>
-
-        <ScrollViewer  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,60,0,0" Height="350" Width="700" >
-            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}"  Background="{x:Null}" FontSize="16" >
+        <Label Content="Ordenes Pendientes" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50,150,50,0" Height="300">
+            <DataGrid Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Platillo" CanUserResize="False" Binding="{Binding NombrePlatillo}"/>
-                    <DataGridTextColumn Header="Descripción" CanUserResize="False" Binding="{Binding DescripcionPlatillo}"/>
-                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Binding="{Binding Cantidad}"/>
-                    
+                    <DataGridTextColumn Header="Orden" Width="100" Binding="{Binding IdOrden}"/>
+                    <DataGridTextColumn Header="Orden" CanUserResize="False" Width="300" Binding="{Binding Orden}"/>
+                    <DataGridTextColumn Header="Cantidad" CanUserResize="False" Width="100" Binding="{Binding Cantidad}"/>
+                    <DataGridTextColumn Header="Mesa" Width="100" Binding="{Binding Mesa}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <Button Name="btnLimpiarFiltro" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Limpiar Filtro" FontSize="18" Height="40" Margin="0,0,0,200" BorderBrush="{x:Null}" Background="#A2BCE0" Click="btnLimpiarFiltro_Click" ></Button>
-
     </Grid>
 </Page>

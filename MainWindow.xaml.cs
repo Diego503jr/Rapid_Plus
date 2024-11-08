@@ -18,6 +18,7 @@ using Rapid_Plus.Views.Mesero;
 using Rapid_Plus.Views.Cajero;
 using Rapid_Plus.Views.JefeDeCocina;
 using System;
+using System.ComponentModel;
 
 namespace Rapid_Plus
 {
@@ -26,6 +27,11 @@ namespace Rapid_Plus
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region VARIABLES LOCALES
+        // Variable para almacenar el estado de visibilidad de la contraseña
+        private bool isPasswordVisible = false;
+
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +39,31 @@ namespace Rapid_Plus
         SqlConnection conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus);
 
         string consultaSQL = null;
-        #region METODO
+
+
+
+        #region METODOS
+        // Método para alternar la visibilidad de la contraseña
+        void VisualizarClave()
+        {
+            isPasswordVisible = !isPasswordVisible;
+
+            if (isPasswordVisible)
+            {
+                // Cambia a TextBox para mostrar la contraseña en texto claro
+                txtPassword.Visibility = Visibility.Collapsed;
+                txtPasswordVisible.Visibility = Visibility.Visible;
+                txtPasswordVisible.Text = txtPassword.Password;
+            }
+            else
+            {
+                // Cambia a PasswordBox para ocultar la contraseña
+                txtPassword.Visibility = Visibility.Visible;
+                txtPasswordVisible.Visibility = Visibility.Collapsed;
+                txtPassword.Password = txtPasswordVisible.Text;
+            }
+        }
+
         void EncontrarUsuario()
         {
 
@@ -129,7 +159,7 @@ namespace Rapid_Plus
 
             if (boton != null)
             {
-                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF008592"));
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
             }
         }
 
@@ -147,7 +177,15 @@ namespace Rapid_Plus
         {
             EncontrarUsuario();
         }
+
+        private void btnVisualizar_Click(object sender, RoutedEventArgs e)
+        {
+            VisualizarClave();
+        }
+        
+
         #endregion
 
+        
     }
 }

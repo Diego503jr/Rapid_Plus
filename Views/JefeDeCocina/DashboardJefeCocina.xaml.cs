@@ -23,11 +23,13 @@ namespace Rapid_Plus.Views.JefeDeCocina
         #region Instancia de las páginas
         EstadoOrden estadoOrden = new EstadoOrden();
         #endregion
+
         public DashboardJefeCocina()
         {
             InitializeComponent();
         }
 
+        #region METODOS FORMULARIO
         private void btnOrdenes_Click(object sender, RoutedEventArgs e)
         {
             frContent.NavigationService.Navigate(estadoOrden);
@@ -52,7 +54,28 @@ namespace Rapid_Plus.Views.JefeDeCocina
         {
             Close();
         }
+        #endregion
 
-        
+        #region METODOS ESTILOS
+        private void btnOrdenes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnOrdenes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+        }
+
+        private void btnOrdenes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnOrdenes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+        }
+
+        private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+        }
+
+        private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
+        {
+            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+        }
+        #endregion
     }
 }
