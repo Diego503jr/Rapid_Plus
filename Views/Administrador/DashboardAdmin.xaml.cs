@@ -31,7 +31,6 @@ namespace Rapid_Plus.Views.Administrador
         Configuraciones configuracion = new Configuraciones();
         ParametroReporte prReport = new ParametroReporte();
 
-
         #region METODOS ESTILOS
         private void btnMenu_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -115,7 +114,7 @@ namespace Rapid_Plus.Views.Administrador
 
         private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)

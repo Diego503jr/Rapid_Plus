@@ -8,16 +8,20 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Title="ParametroReporte" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="393*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
         <Image HorizontalAlignment="Left" Height="100" Margin="50,15,0,0" VerticalAlignment="Top" Width="110" Source="/Assets/LogoN.png"/>
         <Label Content="Reporte por fechas y categorias" 
-           HorizontalAlignment="Center" Margin="0,41,0,0" 
+           HorizontalAlignment="Left" Margin="215,41,0,0" 
            VerticalAlignment="Top" FontSize="26" Height="42"/>
         <GroupBox Header="Valores Generales"
               materialDesign:ColorZoneAssist.Background="#A2BCE0"
               materialDesign:ColorZoneAssist.Foreground="White"
               materialDesign:ColorZoneAssist.Mode="Custom"
               FontSize="20"
-              Margin="0,120,0,0">
+              Margin="0,120,0,0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel>
                     <TextBlock Text="Seleccionar Fecha Inicio" HorizontalAlignment="Center" Margin="30,30"/>
@@ -36,7 +40,7 @@
         <Button x:Name="btnGenerarReporte"
             Background="#0B5563"
             BorderBrush="{x:Null}"
-            Content="Imprimir Reporte" HorizontalAlignment="Center" 
-            Margin="0,350,0,0" VerticalAlignment="Top" FontSize="20" Height="45" Click="btnGenerarReporte_Click"/>
+            Content="Imprimir Reporte" HorizontalAlignment="Left" 
+            Margin="306,350,0,0" VerticalAlignment="Top" FontSize="18" Height="45" Click="btnGenerarReporte_Click"/>
     </Grid>
 </Window>
