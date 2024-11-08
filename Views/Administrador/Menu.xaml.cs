@@ -60,10 +60,6 @@ namespace Rapid_Plus.Views.Administrador
         private void Timer_Tik(object sender, EventArgs e) 
         {
             MostrarMenu();
-            ControlFormulario();
-            LimpiarFormulario();
-            CargarEstados();
-            CargarCategorias();
         }
 
         //Validar formulario 
@@ -253,6 +249,8 @@ namespace Rapid_Plus.Views.Administrador
 
             LimpiarFormulario();
 
+            cmbEstado.IsEnabled = false;
+            dgPlatillo.IsEnabled = false;
             agregar = true;
             editar = false;
 

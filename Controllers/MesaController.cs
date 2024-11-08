@@ -71,7 +71,7 @@ namespace Rapid_Plus.Controllers
                         command.CommandText = "SPCREARMESA";
 
                         command.Parameters.AddWithValue("@Mesa", mesa.Mesa);
-                        command.Parameters.AddWithValue("@IdEstado", mesa.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", 1);
 
                         res = command.ExecuteNonQuery();
 

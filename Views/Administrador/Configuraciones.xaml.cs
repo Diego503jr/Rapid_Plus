@@ -64,8 +64,6 @@ namespace Rapid_Plus.Views.Administrador
         private void Timer_Tik(object sender, EventArgs e)
         {
             MostrarMesas();
-            ControlFormulario();
-            LimpiarFormulario();
         }
 
         //Validar formulario 
@@ -201,6 +199,8 @@ namespace Rapid_Plus.Views.Administrador
 
             LimpiarFormulario();
 
+            cmbEstado.IsEnabled = false;
+            dgMesas.IsEnabled = false;
             agregar = true;
             editar = false;
 

@@ -78,7 +78,7 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Descripcion", platillo.Descripcion);
                         command.Parameters.AddWithValue("@IdCategoria", platillo.CategoriaId);
                         command.Parameters.AddWithValue("@Precio", platillo.Precio);
-                        command.Parameters.AddWithValue("@IdEstado", platillo.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", 1);
 
                         res = command.ExecuteNonQuery();
 

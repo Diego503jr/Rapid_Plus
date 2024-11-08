@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Rapid_Plus.Controllers;
 using Rapid_Plus.Models;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Administrador
 {
@@ -25,6 +26,8 @@ namespace Rapid_Plus.Views.Administrador
     /// </summary>
     public partial class Contactos : Page
     {
+        private DispatcherTimer timer;
+
         public Contactos()
         {
             InitializeComponent();
@@ -48,6 +51,19 @@ namespace Rapid_Plus.Views.Administrador
         #endregion
 
         #region METODOS PERSONALIZADOS
+
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarUsuarios();
+        }
 
         //Validar el formulario
         bool ValidarFormulario()
@@ -302,6 +318,8 @@ namespace Rapid_Plus.Views.Administrador
 
             LimpiarFormulario();
 
+            cmbEstado.IsEnabled = false;
+            dgUsuarios.IsEnabled = false;
             agregar = true;
             editar = false;
 
@@ -418,7 +436,7 @@ namespace Rapid_Plus.Views.Administrador
         private void txtNombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo Texto
-            e.Handled = !char.IsLetter(e.Text, 0);
+            //e.Handled = !char.IsLetter(e.Text, 0);
         }
 
         private void txtApellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -430,19 +448,19 @@ namespace Rapid_Plus.Views.Administrador
         private void txtDUI_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo números
-            e.Handled = !char.IsDigit(e.Text, 0);
+            //e.Handled = !char.IsDigit(e.Text, 0);
         }
 
         private void txtTelefono1_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo números
-            e.Handled = !char.IsDigit(e.Text, 0);
+            //e.Handled = !char.IsDigit(e.Text, 0);
         }
 
         private void txtTelefono2_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo números
-            e.Handled = !char.IsDigit(e.Text, 0);
+            //e.Handled = !char.IsDigit(e.Text, 0);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

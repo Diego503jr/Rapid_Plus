@@ -106,7 +106,7 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@DUI", user.DUI);
                         command.Parameters.AddWithValue("@IdSexo", user.SexoId);
                         command.Parameters.AddWithValue("@FechaNacimiento", user.FechaNacimiento);
-                        command.Parameters.AddWithValue("@IdEstado", user.EstadoId);
+                        command.Parameters.AddWithValue("@IdEstado", 1);
                         command.Parameters.AddWithValue("@Telefono1", user.Telefono1);
                         command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 
