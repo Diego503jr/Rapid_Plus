@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Administrador
 {
@@ -23,9 +24,11 @@ namespace Rapid_Plus.Views.Administrador
     /// </summary>
     public partial class Menu : Page
     {
+        private DispatcherTimer timer;
         public Menu()
         {
             InitializeComponent();
+            IniciarTemporizador();
             CargarEstados();
             CargarCategorias();
         }
@@ -46,6 +49,22 @@ namespace Rapid_Plus.Views.Administrador
         #endregion
 
         #region METODOS PERSONALIZADOS
+
+        private void IniciarTemporizador() 
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+        }
+
+        private void Timer_Tik(object sender, EventArgs e) 
+        {
+            MostrarMenu();
+            ControlFormulario();
+            LimpiarFormulario();
+            CargarEstados();
+            CargarCategorias();
+        }
 
         //Validar formulario 
         bool ValidarFormulario() 
@@ -344,7 +363,7 @@ namespace Rapid_Plus.Views.Administrador
         private void txtPrecio_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo números
-            e.Handled = !char.IsDigit(e.Text, 0);
+            //e.Handled = !char.IsDigit(e.Text, 0);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

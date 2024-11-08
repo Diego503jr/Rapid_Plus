@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Administrador
 {
@@ -23,9 +24,12 @@ namespace Rapid_Plus.Views.Administrador
     /// </summary>
     public partial class Configuraciones : Page
     {
+        private DispatcherTimer timer;
+
         public Configuraciones()
         {
             InitializeComponent();
+            IniciarTemporizador();
             CargarEstados();
         }
 
@@ -48,6 +52,22 @@ namespace Rapid_Plus.Views.Administrador
         #endregion
 
         #region METODOS PERSONALIZADOS
+
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarMesas();
+            ControlFormulario();
+            LimpiarFormulario();
+            MessageBox.Show("Actualizando contenido cada 3 segundos.");
+        }
 
         //Validar formulario 
         bool ValidarFormulario()
@@ -152,8 +172,8 @@ namespace Rapid_Plus.Views.Administrador
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MostrarMesas();
             HabilitarFormulario(false);
+            MostrarMesas();
             ControlFormulario();
             LimpiarFormulario();
         }
