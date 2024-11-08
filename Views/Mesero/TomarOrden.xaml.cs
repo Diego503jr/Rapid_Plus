@@ -4,6 +4,7 @@ using Rapid_Plus.Models.Mesero;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,8 +101,9 @@ namespace Rapid_Plus.Views.Mesero
             txbOrden.Text = null;
             txbPlatillo.Text = null;
             dgPlatillos.DataContext = null;
+            idplatillo = -1;
+            idPlatilloOrden = -1;
             dgOrdenes.DataContext = null;
-            dgOrdenes.IsEnabled = false;
 
         }
 
@@ -125,13 +127,12 @@ namespace Rapid_Plus.Views.Mesero
         {
             bool estado = true;
             string mensaje = null;
-
             if (string.IsNullOrEmpty(txbOrden.Text))
             {
                 estado = false;
                 mensaje += "Número de orden\n";
             }
-            if (idplatillo == -1 && idPlatilloOrden == -1)
+            if (idplatillo == -1 && idPlatilloOrden == -1 && string.IsNullOrEmpty(txbPlatillo.Text))
             {
                 estado = false;
                 mensaje += "Platillo\n";
@@ -153,20 +154,50 @@ namespace Rapid_Plus.Views.Mesero
         //Activa o desactiva campos y botones
         private void ControlAcciones()
         {
-            bool accion = agregando || editando;
+            //Click a Nuevo
+            if(agregando)
+            {
+                btnGuardar.IsEnabled = true;
+                btnCancelar.IsEnabled = true;
+                cmbMesa.IsEnabled = true;
+                cmbPlatillo.IsEnabled = true;
+                txtCantidad.IsEnabled = true;
+                dgPlatillos.IsEnabled = true;
+                dgOrdenes.IsEnabled = false;
 
-            btnGuardar.IsEnabled = accion;
-            btnCancelar.IsEnabled = accion;
-            btnNuevo.IsEnabled = !accion;
-            btnEditar.IsEnabled = !agregando && !editando;
-            btnEliminar.IsEnabled = editando;
 
-            txtCantidad.IsEnabled = accion;
-            cmbMesa.IsEnabled = accion;
-            cmbPlatillo.IsEnabled = agregando;
-            dgPlatillos.IsEnabled = agregando;
-            dgOrdenes.IsEnabled = !agregando;
+                btnEditar.IsEnabled = false;
+                btnEliminar.IsEnabled = false;
+                btnNuevo.IsEnabled = false;
+            }
+            if (editando )
+            {
+                dgOrdenes.IsEnabled = true;
+                txtCantidad.IsEnabled = true;
+                btnGuardar.IsEnabled = true;
+                btnCancelar.IsEnabled = true;
+                cmbMesa.IsEnabled = true;
 
+                cmbPlatillo.IsEnabled = false;
+                dgPlatillos.IsEnabled= false;
+                btnNuevo.IsEnabled= false;
+                btnEditar.IsEnabled= false;
+                btnEliminar.IsEnabled= false;
+            }
+            if(!agregando && !editando)
+            {
+                btnNuevo.IsEnabled = true;
+                btnEditar.IsEnabled = true;
+                btnEliminar.IsEnabled =true;
+                dgOrdenes.IsEnabled=true;
+                cmbMesa.IsEnabled=true;
+
+                txtCantidad.IsEnabled= false;
+                dgPlatillos.IsEnabled = false;
+                btnCancelar.IsEnabled = false;
+                btnGuardar.IsEnabled=false;
+                cmbPlatillo.IsEnabled=false;
+            }
         }
 
         #endregion
@@ -179,6 +210,7 @@ namespace Rapid_Plus.Views.Mesero
             LimpiarObjetos();
             CargarNumeroMesa();
             CargarCategorias();
+
             agregando = false;
             editando = false;
             ControlAcciones();
@@ -229,7 +261,6 @@ namespace Rapid_Plus.Views.Mesero
         //Obtiene información de registros seleccionados
         private void dgPlatillos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             PlatilloModel platillo = (PlatilloModel)dgPlatillos.SelectedItem;
             if (platillo == null)
             {
@@ -263,6 +294,9 @@ namespace Rapid_Plus.Views.Mesero
 
             //Método para activar y desactivar campos y botones
             ControlAcciones();
+            txtCantidad.Clear();
+            dgOrdenes.SelectedIndex = -1;
+            txbPlatillo.Text = null;
         }
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
@@ -278,27 +312,32 @@ namespace Rapid_Plus.Views.Mesero
 
                 if (agregando)
                 {
+                    agregando = false;
+                    editando = false;
+                    ControlAcciones();
+
+                    LimpiarObjetos();
                     idOrden = DetalleOrdenController.CrearDetalleOrden(detalle);
                     mensaje = "Orden creada con éxito";
                 }
-                else
+                else //Se está editando
                 {
+                    agregando = false;
+                    editando = false;
+                    ControlAcciones();
+                    LimpiarObjetos();
                     idOrden = DetalleOrdenController.ActualizarDetalleOrden(detalle, idDetalleOrden);
                     mensaje = "Orden actualizada";
                 }
 
                 if (idOrden > 0)
                 {
-
                     MessageBox.Show(mensaje, "Validación de formulario", MessageBoxButton.OK, MessageBoxImage.Information);
                     agregando = false;
                     editando = false;
                     ControlAcciones();
                 }
-                agregando = false;
-                editando = false;
-                ControlAcciones();
-                LimpiarObjetos();
+               
 
             }
         }
@@ -307,9 +346,9 @@ namespace Rapid_Plus.Views.Mesero
             //Editando
             agregando = false;
             editando = true;
-
             //Método para activar y desactivar campos y botones
             ControlAcciones();
+
         }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -346,6 +385,9 @@ namespace Rapid_Plus.Views.Mesero
                 }
                 else
                 {
+                    agregando = false;
+                    editando = false;
+                    ControlAcciones();
                     LimpiarObjetos();
                 }
             }
@@ -353,7 +395,7 @@ namespace Rapid_Plus.Views.Mesero
             {
                 MessageBox.Show("Seleccione un detalle de orden válido para eliminar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 agregando = false;
-                editando = true;
+                editando = false;
                 ControlAcciones();
             }
         }
