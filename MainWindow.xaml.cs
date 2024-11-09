@@ -27,27 +27,26 @@ namespace Rapid_Plus
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        SqlConnection conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus);
+        string consultaSQL = null;
+
         #region VARIABLES LOCALES
         // Variable para almacenar el estado de visibilidad de la contraseña
         private bool isPasswordVisible = false;
 
         #endregion
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-        SqlConnection conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus);
-
-        string consultaSQL = null;
-
-
 
         #region METODOS
         // Métodos para alternar la visibilidad de la contraseña
         void VisualizarClave()
         {
             // Cambia a TextBox para mostrar la contraseña en texto claro
-            txtPassword.Visibility = Visibility.Collapsed;
+            txtPassword.Visibility = Visibility.Collapsed; 
             txtPasswordVisible.Visibility = Visibility.Visible;
             txtPasswordVisible.Text = txtPassword.Password;
         }
@@ -65,6 +64,11 @@ namespace Rapid_Plus
             if (string.IsNullOrWhiteSpace(txtCorreo.Text))
             {
                 MessageBox.Show("Por favor ingrese su nombre de usuario.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                MessageBox.Show("Por favor ingrese su contraseña.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

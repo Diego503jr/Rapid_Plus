@@ -75,7 +75,49 @@ namespace Rapid_Plus.Views.JefeDeCocina
             cmbNumMesa.DisplayMemberPath = "Mesa";
             cmbNumMesa.SelectedValuePath = "IdMesa";
         }
+        private void EditarEstadoOrden()
+        {
+            if (!ValidarFomrulario())
+            {
+                MessageBox.Show("Por favor completa todos los campos requeridos.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            try
+            {
+                // Obtener el ID de la orden desde la interfaz de usuario
+                if (!int.TryParse(txbOrden.Text, out int idOrden))
+                {
+                    return;
+                }
+
+                // Asignar el estado 
+                int nuevoEstado = 1;
+
+                OrdenesModel estado = new OrdenesModel
+                {
+                    IdEstadoOrden = nuevoEstado
+                };
+
+                // Llamar al método para editar el estado de la orden
+                int resultado = JefeCocinaController.EditarEstadoOrden(estado, idOrden);
+
+                if (resultado == 1)
+                {
+                    MessageBox.Show("El estado de la orden ha sido actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el estado de la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            LimpiarFormulario();
+            MostrarOrdenesPorMesa();
+        }
         private bool ValidarFomrulario()
         {
             bool estado = true;
@@ -126,56 +168,21 @@ namespace Rapid_Plus.Views.JefeDeCocina
         }
         private void btnLista_Click(object sender, RoutedEventArgs e)
         {
-            if (!ValidarFomrulario())
+            //Validamos si se quiere cambiar el estado
+            if (MessageBox.Show("¿Desea modificar el estado de la orden?", "Accion", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Por favor completa todos los campos requeridos.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                EditarEstadoOrden();
             }
-
-            try
-            {
-                // Obtener el ID de la orden desde la interfaz de usuario
-                if (!int.TryParse(txbOrden.Text, out int idOrden))
-                {
-                    return;
-                }
-
-                // Asignar el estado 
-                int nuevoEstado = 1;
-
-                OrdenesModel estado = new OrdenesModel
-                {
-                    IdEstadoOrden = nuevoEstado
-                };
-
-                // Llamar al método para editar el estado de la orden
-                int resultado = JefeCocinaController.EditarEstadoOrden(estado, idOrden);
-
-                if (resultado == 1)
-                {
-                    MessageBox.Show("El estado de la orden ha sido actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo actualizar el estado de la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            LimpiarFormulario();
-            MostrarOrdenesPorMesa();
         }
         private void cmbNumMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             idMesa = Mesa();
             var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
-            var ordenes = JefeCocinaController.MostrarOrdenesPorMesa(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
 
             if (detalle != null)
             {
-                JefeCocinaController.MostrarOrdenesPorMesa(idMesa);
+                OrdenController.MostrarOrdenesPorMesa(idMesa);
                 dgOrdenes.DataContext = ordenes;
 
                 txbOrden.Text = detalle.IdOrden.ToString();

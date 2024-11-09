@@ -173,6 +173,7 @@ namespace Rapid_Plus.Views.Cajero
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             CargarNumeroMesa();
+            LimpiarFormulario();
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -184,6 +185,7 @@ namespace Rapid_Plus.Views.Cajero
         {
             CargarNumeroMesa();
             MessageBox.Show("Página Actualizada", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
+            LimpiarFormulario();
 
         }
 
