@@ -17,54 +17,7 @@ namespace Rapid_Plus.Controllers
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
        
-        //EDITAR ESTADO DE LA ORDEN
-        public static List<OrdenesModel> MostrarOrdenesPorMesa(int idMesa)
-        {
-            List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
-
-            try
-            {
-                using (var con = new SqlConnection(conexion))
-                {
-                    con.Open();
-                    using (var command = con.CreateCommand())
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPMOSTRARORDENESPORMESA";
-                        command.Parameters.AddWithValue("@IDMESA", idMesa);
-                        using (DbDataReader dr = command.ExecuteReader())
-                        {
-                            //Recorrer el dataReader
-                            while (dr.Read())
-                            {
-                                OrdenesModel ordenes = new OrdenesModel();
-                                ordenes.IdOrden = int.Parse(dr["IDORDEN"].ToString());
-                                ordenes.IdPlatilloOrden = int.Parse(dr["IDPLATILLOORDEN"].ToString());
-                                ordenes.IdDetalleOrden = int.Parse(dr["IDDETALLEORDEN"].ToString());
-                                ordenes.NombrePlatillo = dr["PLATILLO"].ToString();
-                                ordenes.DescripcionPlatillo = dr["DESCRIPCION"].ToString();
-                                ordenes.IdMesa = int.Parse(dr["MESA"].ToString());
-                                ordenes.Cantidad = int.Parse(dr["CANTIDAD"].ToString());
-                                ordenes.EstadoOrden = dr["ESTADOORDEN"].ToString();
-
-                                //Agregar a la lista inicial
-                                lstOrdenes.Add(ordenes);
-                            }
-                        }
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrio un error al intentar mostrar las ordenes:" + ex.Message, "Validaccion ordenes", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return lstOrdenes;
-
-        }
-    
-
-public static int EditarEstadoOrden(OrdenesModel estado, int idOrden)
+        public static int EditarEstadoOrden(OrdenesModel estado, int idOrden)
         {
             int res = -1;
 
