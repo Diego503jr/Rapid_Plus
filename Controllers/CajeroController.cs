@@ -76,14 +76,14 @@ namespace Rapid_Plus.Controllers
                     using (var command = con.CreateCommand())
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = "SPOBTENERMESASLISTAS"; // Asegúrate de que el nombre es correcto
+                        command.CommandText = "SPOBTENERMESASLISTAS"; 
                         using (DbDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 mesas.Add(new MesasModel
                                 {
-                                    Mesa = reader.GetInt32(0) // Suponiendo que la mesa es el primer campo en la consulta
+                                    Mesa = reader.GetInt32(0)
                                 });
                             }
                         }
@@ -105,7 +105,7 @@ namespace Rapid_Plus.Controllers
                 using (var command = con.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "SPCAMBIARESTADOORDEN"; // Asegúrate de que el nombre es correcto
+                    command.CommandText = "SPCAMBIARESTADOORDEN";
                     command.Parameters.AddWithValue("@IdOrden", idOrden);
                     try
                     {
