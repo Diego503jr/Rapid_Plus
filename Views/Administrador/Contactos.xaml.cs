@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 // Incluimos librerias SQL
 using System.Data.SqlClient;
-using System.Data;
 using Rapid_Plus.Controllers;
 using Rapid_Plus.Models;
 using System.Windows.Threading;
@@ -436,7 +435,7 @@ namespace Rapid_Plus.Views.Administrador
         private void txtNombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo Texto
-            //e.Handled = !char.IsLetter(e.Text, 0);
+            e.Handled = !char.IsLetter(e.Text, 0);
         }
 
         private void txtApellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
