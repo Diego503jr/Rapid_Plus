@@ -118,7 +118,7 @@ namespace Rapid_Plus.Views.Administrador
                 msj = "Fecha de Nacimiento Usuario\n";
             }
 
-            if (string.IsNullOrEmpty(cmbEstado.Text))
+            if (string.IsNullOrEmpty(cmbEstado.Text) && idEstado == 0)
             {
                 estado = false;
                 msj = "Estado Usuario\n";
@@ -317,6 +317,7 @@ namespace Rapid_Plus.Views.Administrador
 
             LimpiarFormulario();
 
+            idEstado = 1;
             cmbEstado.IsEnabled = false;
             dgUsuarios.IsEnabled = false;
             agregar = true;
@@ -352,6 +353,7 @@ namespace Rapid_Plus.Views.Administrador
                 MessageBoxImage.Question) == MessageBoxResult.Yes
                 )
                 {
+                    idEstado = 0;
                     if (UsuarioController.EliminarUsuario(idUsuario, idEstado) > -1)
                     {
                         MessageBox.Show("Registro eliminado correctamente", "Validacion",
@@ -393,18 +395,19 @@ namespace Rapid_Plus.Views.Administrador
                 usuario.DUI = Convert.ToInt32(txtDUI.Text);
                 usuario.SexoId = (int)cmbSexo.SelectedValue;
                 usuario.FechaNacimiento = DateTime.Parse(dtpFechaNacimiento.Text);
-                usuario.EstadoId = (int)cmbEstado.SelectedValue;
                 usuario.Telefono1 = txtTelefono1.Text;
                 usuario.Telefono2 = txtTelefono2.Text;
 
                 //Evaluar si se esta agregando o editando
                 if (agregar)
                 {
-                    idUsuario = UsuarioController.CrearUsuario(usuario);
+                    idEstado = 1;
+                    idUsuario = UsuarioController.CrearUsuario(usuario, idEstado);
                     msj = "Insercion correctamente";
                 }
                 else
                 {
+                    usuario.EstadoId = (int)cmbEstado.SelectedValue;
                     idUsuario = UsuarioController.EditarUsuario(usuario, idUsuario);
                     msj = "Actualizacion correctamente";
                 }
@@ -426,6 +429,7 @@ namespace Rapid_Plus.Views.Administrador
                     HabilitarFormulario(false);
 
                     ControlFormulario();
+                    dgUsuarios.IsEnabled = true;
                 }
                 //Actualizar el dt
                 MostrarUsuarios();
@@ -442,24 +446,6 @@ namespace Rapid_Plus.Views.Administrador
         {
             //Validación para poder ingresar solo Texto
             e.Handled = !char.IsLetter(e.Text, 0);
-        }
-
-        private void txtDUI_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo números
-            //e.Handled = !char.IsDigit(e.Text, 0);
-        }
-
-        private void txtTelefono1_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo números
-            //e.Handled = !char.IsDigit(e.Text, 0);
-        }
-
-        private void txtTelefono2_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo números
-            //e.Handled = !char.IsDigit(e.Text, 0);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -480,6 +466,7 @@ namespace Rapid_Plus.Views.Administrador
                 editar = false;
 
                 ControlFormulario();
+                dgUsuarios.IsEnabled = true;
             }
         }
 

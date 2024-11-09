@@ -1,4 +1,7 @@
 ﻿using Rapid_Plus.Reports;
+using Rapid_Plus.Views.Cajero;
+using Rapid_Plus.Views.JefeDeCocina;
+using Rapid_Plus.Views.Mesero;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,66 +23,48 @@ namespace Rapid_Plus.Views.Administrador
     /// </summary>
     public partial class DashboardAdmin : Window
     {
-        public DashboardAdmin()
-        {
-            InitializeComponent();
-        }
 
-        // INSTANCIAS DE LAS PAGINAS
+        #region INSTANCIAS DE LAS PAGINAS
         Contactos contacto = new Contactos();
         Menu menu = new Menu();
         Configuraciones configuracion = new Configuraciones();
         ParametroReporte prReport = new ParametroReporte();
+        TomarOrden tomarOrden = new TomarOrden();
+        VerOrden verOrden = new VerOrden();
+        private CrearOrden crearOrden;
+        GestionClientes clientes = new GestionClientes();
+        VerOrdenesT verOrdenes = new VerOrdenesT();
+        FacturarOrden factura = new FacturarOrden();
+        EstadoOrden estadoOrden = new EstadoOrden();
+
+        #endregion
+
+        public DashboardAdmin(int usuarioId)
+        {
+            InitializeComponent();
+            crearOrden = new CrearOrden(usuarioId);
+        }
 
         #region METODOS ESTILOS
-        private void btnMenu_MouseEnter(object sender, MouseEventArgs e)
+
+        private void BotonAdmin_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
         }
 
-        private void btnMenu_MouseLeave(object sender, MouseEventArgs e)
+        private void BotonAdmin_MouseLeave(object sender, MouseEventArgs e)
         {
-            btnMenu.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
-        }
+            Button boton = sender as Button;
 
-        private void btnUsuario_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
-        }
-
-        private void btnUsuario_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnUsuario.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
-        }
-
-        private void btnReportes_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
-        }
-
-        private void btnReportes_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnReportes.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
-        }
-
-        private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
-        }
-
-        private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
-        }
-
-        private void btnMas_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
-        }
-
-        private void btnMas_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnMas.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            }
         }
 
         #endregion
@@ -106,10 +91,46 @@ namespace Rapid_Plus.Views.Administrador
             frContent.NavigationService.Navigate(configuracion);
         }
 
+        private void btnOrdenesFinal_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(verOrdenes);
+        }
+
         private void btnReportes_Click(object sender, RoutedEventArgs e)
         {
             var prReport = new ParametroReporte();
             prReport.ShowDialog();
+        }
+
+        private void btnTomarOrden_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(crearOrden);
+        }
+
+        private void btnVerOrden_Click(object sender, RoutedEventArgs e)
+        {
+
+            frContent.NavigationService.Navigate(verOrden);
+        }
+
+        private void btnGestionar_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(tomarOrden);
+        }
+
+        private void btnClientes_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(clientes);
+        }
+
+        private void btnOrdenes_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(estadoOrden);
+        }
+
+        private void btnFacturar_Click(object sender, RoutedEventArgs e)
+        {
+            frContent.NavigationService.Navigate(factura);
         }
 
         private void btnCerrarVentana_Click(object sender, RoutedEventArgs e)
@@ -133,5 +154,6 @@ namespace Rapid_Plus.Views.Administrador
 
         #endregion
 
+       
     }
 }

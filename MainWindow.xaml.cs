@@ -107,7 +107,7 @@ namespace Rapid_Plus
                         switch (tipoUsuario)
                         {
                             case 0:
-                                DashboardAdmin dashboardAdmin = new DashboardAdmin();
+                                DashboardAdmin dashboardAdmin = new DashboardAdmin(usuarioID);
                                 dashboardAdmin.Show();
                                 break;
                             case 1:

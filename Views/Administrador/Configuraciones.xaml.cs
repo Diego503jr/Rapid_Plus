@@ -46,7 +46,7 @@ namespace Rapid_Plus.Views.Administrador
         private int idMesa = 0;
         private int idEstadoOrden = 0;
 
-        //Variable para almaccenar el idEstado
+        //Variable para almacenar el idEstado
         private int idEstado = 0;
 
         #endregion
@@ -79,11 +79,10 @@ namespace Rapid_Plus.Views.Administrador
 
             }
 
-            if (string.IsNullOrEmpty(cmbEstado.Text))
+            if (string.IsNullOrEmpty(cmbEstado.Text) && idEstado == 0)
             {
                 estado = false;
                 msj = "Estado Mesa\n";
-
             }
 
             if (!estado)
@@ -199,6 +198,7 @@ namespace Rapid_Plus.Views.Administrador
 
             LimpiarFormulario();
 
+            idEstado = 1;
             cmbEstado.IsEnabled = false;
             dgMesas.IsEnabled = false;
             agregar = true;
@@ -232,6 +232,7 @@ namespace Rapid_Plus.Views.Administrador
                 MessageBoxImage.Question) == MessageBoxResult.Yes
                     )
                 {
+                    idEstado = 0;
                     if (MesaController.EliminarMesa(idMesa, idEstado) > -1)
                     {
                         MessageBox.Show("Registro eliminado correctamente", "Validacion",
@@ -265,15 +266,15 @@ namespace Rapid_Plus.Views.Administrador
                 //Recuperamos los datos
                 MesasModel mesa = new MesasModel();
                 mesa.Mesa= Convert.ToInt32(txtMesa.Text);
-                mesa.EstadoId = (int)cmbEstado.SelectedValue;
 
                 if (agregar)
                 {
-                    idMesa = MesaController.CrearMesa(mesa);
+                    idMesa = MesaController.CrearMesa(mesa, idEstado);
                     msj = "Insercion correctamente";
                 }
                 else
                 {
+                    mesa.EstadoId = (int)cmbEstado.SelectedValue;
                     idMesa = MesaController.EditarMesa(mesa, idMesa);
                     msj = "Actualizacion correctamente";
                 }
@@ -293,6 +294,7 @@ namespace Rapid_Plus.Views.Administrador
                     HabilitarFormulario(false);
 
                     ControlFormulario();
+                    dgMesas.IsEnabled = true;
                 }
 
                 MostrarMesas();
@@ -322,6 +324,7 @@ namespace Rapid_Plus.Views.Administrador
                 editar = false;
 
                 ControlFormulario();
+                dgMesas.IsEnabled = true;
             }
         }
 

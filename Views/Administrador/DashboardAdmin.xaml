@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         FontSize="30" 
         Title="DashboardAdmin" 
-        Height="751" Width="1033" 
+        Height="1000" Width="1033" 
         WindowStyle="None" 
         WindowState="Maximized" 
         Loaded="Window_Loaded">
@@ -25,65 +25,199 @@
                 <StackPanel Grid.Row="0">
                     <Image Source="/Assets/logo.png" Width="175" VerticalAlignment="Top" Margin="0,50,0,0"/>
 
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
-                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,50,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
                         <Button Name="btnMenu" 
                                 Background="{x:Null}" 
                                 BorderBrush="{x:Null}" 
-                                FontSize="30" 
-                                Width="340" Height="60" 
-                                MouseEnter="btnMenu_MouseEnter" 
-                                MouseLeave="btnMenu_MouseLeave" 
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" 
                                 Click="btnMenu_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
-                                <Image Width="60" Height="50" Margin="0" Source="/Assets/menu.png" />
-                                <Label Content="Menu" Foreground="White" FontSize="27"/>
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/menu.png" />
+                                <Label Content="Menu" Foreground="White" FontSize="21"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnUsuario" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnUsuario_MouseEnter" MouseLeave="btnUsuario_MouseLeave" Click="btnUsuario_Click">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnUsuario" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" 
+                                Click="btnUsuario_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
-                                <Image Width="60" Height="50" Margin="0" Source="/Assets/usuario.png" />
-                                <Label Content="Usuario" Foreground="White" FontSize="27"/>
+                                <Image  Width="40" Height="30" Margin="0" Source="/Assets/usuario.png" />
+                                <Label Content="Usuario" Foreground="White" FontSize="21" MouseEnter="BotonAdmin_MouseEnter"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnMas" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnMas_MouseEnter" MouseLeave="btnMas_MouseLeave" Click="btnMas_Click">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnMas" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" 
+                                Click="btnMas_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
-                                <Image Width="60" Height="50" Margin="0" Source="/Assets/ajustes.png" />
-                                <Label Content="Mas" Foreground="White" FontSize="27"/>
+                                <Image  Width="40" Height="30" Margin="0" Source="/Assets/ajustes.png" />
+                                <Label Content="Mas" Foreground="White" FontSize="21"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnReportes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" MouseEnter="btnReportes_MouseEnter" MouseLeave="btnReportes_MouseLeave" Click="btnReportes_Click">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnReportes" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" 
+                                Click="btnReportes_Click">
                             <StackPanel Orientation="Horizontal"  Width="325">
-                                <Image Width="60" Height="50" Margin="0" Source="/Assets/reporte.png" />
-                                <Label Content="Reportes" Foreground="White" FontSize="27"/>
+                                <Image  Width="40" Height="30" Margin="0" Source="/Assets/reporte.png" />
+                                <Label Content="Reportes" Foreground="White" FontSize="21"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnOrdenesFinal" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave"
+                                Click="btnOrdenesFinal_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image  Width="40" Height="30" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Ordenes Admin" Foreground="White" FontSize="21"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnClientes" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}"
+                                Width="340" Height="40" 
+                                MouseEnter ="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" 
+                                Click="btnClientes_Click" >
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/usuario.png" />
+                                <Label Content="Clientes" Foreground="White" FontSize="21"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnCrear" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}"
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave"
+                                Click="btnTomarOrden_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/AgregarOrden.png" />
+                                <Label Content="Crear Orden" Foreground="White" FontSize="21"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnVerOrden" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter ="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave"
+                                Click="btnVerOrden_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Ordenes Mesero" Foreground="White" FontSize="21"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnGestionar" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter ="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" 
+                                Click="btnGestionar_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/GestionarOrden.png" />
+                                <Label Content="Gestionar Orden" Foreground="White" FontSize="21" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0" >
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnOrdenes"
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                Click="btnOrdenes_Click" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave" >
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/VerOrden.png" />
+                                <Label Content="Ordenes Cocina" Foreground="White" FontSize="21"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <Rectangle Width="10" Height="40" Fill="#0B5563"/>
+                        <Button Name="btnFacturar" 
+                                Background="{x:Null}" 
+                                BorderBrush="{x:Null}" 
+                                Width="340" Height="40" 
+                                MouseEnter="BotonAdmin_MouseEnter" 
+                                MouseLeave="BotonAdmin_MouseLeave"
+                                Click="btnFacturar_Click">
+                            <StackPanel Orientation="Horizontal"  Width="325">
+                                <Image Width="40" Height="30" Margin="0" Source="/Assets/Facturar.png" />
+                                <Label Content="Facturar Ordenes" Foreground="White" FontSize="21" />
                             </StackPanel>
                         </Button>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,0" Orientation="Horizontal">
+                <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
                     <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                    <Button Name="btnCerrarSesion" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCerrarSesion_Click" MouseEnter="btnCerrarSesion_MouseEnter" MouseLeave="btnCerrarSesion_MouseLeave">
+                    <Button Name="btnCerrarSesion" 
+                            Background="{x:Null}" 
+                            BorderBrush="{x:Null}" 
+                            Width="340" Height="60" 
+                            Click="btnCerrarSesion_Click" 
+                            MouseEnter="BotonAdmin_MouseEnter" 
+                            MouseLeave="BotonAdmin_MouseLeave">
                         <StackPanel Orientation="Horizontal"  Width="320">
-                            <Image  Width="60" Height="50" Margin="0" Source="/Assets/CerrarSesion.png" Cursor="" />
+                            <Image Width="50" Height="50" Source="/Assets/CerrarSesion.png" Cursor="" />
                             <Label Content="Cerrar Sesion" Foreground="White" FontSize="27"></Label>
                         </StackPanel>
                     </Button>
                 </StackPanel>
             </Grid>
-
             <Rectangle DockPanel.Dock="Bottom" Fill="#0B5563" Height="60" MinWidth="450"/>
 
             <Frame Name="frContent" NavigationUIVisibility="Hidden"/>

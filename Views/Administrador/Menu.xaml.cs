@@ -96,7 +96,7 @@ namespace Rapid_Plus.Views.Administrador
 
             }
 
-            if (string.IsNullOrEmpty(cmbEstado.Text))
+            if (string.IsNullOrEmpty(cmbEstado.Text) && idEstado == 0)
             {
                 estado = false;
                 msj = "Estado Platillo\n";
@@ -249,6 +249,7 @@ namespace Rapid_Plus.Views.Administrador
 
             LimpiarFormulario();
 
+            idEstado = 1;
             cmbEstado.IsEnabled = false;
             dgPlatillo.IsEnabled = false;
             agregar = true;
@@ -282,6 +283,7 @@ namespace Rapid_Plus.Views.Administrador
                 MessageBoxImage.Question) == MessageBoxResult.Yes
                     ) 
                 {
+                    idEstado = 0;
                     if (PlatilloController.EliminarPlatillo(idPlatillo, idEstado) > -1) 
                     {
                         MessageBox.Show("Registro eliminado correctamente", "Validacion",
@@ -318,15 +320,16 @@ namespace Rapid_Plus.Views.Administrador
                 platillo.Descripcion = txtDescripicion.Text;
                 platillo.CategoriaId = (int)cmbCategoria.SelectedValue;
                 platillo.Precio = Convert.ToDecimal(txtPrecio.Text);
-                platillo.EstadoId = (int)cmbEstado.SelectedValue;
 
                 if (agregar)
                 {
-                    idPlatillo = PlatilloController.AgregarPlatillo(platillo);
+                    idEstado = 1;
+                    idPlatillo = PlatilloController.AgregarPlatillo(platillo, idEstado);
                     msj = "Insercion correctamente";
                 }
                 else 
                 {
+                    platillo.EstadoId = (int)cmbEstado.SelectedValue;
                     idPlatillo = PlatilloController.EditarPlatillo(platillo, idPlatillo);
                     msj = "Actualizacion correctamente";
                 }
@@ -346,6 +349,7 @@ namespace Rapid_Plus.Views.Administrador
                     HabilitarFormulario(false);
 
                     ControlFormulario();
+                    dgPlatillo.IsEnabled = true;
                 }
 
                 MostrarMenu();
@@ -381,6 +385,8 @@ namespace Rapid_Plus.Views.Administrador
                 editar=false;
 
                 ControlFormulario();
+                dgPlatillo.IsEnabled = true;
+
             }
         }
 

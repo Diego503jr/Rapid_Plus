@@ -56,7 +56,7 @@ namespace Rapid_Plus.Controllers
         }
 
         //Crear Mesa
-        public static int CrearMesa(MesasModel mesa) 
+        public static int CrearMesa(MesasModel mesa, int idEstado) 
         {
             int res = -1;
 
@@ -71,7 +71,7 @@ namespace Rapid_Plus.Controllers
                         command.CommandText = "SPCREARMESA";
 
                         command.Parameters.AddWithValue("@Mesa", mesa.Mesa);
-                        command.Parameters.AddWithValue("@IdEstado", 1);
+                        command.Parameters.AddWithValue("@IdEstado", idEstado);
 
                         res = command.ExecuteNonQuery();
 

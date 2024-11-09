@@ -84,7 +84,7 @@ namespace Rapid_Plus.Controllers
         }
 
         //Crear Usuario
-        public static int CrearUsuario(UsuarioModel user) 
+        public static int CrearUsuario(UsuarioModel user, int idEstado) 
         {
             int res = -1;
             try
@@ -106,7 +106,7 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@DUI", user.DUI);
                         command.Parameters.AddWithValue("@IdSexo", user.SexoId);
                         command.Parameters.AddWithValue("@FechaNacimiento", user.FechaNacimiento);
-                        command.Parameters.AddWithValue("@IdEstado", 1);
+                        command.Parameters.AddWithValue("@IdEstado", idEstado);
                         command.Parameters.AddWithValue("@Telefono1", user.Telefono1);
                         command.Parameters.AddWithValue("@Telefono2", user.Telefono2);
 

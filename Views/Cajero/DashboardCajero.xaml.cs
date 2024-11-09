@@ -35,8 +35,6 @@ namespace Rapid_Plus.Views.Cajero
         private CrearOrden crearOrden;
         GestionClientes clientes = new GestionClientes();
 
-        //Prueba Ordenes Admin
-        VerOrdenesT ordenesFinal = new VerOrdenesT();
         #endregion
 
 
@@ -45,8 +43,6 @@ namespace Rapid_Plus.Views.Cajero
         {
             Close();
         }
-
-       
 
         private void btnFacturar_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -80,6 +76,7 @@ namespace Rapid_Plus.Views.Cajero
         {
             frContent.NavigationService.Navigate(clientes);
         }
+
         private void btnCrearOrden_Click(object sender, RoutedEventArgs e)
         {
             frContent.NavigationService.Navigate(crearOrden);
@@ -94,13 +91,6 @@ namespace Rapid_Plus.Views.Cajero
         {
             frContent.NavigationService.Navigate(tomarOrden);
         }
-
-        //Prueba de Funcionamiento, Ver Orden Admin
-        private void btnOrdenesFinal_Click(object sender, RoutedEventArgs e)
-        {
-            frContent.NavigationService.Navigate(ordenesFinal);
-        }
-
 
         //Colocamos la factura para inicializar al entrar a Cajero
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -123,7 +113,6 @@ namespace Rapid_Plus.Views.Cajero
             }
 
         }
-
 
         #endregion
 

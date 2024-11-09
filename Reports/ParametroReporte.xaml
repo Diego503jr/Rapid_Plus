@@ -17,7 +17,7 @@
            HorizontalAlignment="Left" Margin="215,41,0,0" 
            VerticalAlignment="Top" FontSize="26" Height="42"/>
         <GroupBox Header="Valores Generales"
-              materialDesign:ColorZoneAssist.Background="#A2BCE0"
+              materialDesign:ColorZoneAssist.Background="#5299D3"
               materialDesign:ColorZoneAssist.Foreground="White"
               materialDesign:ColorZoneAssist.Mode="Custom"
               FontSize="20"

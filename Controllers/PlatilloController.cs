@@ -60,7 +60,7 @@ namespace Rapid_Plus.Controllers
         }
 
         //Crear Platillos
-        public static int AgregarPlatillo(PlatilloModel platillo) 
+        public static int AgregarPlatillo(PlatilloModel platillo, int idEstado) 
         {
             int res = -1;
 
@@ -78,7 +78,7 @@ namespace Rapid_Plus.Controllers
                         command.Parameters.AddWithValue("@Descripcion", platillo.Descripcion);
                         command.Parameters.AddWithValue("@IdCategoria", platillo.CategoriaId);
                         command.Parameters.AddWithValue("@Precio", platillo.Precio);
-                        command.Parameters.AddWithValue("@IdEstado", 1);
+                        command.Parameters.AddWithValue("@IdEstado", idEstado);
 
                         res = command.ExecuteNonQuery();
 

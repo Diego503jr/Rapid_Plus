@@ -17,7 +17,6 @@
             <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"/>
             <ComboBox Name="cmbMesa" Width="80" FontSize="20" Margin="0,0,20,0"/>
             <Button x:Name="btnBuscar" BorderBrush="{x:Null}" Background="#A2BCE0" Content="Buscar" FontSize="18" Click="btnBuscar_Click" Width="91" Margin="0,0,10,0"/>
-            <Button x:Name="btnActualizar" BorderBrush="{x:Null}" Background="#A2BCE0" Content="Refrescar" FontSize="18" Width="115" Click="btnActualizar_Click"/>
         </StackPanel>
 
 
@@ -47,7 +46,7 @@
         <Label Content="TOTAL" HorizontalAlignment="Left" Margin="50,632,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="50,680,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="50,725,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
-        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,672,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="34" TextChanged="txtRecibido_TextChanged" PreviewTextInput="txtRecibido_PreviewTextInput"/>
+        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,672,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="34" TextChanged="txtRecibido_TextChanged"/>
         <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="186,632,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="207,725,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnRealizar" 

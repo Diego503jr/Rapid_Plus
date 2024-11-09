@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Rapid_Plus.Controllers;
 using Rapid_Plus.Models;
 using Rapid_Plus.Models.Mesero;
@@ -24,13 +25,28 @@ namespace Rapid_Plus.Views.Cajero
     /// </summary>
     public partial class FacturarOrden : Page
     {
+        private DispatcherTimer timer;
+
         public FacturarOrden()
         {
             InitializeComponent();
-           
+            IniciarTemporizador();
         }
 
         #region METODOS PERSONALIZADOS
+
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            CargarNumeroMesa();
+        }
 
         void MostrarOrdenesMesa()
         {
@@ -75,8 +91,6 @@ namespace Rapid_Plus.Views.Cajero
             cmbMesa.DisplayMemberPath = "Mesa"; // Mostrar el número de mesa
             cmbMesa.SelectedValuePath = "Mesa";
         }
-
-        
 
         #endregion
 
@@ -181,20 +195,7 @@ namespace Rapid_Plus.Views.Cajero
             MostrarOrdenesMesa();
         }
 
-        private void btnActualizar_Click(object sender, RoutedEventArgs e)
-        {
-            CargarNumeroMesa();
-            MessageBox.Show("Página Actualizada", "Confirmación", MessageBoxButton.OK, MessageBoxImage.Information);
-            LimpiarFormulario();
-
-        }
-
-
         #endregion
 
-        private void txtRecibido_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.Text, 0);
-        }
     }
 }
