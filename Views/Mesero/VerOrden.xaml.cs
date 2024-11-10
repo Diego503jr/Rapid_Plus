@@ -29,16 +29,12 @@ namespace Rapid_Plus.Views.Mesero
            
         }
 
-        #region DECLARACION DE VARIABLES LOCALES
-        int IdEstadoOrden = -1;
-        #endregion
-
-
         #region MÉTODOS PERSONALIZADOS
         //Lista las ordenes en un datagrid
         void MostrarOrdenes()
         {
-            dgOrdenes.DataContext = OrdenController.MostrarOrdenes();
+            int idEstadoOrden = 0; //Estado pendiente
+            dgOrdenes.DataContext = OrdenController.MostrarOrdenes(idEstadoOrden);
         }
         #endregion
 

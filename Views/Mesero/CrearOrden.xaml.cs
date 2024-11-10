@@ -69,7 +69,7 @@ namespace Rapid_Plus.Views.Mesero
         }
 
         //Validar campos llenos
-        private bool ValidarFomrulario()
+        private bool ValidarFormulario()
         {
             bool estado = true;
             string mensaje = null;
@@ -141,6 +141,11 @@ namespace Rapid_Plus.Views.Mesero
             MostrarClientes();
             
         }
+        private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
 
         //Obtiene datos de registro en datagrid
         private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -195,7 +200,7 @@ namespace Rapid_Plus.Views.Mesero
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
-            if (ValidarFomrulario())
+            if (ValidarFormulario())
             {
                 OrdenesModel orden = new OrdenesModel();
                 DateTime fecha = DateTime.Now; //Fecha y hora actual
@@ -212,6 +217,8 @@ namespace Rapid_Plus.Views.Mesero
                 if (idOrden > 0)
                 {
                     LimpiarObjetos();
+                    agregando = false;
+                    ControlAcciones(agregando);
                     MessageBox.Show(mensaje, "Validación de formulario", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
@@ -231,10 +238,6 @@ namespace Rapid_Plus.Views.Mesero
 
         #endregion
 
-        private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo Texto
-            e.Handled = !char.IsLetter(e.Text, 0);
-        }
+       
     }
 }

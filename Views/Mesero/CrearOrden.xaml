@@ -31,7 +31,6 @@
         <ScrollViewer  VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="200" Margin="0,250,0,0" HorizontalAlignment="Center">
             <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" SelectionChanged="dgClientes_SelectionChanged" Background="{x:Null}" FontSize="16">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" CanUserResize="False" Binding="{Binding IdCliente}"/>
                     <DataGridTextColumn Header="Nombre" CanUserResize="False" Binding="{Binding NombreCliente}"/>
                     <DataGridTextColumn Header="Apellido" CanUserResize="False" Binding="{Binding ApellidoCliente}"/>
                 </DataGrid.Columns>
@@ -40,7 +39,7 @@
 
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,60">
             <Button Name="btnCrear"    Height="40" Width="100" Content="Crear"    BorderBrush="{x:Null}" FontSize="18" Margin="0,0,0,0"  Background="#A2BCE0"   Click="btnCrear_Click"></Button>
-            <Button Name="btnGuardar"  Height="40" Width="100" Content="Guardar"  BorderBrush="{x:Null}" FontSize="18" Margin="40,0,0,0" Background="#0B5563" Click="btnGuardar_Click"  ></Button>
+            <Button Name="btnGuardar"  Height="40" Width="100" Content="Guardar"  BorderBrush="{x:Null}" FontSize="18" Margin="150,0,0,0" Background="#0B5563" Click="btnGuardar_Click"  ></Button>
             <Button Name="btnCancelar" Height="40" Width="100" Content="Cancelar" BorderBrush="{x:Null}" FontSize="18" Margin="40,0,0,0" Background="#FFD63C3C" Click="btnCancelar_Click"></Button>
         </StackPanel>
         

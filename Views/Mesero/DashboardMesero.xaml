@@ -28,8 +28,8 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
-                        <Rectangle Width="10" Height="60" Fill="#0B5563"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" >
+                        <Rectangle Width="10" Height="60" Fill="#0B5563" />
                         <Button Name="btnCrear" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnTomarOrden_Click" MouseEnter="BotonMesero_MouseEnter" MouseLeave="BotonMesero_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/AgregarOrden.png" />

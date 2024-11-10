@@ -44,7 +44,7 @@ namespace Rapid_Plus.Views.Mesero
         }
 
         //Validacion de campos completos
-        private bool ValidarFomrulario()
+        private bool ValidarFormulario()
         {
             bool estado = true;
             string mensaje = null;
@@ -150,7 +150,6 @@ namespace Rapid_Plus.Views.Mesero
         }
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-
             //Editand
             agregando = false;
             editando = true;
@@ -161,7 +160,7 @@ namespace Rapid_Plus.Views.Mesero
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
-            if (ValidarFomrulario())
+            if (ValidarFormulario())
             {
 
                 //Obtiene datos del cliente

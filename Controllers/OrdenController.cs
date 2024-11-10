@@ -40,7 +40,7 @@ namespace Rapid_Plus.Controllers
                         res = command.ExecuteNonQuery();
                         if (res <= 0)
                         {
-                            throw new Exception("No fue posible crear la orden.");
+                            throw new Exception("El cliente ha sido asignado a otra mesa.");
                         }
                     }
                 }

@@ -123,7 +123,7 @@ namespace Rapid_Plus.Views.Mesero
         }
 
         //Valida campos completos del formulario
-        private bool ValidarFomrulario()
+        private bool ValidarFormulario()
         {
             bool estado = true;
             string mensaje = null;
@@ -217,26 +217,7 @@ namespace Rapid_Plus.Views.Mesero
 
         }
 
-        //Muestra elementos según mesa seleccionada
-        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            idMesa = IdMesa();
-            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
-            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
-
-            if (detalle != null)
-            {
-                OrdenController.MostrarOrdenesPorMesa(idMesa);
-                dgOrdenes.DataContext = ordenes;
-
-                txbOrden.Text = detalle.IdOrden.ToString();
-                txbEstado.Text = detalle.EstadoOrden;
-            }
-            else
-            {
-                txbOrden.Text = string.Empty;
-            }
-        }
+       
 
         //Muestra elementos según categoria de platillo seleccionada
         private void cmbPlatillo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -301,7 +282,7 @@ namespace Rapid_Plus.Views.Mesero
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
-            if (ValidarFomrulario())
+            if (ValidarFormulario())
             {
                 DetalleOrdenModel detalle = new DetalleOrdenModel();
                 detalle.IdOrden = Convert.ToInt32(txbOrden.Text);
@@ -341,33 +322,25 @@ namespace Rapid_Plus.Views.Mesero
 
             }
         }
-        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        //Muestra elementos según mesa seleccionada
+        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Editando
-            agregando = false;
-            editando = true;
-            //Método para activar y desactivar campos y botones
-            ControlAcciones();
+            idMesa = IdMesa();
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
 
-        }
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (detalle != null)
             {
-                LimpiarObjetos();
-                agregando = false;
-                editando = false;
-                ControlAcciones();
-                
+                dgOrdenes.DataContext = ordenes;
+
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
+            }
+            else
+            {
+                txbOrden.Text = string.Empty;
             }
         }
-
-        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo números
-            e.Handled = !char.IsDigit(e.Text, 0);
-        }
-
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (idDetalleOrden > 0 && idOrden > 0 && idPlatilloOrden != -1)
@@ -399,6 +372,34 @@ namespace Rapid_Plus.Views.Mesero
                 ControlAcciones();
             }
         }
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            //Editando
+            agregando = false;
+            editando = true;
+            //Método para activar y desactivar campos y botones
+            ControlAcciones();
+
+        }
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                LimpiarObjetos();
+                agregando = false;
+                editando = false;
+                ControlAcciones();
+                
+            }
+        }
+
+        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
+
+        
         #endregion
 
 

@@ -65,7 +65,7 @@
             <Button Name="btnNuevo"    Width="100" FontSize="18" Content="Crear"    Height="40"  HorizontalAlignment="Left"   Margin="0,0,0,0"  BorderBrush="{x:Null}" Background="#A2BCE0"   Click="btnNuevo_Click" />
             <Button Name="btnEditar"   Width="100" FontSize="18" Content="Editar"   Height="40"  HorizontalAlignment="Center" Margin="40,0,0,0" BorderBrush="{x:Null}" Background="#A2BCE0" Click="btnEditar_Click"   />
             <Button Name="btnEliminar" Width="100" FontSize="18" Content="Eliminar" Height="40"  HorizontalAlignment="Right"  Margin="40,0,0,0" BorderBrush="{x:Null}" Background="#A2BCE0" Click="btnEliminar_Click"   />
-            <Button Name="btnGuardar"  Width="100" FontSize="18" Content="Guardar"  Height= "40" HorizontalAlignment="Left"   Margin="90,0,0,0" BorderBrush="{x:Null}" Background="#0B5563" Click="btnGuardar_Click"   />
+            <Button Name="btnGuardar"  Width="100" FontSize="18" Content="Guardar"  Height= "40" HorizontalAlignment="Left"   Margin="150,0,0,0" BorderBrush="{x:Null}" Background="#0B5563" Click="btnGuardar_Click"   />
             <Button Name="btnCancelar" Width="100" FontSize="18" Content="Cancelar" Height="40"  HorizontalAlignment="Right"  Margin="40,0,0,0" BorderBrush="{x:Null}" Background="#FFD63C3C" Click="btnCancelar_Click"/>
         </StackPanel>
     </Grid>
