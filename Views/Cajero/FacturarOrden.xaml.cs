@@ -79,10 +79,7 @@ namespace Rapid_Plus.Views.Cajero
                     LimpiarFormulario();
                 }
             }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione una mesa válida.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+           
         }
 
         private void CargarNumeroMesa()
@@ -179,6 +176,7 @@ namespace Rapid_Plus.Views.Cajero
 
                     //Mandamos a limpiar la pestaña
                     LimpiarFormulario();
+                    MostrarOrdenesMesa();
                 }
             }
 
@@ -190,12 +188,20 @@ namespace Rapid_Plus.Views.Cajero
             LimpiarFormulario();
         }
 
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+
+        #endregion
+
+        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MostrarOrdenesMesa();
         }
 
-        #endregion
-
+        private void cmbMesa_DropDownOpened(object sender, EventArgs e)
+        {
+            if (cmbMesa.Items.Count == 0)
+            {
+                MessageBox.Show("No hay mesas disponibles", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
     }
 }
