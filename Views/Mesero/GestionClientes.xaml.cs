@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Mesero
 {
@@ -26,11 +27,13 @@ namespace Rapid_Plus.Views.Mesero
         public GestionClientes()
         {
             InitializeComponent();
+            IniciarTemporizador();
         }
 
         #region DECLARACIÓN DE VARIABLES LOCALES
         private int idCliente = -1;
         private bool agregando = false, editando = false;
+        private DispatcherTimer timer;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
@@ -88,11 +91,20 @@ namespace Rapid_Plus.Views.Mesero
             dgClientes.IsEnabled = editando;
         }
 
+        //Temporizador para refrescar
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+
         #endregion
 
         #region EVENTOS
 
-        //Busqueda de cliente
+        //Busqueda de cliente 'Filtro'
         private void txtFiltro_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dgClientes.ItemsSource).Filter = item =>
@@ -111,7 +123,7 @@ namespace Rapid_Plus.Views.Mesero
             CollectionViewSource.GetDefaultView(dgClientes.ItemsSource).Refresh();
         }
 
-        //Selección de registro en datagrid
+        //Selección de registro de cliente en datagrid
         private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClienteModel cliente = (ClienteModel)dgClientes.SelectedItem;
@@ -134,40 +146,62 @@ namespace Rapid_Plus.Views.Mesero
             ControlAcciones();
         }
 
+        //VALIDACIONES DE INGRESO EN TEXTBOXS
+        private void txtNombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        private void txtApellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo Texto
+            e.Handled = !char.IsLetter(e.Text, 0);
+        }
+
+        //Refrescar página
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarClientes();
+        }
+
         //Acciones con botones
+        #region BOTONES
+        //Crear un nuevo cliente
         private void btnCrear_Click(object sender, RoutedEventArgs e)
         {
-            //Limpia campos
             txtNombre.Clear();
             txtApellido.Clear();
 
             //Agregando
             agregando = true;
             editando = false;
-
-            //Método para activar y desactivar campos y botones
             ControlAcciones();
         }
+        //Editar cliente
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            //Editand
+            //Editando
             agregando = false;
             editando = true;
-
-            //Método para activar y desactivar campos y botones
             ControlAcciones();
         }
+        //Guardar cliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
             if (ValidarFormulario())
             {
-
                 //Obtiene datos del cliente
                 ClienteModel cliente = new ClienteModel();
                 cliente.NombreCliente = txtNombre.Text;
                 cliente.ApellidoCliente = txtApellido.Text;
-
 
                 //Verifica si se está editando o agregando registro y llamada al método correspondiente
                 if (agregando)
@@ -203,37 +237,19 @@ namespace Rapid_Plus.Views.Mesero
 
             }
         }
-
-        //VALIDACIONES DE INGRESO EN TEXTBOXS
-        private void txtNombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo Texto
-            e.Handled = !char.IsLetter(e.Text, 0);
-        }
-
-        private void txtApellido_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo Texto
-            e.Handled = !char.IsLetter(e.Text, 0);
-        }
-
-        private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo Texto
-            e.Handled = !char.IsLetter(e.Text, 0);
-        }
-
+        //Cancelar operación
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 LimpiarObjetos();
-
                 agregando = false;
                 editando = false;
                 ControlAcciones();
             }
         }
+        #endregion
+       
         #endregion
     }
 }

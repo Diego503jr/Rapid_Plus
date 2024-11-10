@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Mesero
 {
@@ -29,23 +30,25 @@ namespace Rapid_Plus.Views.Mesero
         public TomarOrden()
         {
             InitializeComponent();
-
+            
         }
 
         #region VARIABLES LOCALES
-        int idMesa = -1;
-        int idOrden = -1;
-        int idplatillo = -1;
-        int idPlatilloOrden = -1; //Para datagrid platillos por orden
-        int idCategoria = -1;
-        int idDetalleOrden = -1;
-        bool agregando = false, editando = false;
+        private int idMesa = -1;
+        private int idOrden = -1;
+        private int idplatillo = -1; //Datagrid de platillos
+        private int idPlatilloOrden = -1; //Para datagrid platillos por orden
+        private int idCategoria = -1;
+        private int idDetalleOrden = -1;
+        private bool agregando = false, editando = false;
+        private DispatcherTimer timer;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
         //Muestra mesas asignadas (ocupadas)
-        private void CargarNumeroMesa()
+        private int CargarNumeroMesa()
         {
+            int numMesas = -1;
             using (var conDb = new SqlConnection(Properties.Settings.Default.DbRapidPlus))
             {
                 conDb.Open();
@@ -59,12 +62,15 @@ namespace Rapid_Plus.Views.Mesero
                     }
 
                     cmbMesa.ItemsSource = mesas;
+                    numMesas = mesas.Count;
                 }
             }
 
             //Define que campos mostrar
             cmbMesa.DisplayMemberPath = "Mesa";
             cmbMesa.SelectedValuePath = "Id";
+
+            return numMesas;
         }
 
         //Muestra categorías de platillos
@@ -217,8 +223,6 @@ namespace Rapid_Plus.Views.Mesero
 
         }
 
-       
-
         //Muestra elementos según categoria de platillo seleccionada
         private void cmbPlatillo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -239,6 +243,27 @@ namespace Rapid_Plus.Views.Mesero
             
         }
 
+        //Muestra elementos según mesa seleccionada
+        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            idMesa = IdMesa();
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
+
+            if (detalle != null)
+            {
+                dgOrdenes.DataContext = ordenes;
+
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
+            }
+            else
+            {
+                txbOrden.Text = string.Empty;
+            }
+        }
+
+
         //Obtiene información de registros seleccionados
         private void dgPlatillos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -251,6 +276,7 @@ namespace Rapid_Plus.Views.Mesero
             idplatillo = platillo.PlatilloId;
 
         }
+
         private void dgOrdenes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OrdenesModel ordenes = (OrdenesModel)dgOrdenes.SelectedItem;
@@ -266,19 +292,37 @@ namespace Rapid_Plus.Views.Mesero
             idOrden = ordenes.IdOrden;
         }
 
+        //Evento se activa al desplegar el combobox, verifica si no existen elementos
+        private void cmbMesa_DropDownOpened(object sender, EventArgs e)
+        {
+            //Si no existen elementos en el combobox
+            if (CargarNumeroMesa() <= 0)
+            {
+                MessageBox.Show("No hay mesas asignadas", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        //Valida que el ingreso sea solo texto
+        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Validación para poder ingresar solo números
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
         //BOTONES
+        #region BOTONES
+        //Nuevo detalleOrden
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             //Agregando
             agregando = true;
             editando = false;
-
-            //Método para activar y desactivar campos y botones
             ControlAcciones();
             txtCantidad.Clear();
             dgOrdenes.SelectedIndex = -1;
             txbPlatillo.Text = null;
         }
+
+        //Guardar el detalle de la orden
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
@@ -291,6 +335,7 @@ namespace Rapid_Plus.Views.Mesero
                 detalle.IdPlatillo = idplatillo;
                 detalle.IdPlatilloOrden = idPlatilloOrden;
 
+                //Verifica si se está agregando o editando
                 if (agregando)
                 {
                     agregando = false;
@@ -322,27 +367,21 @@ namespace Rapid_Plus.Views.Mesero
 
             }
         }
-        //Muestra elementos según mesa seleccionada
-        private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+        //Actualiza los datos de un detalle de orden
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            idMesa = IdMesa();
-            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
-            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
+            //Editando
+            agregando = false;
+            editando = true;
+            ControlAcciones();
 
-            if (detalle != null)
-            {
-                dgOrdenes.DataContext = ordenes;
-
-                txbOrden.Text = detalle.IdOrden.ToString();
-                txbEstado.Text = detalle.EstadoOrden;
-            }
-            else
-            {
-                txbOrden.Text = string.Empty;
-            }
         }
+
+        //Elimina un detalle de orden
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            //Verifica que los campos estén completos para eliminar
             if (idDetalleOrden > 0 && idOrden > 0 && idPlatilloOrden != -1)
             {
                 if (MessageBox.Show("¿Desea eliminar el detalle de la orden?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -372,15 +411,8 @@ namespace Rapid_Plus.Views.Mesero
                 ControlAcciones();
             }
         }
-        private void btnEditar_Click(object sender, RoutedEventArgs e)
-        {
-            //Editando
-            agregando = false;
-            editando = true;
-            //Método para activar y desactivar campos y botones
-            ControlAcciones();
-
-        }
+       
+        //Cancela la operación
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -392,14 +424,8 @@ namespace Rapid_Plus.Views.Mesero
                 
             }
         }
+        #endregion
 
-        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Validación para poder ingresar solo números
-            e.Handled = !char.IsDigit(e.Text, 0);
-        }
-
-        
         #endregion
 
 

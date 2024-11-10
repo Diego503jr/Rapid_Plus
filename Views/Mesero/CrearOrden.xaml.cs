@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Mesero
 {
@@ -29,14 +30,16 @@ namespace Rapid_Plus.Views.Mesero
         {
             InitializeComponent();
             //Usuario logueado para crear orden
-            usuarioId = usuarioID; 
+            usuarioId = usuarioID;
+            IniciarTemporizador();
         }
 
         #region Declaracion de variables locales
         private int idOrden = 0;
         private int idCliente = -1;
-        int usuarioId;
-        bool agregando = false;
+        private int usuarioId;
+        private bool agregando = false;
+        private DispatcherTimer timer;
         #endregion
 
         #region MÉTODOS PERSONALIZADOS
@@ -56,6 +59,7 @@ namespace Rapid_Plus.Views.Mesero
                         mesas.Add(new { Id = dr.GetInt32(0), Mesa = dr.GetInt32(1) }); 
                     }
 
+                    //Cuenta la cantidad de elementos (mesas) encontrados 
                     cmbMesa.ItemsSource = mesas;
                     numMesas = mesas.Count;
                 }
@@ -127,11 +131,20 @@ namespace Rapid_Plus.Views.Mesero
            
         }
 
+        //Temporizador para refrescar
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+
         #endregion
 
         #region EVENTOS
 
-        //Cargas por defecto
+        //Cargas por 'defecto'
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             agregando = false;
@@ -141,6 +154,7 @@ namespace Rapid_Plus.Views.Mesero
             MostrarClientes();
             
         }
+        //Validar que solo se ingrese texto en los combobox
         private void txtFiltro_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Validación para poder ingresar solo Texto
@@ -170,7 +184,7 @@ namespace Rapid_Plus.Views.Mesero
             }
         }
        
-        //Busqueda de cliente
+        //Búsqueda de cliente (Filtro)
         private void txtFiltro_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dgClientes.ItemsSource).Filter = item =>
@@ -189,14 +203,24 @@ namespace Rapid_Plus.Views.Mesero
             CollectionViewSource.GetDefaultView(dgClientes.ItemsSource).Refresh();
         }
 
+        //Refrescar página
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarClientes();
+        }
 
+        //BOTONES
+        #region BOTONES
         //Acciones con botones
+        //Crear Orden
         private void btnCrear_Click(object sender, RoutedEventArgs e)
         {
             agregando = true;
             LimpiarObjetos();
             ControlAcciones(agregando);
         }
+
+        //Guardar la creación de la orden
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             string mensaje = null;
@@ -224,6 +248,8 @@ namespace Rapid_Plus.Views.Mesero
 
             }
         }
+
+        //Cancela la operación
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Desea cancelar la operación", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -233,11 +259,10 @@ namespace Rapid_Plus.Views.Mesero
                 ControlAcciones(agregando);
             }
         }
-
-
+        #endregion
 
         #endregion
 
-       
+
     }
 }

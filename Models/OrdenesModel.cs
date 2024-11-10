@@ -28,7 +28,6 @@ namespace Rapid_Plus.Models.Mesero
         public int Cantidad { get; set; }
         public string EstadoOrden { get; set; }
         public string NombreUsuario { get; set; }
-        public int IdPlatillo { get; set; }
 
 
         //ATRIBUTOS PARA CAJERO

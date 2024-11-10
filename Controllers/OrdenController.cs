@@ -54,7 +54,7 @@ namespace Rapid_Plus.Controllers
             return res;
         }
 
-        //MOSTRAR LISTADO DE ORDENES FILTRANDO POR ESTADO
+        //MOSTRAR LISTADO DE ORDENES FILTRANDO POR ESTADO (LISTO/ PENDIENTE/ CANCELADO)
         public static List<OrdenesModel> MostrarOrdenes(int? IdEstado = null)
         {
             List<OrdenesModel> lstOrdenes = new List<OrdenesModel>();
