@@ -32,6 +32,7 @@ namespace Rapid_Plus.Views.Mesero
         public DashboardMesero(int usuarioId)
         {
             InitializeComponent();
+            //Id de Usuario logueado
             crearOrden = new CrearOrden(usuarioId);
         }
 
@@ -108,9 +109,6 @@ namespace Rapid_Plus.Views.Mesero
         {
             frContent.NavigationService.Navigate(verOrden);
         }
-
-
-
         #endregion
 
        

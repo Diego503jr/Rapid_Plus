@@ -14,36 +14,6 @@ namespace Rapid_Plus.Controllers
     {
         private static string conexion = Properties.Settings.Default.DbRapidPlus;
 
-        //OBTENER ESTADO Y NÚMERO DE ORDEN
-        public static DetalleOrdenModel ObtenerDetalleOrden(int idMesa)
-        {
-            DetalleOrdenModel detalle = null;
-
-            using (var conDb = new SqlConnection(conexion))
-            {
-                conDb.Open();
-
-                using (var command = conDb.CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "SPOBTENERDETALLEORDEN";
-                    command.Parameters.AddWithValue("@IDMESA", idMesa);
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            detalle = new DetalleOrdenModel
-                            {
-                                IdOrden = reader.GetInt32(reader.GetOrdinal("IDORDEN")),
-                                EstadoOrden = reader.GetString(reader.GetOrdinal("ESTADOORDEN"))
-                            };
-                        }
-                    }
-                }
-            }
-
-            return detalle;
-        }
 
         //AGREGAR PLATILLOS A LA ORDEN
         public static int CrearDetalleOrden(DetalleOrdenModel detalle)
@@ -90,6 +60,36 @@ namespace Rapid_Plus.Controllers
             }
 
             return res;
+        }
+        //MOSTRAR ESTADO Y NÚMERO DE ORDEN
+        public static DetalleOrdenModel ObtenerDetalleOrden(int idMesa)
+        {
+            DetalleOrdenModel detalle = null;
+
+            using (var conDb = new SqlConnection(conexion))
+            {
+                conDb.Open();
+
+                using (var command = conDb.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "SPOBTENERDETALLEORDEN";
+                    command.Parameters.AddWithValue("@IDMESA", idMesa);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            detalle = new DetalleOrdenModel
+                            {
+                                IdOrden = reader.GetInt32(reader.GetOrdinal("IDORDEN")),
+                                EstadoOrden = reader.GetString(reader.GetOrdinal("ESTADOORDEN"))
+                            };
+                        }
+                    }
+                }
+            }
+
+            return detalle;
         }
 
         //ACTUALIZAR CANTIDAD DE PLATILLO

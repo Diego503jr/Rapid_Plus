@@ -13,7 +13,7 @@
         <GroupBox Height="200" Header="Gestión de Clientes" Margin="100,50" VerticalAlignment="Top" materialDesign:ColorZoneAssist.Background="#A2BCE0"
             materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"
             FontSize="20" Style="{StaticResource MaterialDesignGroupBox}" Width="750">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Height="55" HorizontalAlignment="Center" Margin="0,35">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="650" Margin="0,0,0,30" Height="55" HorizontalAlignment="Center" >
                 <TextBox Name="txtNombre"   Width="300" Margin="0,0,55,0" FontSize="20" materialDesign:HintAssist.Hint="Nombre Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="txtNombre_PreviewTextInput"/>
                 <TextBox Name="txtApellido" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Apellido Cliente" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="txtApellido_PreviewTextInput"/>
             </StackPanel>
@@ -25,7 +25,6 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" Width="400" Height="275" Margin="0,200,0,0" HorizontalAlignment="Center">
             <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Background="{x:Null}" FontSize="16" SelectionChanged="dgClientes_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id"       CanUserResize="False" Binding="{Binding IdCliente}"/>
                     <DataGridTextColumn Header="Nombre"   CanUserResize="False" Binding="{Binding NombreCliente}"/>
                     <DataGridTextColumn Header="Apellido" CanUserResize="False" Binding="{Binding ApellidoCliente}"/>
                 </DataGrid.Columns>
@@ -35,7 +34,7 @@
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,60">
             <Button Name="btnCrear"    Content="Crear"    Width="100" BorderBrush="{x:Null}" Height="40" Margin="0,0,0,0"  FontSize="18" Background="#A2BCE0"   Click="btnCrear_Click" ></Button>
             <Button Name="btnEditar"   Content="Editar"   Width="100" BorderBrush="{x:Null}" Height="40" Margin="40,0,0,0" FontSize="18" Background="#A2BCE0"   Click="btnEditar_Click" ></Button>
-            <Button Name="btnGuardar"  Content="Guardar"  Width="100" BorderBrush="{x:Null}" Height="40" Margin="90,0,0,0" FontSize="18" Background="#0B5563"   Click="btnGuardar_Click" ></Button>
+            <Button Name="btnGuardar"  Content="Guardar"  Width="100" BorderBrush="{x:Null}" Height="40" Margin="150,0,0,0" FontSize="18" Background="#0B5563"   Click="btnGuardar_Click" ></Button>
             <Button Name="btnCancelar" Content="Cancelar" Width="100" BorderBrush="{x:Null}" Height="40" Margin="40,0,0,0" FontSize="18" Background="#FFD63C3C" Click="btnCancelar_Click" ></Button>
         </StackPanel>
 
