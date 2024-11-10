@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Rapid_Plus.Views.Mesero
 {
@@ -26,29 +27,43 @@ namespace Rapid_Plus.Views.Mesero
         public VerOrden()
         {
             InitializeComponent();
-           
+            IniciarTemporizador();
         }
 
-        #region DECLARACION DE VARIABLES LOCALES
-        int IdEstadoOrden = -1;
+        #region DECLARACIÓN DE VARIABLES LOCALES
+        private DispatcherTimer timer;
         #endregion
-
 
         #region MÉTODOS PERSONALIZADOS
         //Lista las ordenes en un datagrid
         void MostrarOrdenes()
         {
-            dgOrdenes.DataContext = OrdenController.MostrarOrdenes();
+            int idEstadoOrden = 0; //Estado pendiente
+            dgOrdenes.DataContext = OrdenController.MostrarOrdenes(idEstadoOrden);
         }
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+       
         #endregion
 
         #region EVENTOS
 
-        //Carga por defecto
+        //Carga por 'defecto'
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MostrarOrdenes();
            
+        }
+
+        //Refrescar página
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarOrdenes();
         }
 
     }
