@@ -31,6 +31,7 @@ namespace Rapid_Plus.Views.Cajero
         {
             InitializeComponent();
             IniciarTemporizador();
+            ActualizarEstadoControles(false);
         }
 
         #region METODOS PERSONALIZADOS
@@ -53,13 +54,13 @@ namespace Rapid_Plus.Views.Cajero
             // Verifica si el ComboBox tiene un valor seleccionado
             if (cmbMesa.SelectedValue != null)
             {
-                // Obtén el número de mesa a partir de SelectedValue
+                // Obtenemos el número de mesa a partir de SelectedValue
                 int numeroMesa = (int)cmbMesa.SelectedValue;
 
                 // Llama al procedimiento almacenado con el número de mesa seleccionado
                 var ordenes = CajeroController.MostrarOrdenPorMesa(numeroMesa);
 
-                // Verifica si hay órdenes y, si es así, las muestra
+               //Verifica si hay ordenes
                 if (ordenes.Count > 0)
                 {
                     dgOrdenes.ItemsSource = ordenes;
@@ -72,6 +73,7 @@ namespace Rapid_Plus.Views.Cajero
                     // Calcular el total
                     decimal total = ordenes.Sum(o => o.Subtotal);
                     txbTotal.Text = $"${total:F2}"; // Actualiza el TextBlock con el total
+                    ActualizarEstadoControles(true);
                 }
                 else
                 {
@@ -85,7 +87,7 @@ namespace Rapid_Plus.Views.Cajero
         private void CargarNumeroMesa()
         {
             cmbMesa.ItemsSource = CajeroController.ObtenerMesas();
-            cmbMesa.DisplayMemberPath = "Mesa"; // Mostrar el número de mesa
+            cmbMesa.DisplayMemberPath = "Mesa"; 
             cmbMesa.SelectedValuePath = "Mesa";
         }
 
@@ -131,15 +133,24 @@ namespace Rapid_Plus.Views.Cajero
         //Metodo para limpiar el formulario
         void LimpiarFormulario()
         {
-           
-            txbTotal.Text = string.Empty; // Limpia el contenido del TextBlock
-            dgOrdenes.ItemsSource = null; // Limpia el DataGrid
+
+            txbTotal.Text = string.Empty; 
+            dgOrdenes.ItemsSource = null; 
             cmbMesa.SelectedValue = null;
             txbCliente.Text = string.Empty;
             txbOrden.Text = string.Empty;
             txbUsuario.Text = string.Empty;
             txbDevolucion.Text = string.Empty;
             txtRecibido.Text = string.Empty;
+            ActualizarEstadoControles(false);
+        }
+
+        //Metodo para controlar los botones
+        private void ActualizarEstadoControles(bool habilitar)
+        {
+            btnRealizar.IsEnabled = habilitar;
+            btnCancelar.IsEnabled = habilitar;
+            txtRecibido.IsEnabled = habilitar;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -170,7 +181,7 @@ namespace Rapid_Plus.Views.Cajero
                 {
                     int idOrden = primeraOrden.IdOrden; // Obtén el IdOrden de la primera fila
 
-                    // Llama al método para cambiar el estado de la orden
+                   //Llamamos el metodo para cambiar el metodo
                     CajeroController.CambiarEstadoOrden(idOrden);
 
 
@@ -188,9 +199,6 @@ namespace Rapid_Plus.Views.Cajero
             LimpiarFormulario();
         }
 
-
-        #endregion
-
         private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MostrarOrdenesMesa();
@@ -203,5 +211,10 @@ namespace Rapid_Plus.Views.Cajero
                 MessageBox.Show("No hay mesas disponibles", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+
+
+        #endregion
+
+
     }
 }
