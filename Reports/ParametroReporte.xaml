@@ -13,7 +13,7 @@
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <Image HorizontalAlignment="Left" Height="100" Margin="50,15,0,0" VerticalAlignment="Top" Width="110" Source="/Assets/LogoN.png"/>
-        <Label Content="Reporte por fechas y categorias" 
+        <Label Content="Reporte por fechas o categorias" 
            HorizontalAlignment="Left" Margin="215,41,0,0" 
            VerticalAlignment="Top" FontSize="26" Height="42"/>
         <GroupBox Header="Valores Generales"
@@ -22,25 +22,22 @@
               materialDesign:ColorZoneAssist.Mode="Custom"
               FontSize="20"
               Margin="0,120,0,0" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel>
-                    <TextBlock Text="Seleccionar Fecha Inicio" HorizontalAlignment="Center" Margin="30,30"/>
-                    <DatePicker x:Name="dtpInicio" Width="150"/>
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Seleccionar Fecha Fin" HorizontalAlignment="Center" Margin="30,30"/>
-                    <DatePicker x:Name="dtpFin" Width="150"/>
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Seleccionar Categoria" HorizontalAlignment="Center" Margin="30,30"/>
-                    <ComboBox Name="cmbCategoria"  Width="150"/>
-                </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                <Button x:Name="btnReporteFecha"
+                 Background="#0B5563"
+                 BorderBrush="{x:Null}"
+                 Content="Imprimir Reporte por Fecha" HorizontalAlignment="Center" 
+                 VerticalAlignment="Top" FontSize="18" 
+                 Height="45" Margin="0,50,0,0" Click="btnReporteFecha_Click"/>
+
+                <Button x:Name="btnReporteCategoria"
+                 Background="#0B5563"
+                 BorderBrush="{x:Null}"
+                 Content="Imprimir Reporte por Categoria" HorizontalAlignment="Center" 
+                 VerticalAlignment="Top" FontSize="18" 
+                 Height="45" Click="btnReporteCategoria_Click" Margin="0,30,0,0"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGenerarReporte"
-            Background="#0B5563"
-            BorderBrush="{x:Null}"
-            Content="Imprimir Reporte" HorizontalAlignment="Left" 
-            Margin="306,350,0,0" VerticalAlignment="Top" FontSize="18" Height="45" Click="btnGenerarReporte_Click"/>
+       
     </Grid>
 </Window>

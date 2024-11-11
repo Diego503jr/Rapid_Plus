@@ -16,14 +16,14 @@ namespace Rapid_Plus.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class rptRapidPlus : ReportClass {
+    public class rptCategoria : ReportClass {
         
-        public rptRapidPlus() {
+        public rptCategoria() {
         }
         
         public override string ResourceName {
             get {
-                return "rptRapidPlus.rpt";
+                return "rptCategoria.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Rapid_Plus.Reports {
         
         public override string FullResourceName {
             get {
-                return "Rapid_Plus.Reports.rptRapidPlus.rpt";
+                return "Rapid_Plus.Reports.rptCategoria.rpt";
             }
             set {
                 // Do nothing
@@ -122,33 +122,17 @@ namespace Rapid_Plus.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_FechaInicio {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_FechaFin {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_Categoria {
             get {
-                return this.DataDefinition.ParameterFields[2];
+                return this.DataDefinition.ParameterFields[0];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedrptRapidPlus : Component, ICachedReport {
+    public class CachedrptCategoria : Component, ICachedReport {
         
-        public CachedrptRapidPlus() {
+        public CachedrptCategoria() {
         }
         
         [Browsable(false)]
@@ -185,7 +169,7 @@ namespace Rapid_Plus.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            rptRapidPlus rpt = new rptRapidPlus();
+            rptCategoria rpt = new rptCategoria();
             rpt.Site = this.Site;
             return rpt;
         }
