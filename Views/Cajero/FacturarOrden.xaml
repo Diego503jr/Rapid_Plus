@@ -13,10 +13,10 @@
         <Rectangle VerticalAlignment="Top" Height="150" Stroke="#A2BCE0" Margin="62,100,62,0" />
         <Label Content="Facturar Orden" Background="#A2BCE0" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
 
-        <StackPanel Orientation="Horizontal" Width="512" Height="40" Margin="0,118,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Width="328" Height="40" Margin="0,118,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"/>
-            <ComboBox Name="cmbMesa" Width="80" FontSize="20" Margin="0,0,20,0"/>
-            <Button x:Name="btnBuscar" BorderBrush="{x:Null}" Background="#A2BCE0" Content="Buscar" FontSize="18" Click="btnBuscar_Click" Width="91" Margin="0,0,10,0"/>
+            <ComboBox Name="cmbMesa" Width="80" FontSize="20" Margin="0,0,20,0" SelectionChanged="cmbMesa_SelectionChanged" DropDownOpened="cmbMesa_DropDownOpened"/>
+            
         </StackPanel>
 
 
