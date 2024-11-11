@@ -165,6 +165,7 @@ namespace Rapid_Plus.Views.JefeDeCocina
         private void Timer_Tik(object sender, EventArgs e)
         {
             MostrarOrdenesPorMesa();
+            MostrarOrden();
         }
         private void btnLista_Click(object sender, RoutedEventArgs e)
         {
@@ -174,7 +175,8 @@ namespace Rapid_Plus.Views.JefeDeCocina
                 EditarEstadoOrden();
             }
         }
-        private void cmbNumMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void MostrarOrden() 
         {
             idMesa = Mesa();
             var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
@@ -192,6 +194,11 @@ namespace Rapid_Plus.Views.JefeDeCocina
             {
                 txbOrden.Text = string.Empty;
             }
+        }
+
+        private void cmbNumMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MostrarOrden();
         }
         #endregion
 
