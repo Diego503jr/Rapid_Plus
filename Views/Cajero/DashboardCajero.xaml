@@ -22,7 +22,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnClientes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnClientes_Click">
+                        <Button Name="btnClientes" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnClientes_Click" MouseEnter="btnClientes_MouseEnter" MouseLeave="btnClientes_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/usuario.png" />
                                 <Label Content="Clientes" Foreground="White"/>
@@ -32,7 +32,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnCrearOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCrearOrden_Click">
+                        <Button Name="btnCrearOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnCrearOrden_Click" MouseEnter="btnCrearOrden_MouseEnter" MouseLeave="btnCrearOrden_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/AgregarOrden.png" />
                                 <Label Content="Crear Orden" Foreground="White"/>
@@ -42,7 +42,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnVerOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnVerOrden_Click">
+                        <Button Name="btnVerOrden" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnVerOrden_Click" MouseEnter="btnVerOrden_MouseEnter" MouseLeave="btnVerOrden_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/VerOrden.png" />
                                 <Label Content="Ver Ordenes" Foreground="White"/>
@@ -52,7 +52,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Rectangle Width="10" Height="60" Fill="#0B5563"/>
-                        <Button Name="btnGestionar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnGestionar_Click">
+                        <Button Name="btnGestionar" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" Width="340" Height="60" Click="btnGestionar_Click" MouseEnter="btnGestionar_MouseEnter" MouseLeave="btnGestionar_MouseLeave">
                             <StackPanel Orientation="Horizontal"  Width="325">
                                 <Image Width="60" Height="50" Margin="0" Source="/Assets/GestionarOrden.png" />
                                 <Label Content="Gestionar Orden" Foreground="White"/>

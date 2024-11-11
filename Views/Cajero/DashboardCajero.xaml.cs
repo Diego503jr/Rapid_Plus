@@ -46,7 +46,12 @@ namespace Rapid_Plus.Views.Cajero
 
         private void btnFacturar_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnFacturar.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
         }
 
         private void btnFacturar_MouseLeave(object sender, MouseEventArgs e)
@@ -56,12 +61,97 @@ namespace Rapid_Plus.Views.Cajero
 
         private void btnCerrarSesion_MouseEnter(object sender, MouseEventArgs e)
         {
-            btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
         }
 
         private void btnCerrarSesion_MouseLeave(object sender, MouseEventArgs e)
         {
             btnCerrarSesion.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+        }
+
+        private void btnClientes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
+        }
+
+        private void btnClientes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            }
+        }
+
+        private void btnCrearOrden_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
+        }
+
+        private void btnCrearOrden_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            }
+        }
+
+        private void btnVerOrden_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
+        }
+
+        private void btnVerOrden_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            }
+        }
+
+        private void btnGestionar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0B5563"));
+            }
+        }
+
+        private void btnGestionar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button boton = sender as Button;
+
+            if (boton != null)
+            {
+                boton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5299D3"));
+            }
         }
         #endregion
 
@@ -116,5 +206,6 @@ namespace Rapid_Plus.Views.Cajero
 
         #endregion
 
+        
     }
 }

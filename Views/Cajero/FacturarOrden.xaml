@@ -47,7 +47,7 @@
         <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="50,680,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="50,725,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
         <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,672,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="34" TextChanged="txtRecibido_TextChanged"/>
-        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="186,632,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="176,636,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="207,725,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnRealizar" 
                     BorderBrush="{x:Null}" Background="#A2BCE0" 
