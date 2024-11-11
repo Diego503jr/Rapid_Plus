@@ -7,13 +7,13 @@ using System.Windows;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Rapid_Plus")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Rapid Plus")]
+[assembly: AssemblyDescription("Este es un proyecto de Programacion Orientada a Eventos")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rapid_Plus")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Rapid Plus")]
+[assembly: AssemblyProduct("Rapid Plus")]
+[assembly: AssemblyCopyright("Rapid Plus Copyright ©  2024")]
+[assembly: AssemblyTrademark("Rapid_Plus Company")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
