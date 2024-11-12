@@ -50,11 +50,11 @@
         <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="165,722,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="196,811,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnRealizar" 
-                    BorderBrush="{x:Null}" Background="#A2BCE0" 
+                    BorderBrush="{x:Null}" Background="#0B5563" 
                     Content="Realizar" FontSize="18" 
                     Margin="592,828,410,113" Click="btnRealizar_Click_1"/>
         <Button x:Name="btnCancelar" 
-            BorderBrush="{x:Null}" Background="#A2BCE0" 
+            BorderBrush="{x:Null}" Background="#FFD63C3C" 
             Content="Cancelar" FontSize="18" 
             Margin="730,828,272,113" Click="btnCancelar_Click"/>
         <Label Content="Numero de Orden:" HorizontalAlignment="Left" Margin="64,400,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
