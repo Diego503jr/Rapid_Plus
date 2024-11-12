@@ -6,17 +6,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Rapid_Plus.Views.Cajero"
       mc:Ignorable="d"
-      Title="FacturarOrden" Loaded="Page_Loaded" Height="583" Width="1086">
+      Title="FacturarOrden" Loaded="Page_Loaded" Height="750" Width="1086" Background="White">
 
-    <Grid Background="White" Margin="0,-139,-27,-84">
+    <Grid Margin="0,-139,-27,-84">
 
-        <Rectangle VerticalAlignment="Top" Height="150" Stroke="#A2BCE0" Margin="62,100,62,0" />
-        <Label Content="Facturar Orden" Background="#A2BCE0" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,50,0,0" HorizontalContentAlignment="Center"></Label>
+        <Rectangle VerticalAlignment="Top" Height="150" Stroke="#A2BCE0" Margin="62,205,62,0" />
+        <Label Content="Facturar Orden" Background="#A2BCE0" Height="50" FontSize="36" Foreground="White" VerticalAlignment="Top" Width="996" HorizontalAlignment="Center" Margin="0,155,0,0" HorizontalContentAlignment="Center"></Label>
 
-        <StackPanel Orientation="Horizontal" Width="328" Height="40" Margin="0,118,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Width="328" Height="40" Margin="0,223,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Label Content="Número de mesa: " FontSize="20" Width="181" FontWeight="Bold"/>
             <ComboBox Name="cmbMesa" Width="80" FontSize="20" Margin="0,0,20,0" SelectionChanged="cmbMesa_SelectionChanged" DropDownOpened="cmbMesa_DropDownOpened"/>
-            
+
         </StackPanel>
 
 
@@ -24,7 +24,7 @@
 
 
 
-        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="17,349,7,199" RenderTransformOrigin="0.5,0.5">
+        <DataGrid x:Name="dgOrdenes" AutoGenerateColumns="False" IsReadOnly="true" ItemsSource ="{Binding}" Margin="15,454,9,271" RenderTransformOrigin="0.5,0.5">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -43,27 +43,27 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="TOTAL" HorizontalAlignment="Left" Margin="50,632,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="50,680,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="50,725,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
-        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="186,672,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="34" TextChanged="txtRecibido_TextChanged"/>
-        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="176,636,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="207,725,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="TOTAL" HorizontalAlignment="Left" Margin="39,718,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="RECIBIDO" HorizontalAlignment="Left" Margin="39,766,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="DEVOLUCION" HorizontalAlignment="Left" Margin="39,811,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.504,0.882"/>
+        <TextBox x:Name="txtRecibido" HorizontalAlignment="Left" Margin="175,758,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" Height="34" TextChanged="txtRecibido_TextChanged"/>
+        <TextBlock x:Name="txbTotal" HorizontalAlignment="Left" Margin="165,722,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbDevolucion" HorizontalAlignment="Left" Margin="196,811,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnRealizar" 
-                    BorderBrush="{x:Null}" Background="#A2BCE0" 
+                    BorderBrush="{x:Null}" Background="#0B5563" 
                     Content="Realizar" FontSize="18" 
-                    Margin="564,681,438,93" Click="btnRealizar_Click_1"/>
+                    Margin="592,828,410,113" Click="btnRealizar_Click_1"/>
         <Button x:Name="btnCancelar" 
-            BorderBrush="{x:Null}" Background="#A2BCE0" 
+            BorderBrush="{x:Null}" Background="#FFD63C3C" 
             Content="Cancelar" FontSize="18" 
-            Margin="702,681,300,93" Click="btnCancelar_Click"/>
-        <Label Content="Numero de Orden:" HorizontalAlignment="Left" Margin="62,275,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="465,275,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Usuario:" HorizontalAlignment="Left" Margin="796,275,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <TextBlock x:Name="txbOrden" HorizontalAlignment="Left" Margin="275,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock x:Name="txbCliente" HorizontalAlignment="Left" Margin="574,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock x:Name="txbUsuario" HorizontalAlignment="Left" Margin="886,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="$" HorizontalAlignment="Left" Margin="167,672,0,0" VerticalAlignment="Top" FontSize="20"/>
+            Margin="730,828,272,113" Click="btnCancelar_Click"/>
+        <Label Content="Numero de Orden:" HorizontalAlignment="Left" Margin="64,400,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="467,400,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Usuario:" HorizontalAlignment="Left" Margin="798,400,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <TextBlock x:Name="txbOrden" HorizontalAlignment="Left" Margin="277,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbCliente" HorizontalAlignment="Left" Margin="576,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="txbUsuario" HorizontalAlignment="Left" Margin="888,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="$" HorizontalAlignment="Left" Margin="156,758,0,0" VerticalAlignment="Top" FontSize="20"/>
 
 
     </Grid>
