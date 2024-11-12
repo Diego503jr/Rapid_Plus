@@ -29,7 +29,7 @@
                 <StackPanel Orientation="Vertical" Width="425">
                     <StackPanel Orientation="Horizontal"  Width="425" Height="40">
                         <Label Content="Número de mesa: " FontSize="20" Width="181"/>
-                        <ComboBox x:Name="cmbNumMesa" Width="80" FontSize="20" SelectionChanged="cmbNumMesa_SelectionChanged"/>
+                        <ComboBox x:Name="cmbNumMesa" Width="80" FontSize="20" SelectionChanged="cmbNumMesa_SelectionChanged" DropDownOpened="cmbNumMesa_DropDownOpened"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="425">

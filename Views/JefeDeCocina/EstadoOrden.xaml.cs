@@ -150,6 +150,7 @@ namespace Rapid_Plus.Views.JefeDeCocina
             txbEstado.Text = string.Empty; // Limpia el contenido del TextBox
         }
         #endregion
+
         #region EVENTOS
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -193,6 +194,14 @@ namespace Rapid_Plus.Views.JefeDeCocina
             else
             {
                 txbOrden.Text = string.Empty;
+            }
+        }
+
+        private void cmbNumMesa_DropDownOpened(object sender, EventArgs e)
+        {
+            if (cmbNumMesa.Items.Count == 0)
+            {
+                MessageBox.Show("No hay mesas con ordenes pendientes", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 

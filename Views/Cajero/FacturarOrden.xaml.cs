@@ -171,7 +171,7 @@ namespace Rapid_Plus.Views.Cajero
                 MessageBox.Show("Ingrese cantidad positiva", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            MessageBox.Show("Paso");
+
             // Verifica que el DataGrid tenga al menos un elemento
             if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
             {
@@ -215,7 +215,7 @@ namespace Rapid_Plus.Views.Cajero
         {
             if (cmbMesa.Items.Count == 0)
             {
-                MessageBox.Show("No hay mesas disponibles", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("No hay mesas con ordenes listas para facturar", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
