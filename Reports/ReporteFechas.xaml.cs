@@ -58,7 +58,7 @@ namespace Rapid_Plus.Reports
 
             // Asignar el reporte al visor
             vw.crvReportRapidPlus.ViewerCore.ReportSource = rpt;
-            vw.Show();
+            vw.ShowDialog();
 
             //Limpiamos los campos
             LimpiarFormulario();

@@ -60,6 +60,7 @@ namespace Rapid_Plus.Views.Administrador
         private void Timer_Tik(object sender, EventArgs e) 
         {
             MostrarMenu();
+            CargarCategorias();
         }
 
         //Validar formulario 
