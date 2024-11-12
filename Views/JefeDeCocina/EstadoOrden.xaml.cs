@@ -123,6 +123,12 @@ namespace Rapid_Plus.Views.JefeDeCocina
             bool estado = true;
             string mensaje = null;
 
+            if (string.IsNullOrEmpty(cmbNumMesa.Text))
+            {
+                estado = false;
+                mensaje += "Número de mesa\n";
+            }
+
             if (string.IsNullOrEmpty(txbOrden.Text))
             {
                 estado = false;
@@ -171,9 +177,23 @@ namespace Rapid_Plus.Views.JefeDeCocina
         private void btnLista_Click(object sender, RoutedEventArgs e)
         {
             //Validamos si se quiere cambiar el estado
-            if (MessageBox.Show("¿Desea modificar el estado de la orden?", "Accion", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (!ValidarFomrulario())
             {
-                EditarEstadoOrden();
+                MessageBox.Show("Por favor completa todos los campos requeridos.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            else 
+            {
+                MessageBoxResult resultado = MessageBox.Show(
+                    "¿Desea cambiar el estado de la orden?",
+                    "Confirmación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+                if (resultado == MessageBoxResult.Yes) 
+                {
+                    EditarEstadoOrden();
+                }
             }
         }
 
@@ -203,6 +223,7 @@ namespace Rapid_Plus.Views.JefeDeCocina
             {
                 MessageBox.Show("No hay mesas con ordenes pendientes", "Mesas", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+          
         }
 
         private void cmbNumMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
