@@ -30,7 +30,8 @@ namespace Rapid_Plus.Views.Mesero
         public TomarOrden()
         {
             InitializeComponent();
-            
+            IniciarTemporizador();
+
         }
 
         #region VARIABLES LOCALES
@@ -95,6 +96,19 @@ namespace Rapid_Plus.Views.Mesero
             cmbPlatillo.SelectedValuePath = "Id";
 
         }
+        private void IniciarTemporizador()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tik;
+            timer.Start();
+        }
+        private void Timer_Tik(object sender, EventArgs e)
+        {
+            MostrarOrden();
+            CargarCategorias();
+            CargarNumeroMesa();
+        }
 
         //Limpia objetos 
         private void LimpiarObjetos()
@@ -155,6 +169,24 @@ namespace Rapid_Plus.Views.Mesero
             }
 
             return estado;
+        }
+        private void MostrarOrden() 
+        {
+            idMesa = IdMesa();
+            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
+            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
+
+            if (detalle != null)
+            {
+                dgOrdenes.DataContext = ordenes;
+
+                txbOrden.Text = detalle.IdOrden.ToString();
+                txbEstado.Text = detalle.EstadoOrden;
+            }
+            else
+            {
+                txbOrden.Text = string.Empty;
+            }
         }
 
         //Activa o desactiva campos y botones
@@ -223,6 +255,7 @@ namespace Rapid_Plus.Views.Mesero
 
         }
 
+
         //Muestra elementos según categoria de platillo seleccionada
         private void cmbPlatillo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -246,21 +279,7 @@ namespace Rapid_Plus.Views.Mesero
         //Muestra elementos según mesa seleccionada
         private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            idMesa = IdMesa();
-            var detalle = DetalleOrdenController.ObtenerDetalleOrden(idMesa);
-            var ordenes = OrdenController.MostrarOrdenesPorMesa(idMesa);
-
-            if (detalle != null)
-            {
-                dgOrdenes.DataContext = ordenes;
-
-                txbOrden.Text = detalle.IdOrden.ToString();
-                txbEstado.Text = detalle.EstadoOrden;
-            }
-            else
-            {
-                txbOrden.Text = string.Empty;
-            }
+            MostrarOrden();
         }
 
 
