@@ -13,7 +13,7 @@ using System.Windows;
 [assembly: AssemblyCompany("Rapid Plus")]
 [assembly: AssemblyProduct("Rapid Plus")]
 [assembly: AssemblyCopyright("Rapid Plus Copyright ©  2024")]
-[assembly: AssemblyTrademark("Rapid_Plus Company")]
+[assembly: AssemblyTrademark("Rapid Plus Company")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
