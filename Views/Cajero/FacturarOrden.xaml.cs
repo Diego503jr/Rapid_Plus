@@ -165,6 +165,13 @@ namespace Rapid_Plus.Views.Cajero
         //Boton para realizar la facturación
         private void btnRealizar_Click_1(object sender, RoutedEventArgs e)
         {
+            decimal recibidoPago =Convert.ToDecimal(txtRecibido.Text);
+
+            if(recibidoPago < 0){
+                MessageBox.Show("Ingrese cantidad positiva", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            MessageBox.Show("Paso");
             // Verifica que el DataGrid tenga al menos un elemento
             if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
             {
@@ -212,9 +219,6 @@ namespace Rapid_Plus.Views.Cajero
             }
         }
 
-
         #endregion
-
-
     }
 }
