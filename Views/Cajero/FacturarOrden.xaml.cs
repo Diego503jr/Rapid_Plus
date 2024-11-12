@@ -39,7 +39,7 @@ namespace Rapid_Plus.Views.Cajero
         private void IniciarTemporizador()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += Timer_Tik;
             timer.Start();
         }
@@ -165,12 +165,24 @@ namespace Rapid_Plus.Views.Cajero
         //Boton para realizar la facturación
         private void btnRealizar_Click_1(object sender, RoutedEventArgs e)
         {
-            decimal recibidoPago =Convert.ToDecimal(txtRecibido.Text);
+            decimal recibidoPago;
+
+            if(string.IsNullOrEmpty(txtRecibido.Text))
+            {
+                recibidoPago = 0;
+            }
+            else
+            {
+                recibidoPago = Convert.ToDecimal(txtRecibido.Text); 
+            }
 
             if(recibidoPago < 0){
                 MessageBox.Show("Ingrese cantidad positiva", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            
+            
 
             // Verifica que el DataGrid tenga al menos un elemento
             if (dgOrdenes.Items.Count > 0 && dgOrdenes.Items[0] is OrdenesModel primeraOrden)
@@ -202,8 +214,9 @@ namespace Rapid_Plus.Views.Cajero
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarNumeroMesa();
             LimpiarFormulario();
+            CargarNumeroMesa();
+            
         }
 
         private void cmbMesa_SelectionChanged(object sender, SelectionChangedEventArgs e)
