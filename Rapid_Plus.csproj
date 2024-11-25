@@ -120,6 +120,11 @@
     <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\DetalleOrdenModel.cs" />
+    <Compile Include="Properties\Settings.example1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.example.settings</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ParametroReporte.xaml.cs">
       <DependentUpon>ParametroReporte.xaml</DependentUpon>
     </Compile>
@@ -311,6 +316,10 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings.example.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.example1.Designer.cs</LastGenOutput>
     </None>
     <None Include="Rapid_Plus_TemporaryKey.pfx" />
   </ItemGroup>

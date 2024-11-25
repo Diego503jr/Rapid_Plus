@@ -26,6 +26,8 @@ namespace Rapid_Plus.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Nombre;Initial Catalog=seleccionarLaDb;Persist Security Info=True;Use" +
+            "r ID=nombre;Password=password;Encrypt=False;TrustServerCertificate=True")]
         public string DbRapidPlus {
             get {
                 return ((string)(this["DbRapidPlus"]));
